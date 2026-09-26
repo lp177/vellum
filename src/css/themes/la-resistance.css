@@ -1,0 +1,35 @@
+/* Vellum theme "La Resistance" — https://polymerthemes.com/la-resistance/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="la-resistance"] {
+  --v-color-scheme: light;
+  --v-bg: #d7dcdf;
+  --v-surface: #e0e0e0;
+  --v-surface-raised: #e0e0e0;
+  --v-text: #636363;
+  --v-heading: #636363;
+  --v-text-2: #898989;
+  --v-divider: #cacaca;
+  --v-primary: #e65540;
+  --v-on-primary: #ffffff;
+  --v-secondary: #65a8a6;
+  --v-on-secondary: #ffffff;
+  --v-success: #81c784;
+  --v-on-success: #273c28;
+  --v-info: #aed581;
+  --v-on-info: #344027;
+  --v-warning: #fff176;
+  --v-on-warning: #4d4823;
+  --v-error: #ffb74d;
+  --v-on-error: #4d3717;
+  --v-toolbar: #e65540;
+  --v-on-toolbar: #ffffff;
+  --v-inverse: #6f6f6f;
+  --v-on-inverse: #ebeeef;
+  --v-focus: #e65540;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

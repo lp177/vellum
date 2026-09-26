@@ -1,0 +1,35 @@
+/* Vellum theme "Gelati" — https://polymerthemes.com/gelati/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="gelati"] {
+  --v-color-scheme: light;
+  --v-bg: #00a0b0;
+  --v-surface: #21acba;
+  --v-surface-raised: #21acba;
+  --v-text: #ffffff;
+  --v-heading: #ffffff;
+  --v-text-2: #bce6ea;
+  --v-divider: #49bbc6;
+  --v-primary: #cc333f;
+  --v-on-primary: #ffffff;
+  --v-secondary: #eb6841;
+  --v-on-secondary: #ffffff;
+  --v-success: #4caf50;
+  --v-on-success: #ffffff;
+  --v-info: #6a4a3c;
+  --v-on-info: #ffffff;
+  --v-warning: #edc951;
+  --v-on-warning: #473c18;
+  --v-error: #a351b1;
+  --v-on-error: #ffffff;
+  --v-toolbar: #cc333f;
+  --v-on-toolbar: #ffffff;
+  --v-inverse: #e6f6f7;
+  --v-on-inverse: #80d0d8;
+  --v-focus: #cc333f;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

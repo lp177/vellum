@@ -17,8 +17,11 @@
   <span class="v-toolbar__title">Vellum</span>
   <nav class="demo-links" aria-label="Liens">
     <a href="#buttons">Composants</a>
-    <a href="#theme-contract">Thèmes</a>
+    <a href="./builder.html" data-builder-link>Créer un thème</a>
   </nav>
+  <div class="v-field v-field--select v-field--no-float demo-toolbar-theme" data-theme-picker>
+    <select class="v-field__input" data-theme-select aria-label="Thème"></select><span class="v-field__line"></span>
+  </div>
 </header>
 
 <main>
@@ -30,11 +33,12 @@
     <div><button class="v-button v-button--raised v-button--secondary"><svg class="v-icon" data-v-icon="code"></svg>Vue &amp; co</button><p>Indépendant du framework</p></div>
   </div>
   <p class="demo-or">THÈME</p>
-  <div class="demo-themes" role="group" aria-label="Thème">
-    <button class="v-button v-button--raised" aria-pressed="false" data-theme-choice="">Auto</button>
-    <button class="v-button v-button--raised" aria-pressed="false" data-theme-choice="light">Light</button>
-    <button class="v-button v-button--raised" aria-pressed="false" data-theme-choice="dark">Dark</button>
-    <button class="v-button v-button--raised v-button--info" aria-pressed="false" data-theme-choice="golden-goose">Golden goose</button>
+  <div class="demo-themes" data-theme-picker>
+    <div class="v-field v-field--select demo-theme-field">
+      <select class="v-field__input" id="theme-hero" data-theme-select></select>
+      <label class="v-field__label" for="theme-hero">33 thèmes, clairs et sombres</label><span class="v-field__line"></span>
+    </div>
+    <a class="v-button v-button--raised v-button--primary" href="./builder.html" data-builder-link><svg class="v-icon" data-v-icon="palette"></svg>Créer un thème</a>
   </div>
 </section>
 
@@ -257,7 +261,8 @@
 <section class="demo-band" id="theme-contract">
   <h2 class="demo-section">theme contract</h2>
   <div class="demo-wide">
-    <p class="demo-caption">Un thème ne définit que ces couleurs de base ; ombres, états, focus, désactivé et ondes en sont dérivés. Valeurs du thème actif :</p>
+    <p class="demo-caption">Un thème ne définit que ces couleurs de base ; ombres, états, focus, désactivé et ondes en sont dérivés. Valeurs du thème actif
+      (<a href="./builder.html" data-builder-link>les modifier dans le créateur de thème</a>) :</p>
     <div class="v-card demo-swatches" id="swatches"></div>
   </div>
 </section>

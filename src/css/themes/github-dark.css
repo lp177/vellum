@@ -1,0 +1,35 @@
+/* Vellum theme "GitHub Dark" — https://primer.style/foundations/color. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="github-dark"] {
+  --v-color-scheme: dark;
+  --v-bg: #0d1117;
+  --v-surface: #161b22;
+  --v-surface-raised: #21262d;
+  --v-text: #e6edf3;
+  --v-heading: #f0f6fc;
+  --v-text-2: #8d96a0;
+  --v-divider: #30363d;
+  --v-primary: #4493f8;
+  --v-on-primary: #0d1117;
+  --v-secondary: #ab7df8;
+  --v-on-secondary: #0d1117;
+  --v-success: #3fb950;
+  --v-on-success: #0d1117;
+  --v-info: #39c5cf;
+  --v-on-info: #0d1117;
+  --v-warning: #d29922;
+  --v-on-warning: #0d1117;
+  --v-error: #f85149;
+  --v-on-error: #0d1117;
+  --v-toolbar: #010409;
+  --v-on-toolbar: #e6edf3;
+  --v-inverse: #d0d7dd;
+  --v-on-inverse: #090c10;
+  --v-focus: #7cb3fa;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}

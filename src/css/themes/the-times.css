@@ -1,0 +1,35 @@
+/* Vellum theme "The Times" — https://polymerthemes.com/the-times/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="the-times"] {
+  --v-color-scheme: light;
+  --v-bg: #f1f1f1;
+  --v-surface: #ffffff;
+  --v-surface-raised: #ffffff;
+  --v-text: #191919;
+  --v-heading: #191919;
+  --v-text-2: #5e5e5e;
+  --v-divider: #d6d6d6;
+  --v-primary: #191919;
+  --v-on-primary: #ffffff;
+  --v-secondary: #1e88e5;
+  --v-on-secondary: #ffffff;
+  --v-success: #8bc34a;
+  --v-on-success: #ffffff;
+  --v-info: #fadd60;
+  --v-on-info: #4b421d;
+  --v-warning: #ffb74d;
+  --v-on-warning: #4d3717;
+  --v-error: #ef5350;
+  --v-on-error: #481918;
+  --v-toolbar: #191919;
+  --v-on-toolbar: #ffffff;
+  --v-inverse: #2f2f2f;
+  --v-on-inverse: #f8f8f8;
+  --v-focus: #191919;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

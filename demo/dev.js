@@ -1,4 +1,3 @@
-// Dev entry (vite): library sources + optional local Roboto + the golden-goose theme, then the demo.
+// Dev / site entry (vite): library sources + self-hosted Roboto, then the demo (themes come from the catalog).
 import '../src/css/fonts.css'
-import '../src/css/themes/golden-goose.css'
 import './demo.js'

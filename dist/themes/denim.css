@@ -1,0 +1,35 @@
+/* Vellum theme "Denim" — https://polymerthemes.com/denim/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="denim"] {
+  --v-color-scheme: dark;
+  --v-bg: #373b50;
+  --v-surface: #3d415a;
+  --v-surface-raised: #474b62;
+  --v-text: #bdced7;
+  --v-heading: #edf1f4;
+  --v-text-2: #97a4b2;
+  --v-divider: #575a6e;
+  --v-primary: #90a4ae;
+  --v-on-primary: #2b3134;
+  --v-secondary: #80cbc4;
+  --v-on-secondary: #263d3b;
+  --v-success: #9dc56e;
+  --v-on-success: #2f3b21;
+  --v-info: #fadd60;
+  --v-on-info: #4b421d;
+  --v-warning: #ffb74d;
+  --v-on-warning: #4d3717;
+  --v-error: #ff6e40;
+  --v-on-error: #4d2113;
+  --v-toolbar: #484e6e;
+  --v-on-toolbar: #bdced7;
+  --v-inverse: #b0bfca;
+  --v-on-inverse: #272938;
+  --v-focus: #b1bfc6;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}

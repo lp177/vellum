@@ -1,0 +1,35 @@
+/* Vellum theme "Contraste élevé" — WCAG AAA contrast on black. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="high-contrast"] {
+  --v-color-scheme: dark;
+  --v-bg: #000000;
+  --v-surface: #0d0d0d;
+  --v-surface-raised: #1a1a1a;
+  --v-text: #ffffff;
+  --v-heading: #ffffff;
+  --v-text-2: #e0e0e0;
+  --v-divider: #9e9e9e;
+  --v-primary: #ffeb3b;
+  --v-on-primary: #000000;
+  --v-secondary: #40c4ff;
+  --v-on-secondary: #000000;
+  --v-success: #69f0ae;
+  --v-on-success: #000000;
+  --v-info: #80d8ff;
+  --v-on-info: #000000;
+  --v-warning: #ffab40;
+  --v-on-warning: #000000;
+  --v-error: #ff8a80;
+  --v-on-error: #000000;
+  --v-toolbar: #000000;
+  --v-on-toolbar: #ffffff;
+  --v-inverse: #e6e6e6;
+  --v-on-inverse: #000000;
+  --v-focus: #ffffff;
+  --v-shadow-rgb: 255 255 255;
+  --v-shadow-key-alpha: 0.16;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.22;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}

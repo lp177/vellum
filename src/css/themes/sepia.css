@@ -1,0 +1,35 @@
+/* Vellum theme "Sépia" — e-reader sepia mode. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="sepia"] {
+  --v-color-scheme: light;
+  --v-bg: #efe5cf;
+  --v-surface: #f8f1e3;
+  --v-surface-raised: #f8f1e3;
+  --v-text: #5b4636;
+  --v-heading: #3e2f23;
+  --v-text-2: #8a796a;
+  --v-divider: #d9d3c7;
+  --v-primary: #8b5a2b;
+  --v-on-primary: #ffffff;
+  --v-secondary: #4f7942;
+  --v-on-secondary: #ffffff;
+  --v-success: #5a7d2a;
+  --v-on-success: #ffffff;
+  --v-info: #3f6e8c;
+  --v-on-info: #ffffff;
+  --v-warning: #b8741a;
+  --v-on-warning: #ffffff;
+  --v-error: #a33a2b;
+  --v-on-error: #ffffff;
+  --v-toolbar: #e3d5b8;
+  --v-on-toolbar: #3e2f23;
+  --v-inverse: #6a5645;
+  --v-on-inverse: #f7f2e7;
+  --v-focus: #8b5a2b;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

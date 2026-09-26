@@ -1,0 +1,35 @@
+/* Vellum theme "Catppuccin Mocha" — https://catppuccin.com/palette. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="catppuccin-mocha"] {
+  --v-color-scheme: dark;
+  --v-bg: #181825;
+  --v-surface: #1e1e2e;
+  --v-surface-raised: #313244;
+  --v-text: #cdd6f4;
+  --v-heading: #cdd6f4;
+  --v-text-2: #a6adc8;
+  --v-divider: #3f3f4c;
+  --v-primary: #89b4fa;
+  --v-on-primary: #1e1e2e;
+  --v-secondary: #cba6f7;
+  --v-on-secondary: #1e1e2e;
+  --v-success: #a6e3a1;
+  --v-on-success: #1e1e2e;
+  --v-info: #89dceb;
+  --v-on-info: #1e1e2e;
+  --v-warning: #f9e2af;
+  --v-on-warning: #1e1e2e;
+  --v-error: #f38ba8;
+  --v-on-error: #1e1e2e;
+  --v-toolbar: #11111b;
+  --v-on-toolbar: #cdd6f4;
+  --v-inverse: #bbc3df;
+  --v-on-inverse: #11111a;
+  --v-focus: #accbfc;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}

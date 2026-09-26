@@ -1,0 +1,35 @@
+/* Vellum theme "GitHub Light" — https://primer.style/foundations/color. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="github-light"] {
+  --v-color-scheme: light;
+  --v-bg: #f6f8fa;
+  --v-surface: #ffffff;
+  --v-surface-raised: #ffffff;
+  --v-text: #1f2328;
+  --v-heading: #1f2328;
+  --v-text-2: #59636e;
+  --v-divider: #d1d9e0;
+  --v-primary: #0969da;
+  --v-on-primary: #ffffff;
+  --v-secondary: #8250df;
+  --v-on-secondary: #ffffff;
+  --v-success: #1a7f37;
+  --v-on-success: #ffffff;
+  --v-info: #1b7c83;
+  --v-on-info: #ffffff;
+  --v-warning: #9a6700;
+  --v-on-warning: #ffffff;
+  --v-error: #d1242f;
+  --v-on-error: #ffffff;
+  --v-toolbar: #24292f;
+  --v-on-toolbar: #ffffff;
+  --v-inverse: #35383d;
+  --v-on-inverse: #fbfcfd;
+  --v-focus: #0969da;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

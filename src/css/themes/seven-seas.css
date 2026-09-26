@@ -1,0 +1,35 @@
+/* Vellum theme "Seven Seas" — https://polymerthemes.com/seven-seas/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="seven-seas"] {
+  --v-color-scheme: light;
+  --v-bg: #dbe9d6;
+  --v-surface: #f0f2dd;
+  --v-surface-raised: #f0f2dd;
+  --v-text: #585e62;
+  --v-heading: #585e62;
+  --v-text-2: #868a87;
+  --v-divider: #d6d7c6;
+  --v-primary: #3d6868;
+  --v-on-primary: #ffffff;
+  --v-secondary: #40957f;
+  --v-on-secondary: #ffffff;
+  --v-success: #a7c686;
+  --v-on-success: #323b28;
+  --v-info: #3c515d;
+  --v-on-info: #ffffff;
+  --v-warning: #fadd60;
+  --v-on-warning: #4b421d;
+  --v-error: #ff7043;
+  --v-on-error: #4d2214;
+  --v-toolbar: #3d6868;
+  --v-on-toolbar: #ffffff;
+  --v-inverse: #656c6e;
+  --v-on-inverse: #edf4eb;
+  --v-focus: #3d6868;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

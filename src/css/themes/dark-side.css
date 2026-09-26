@@ -1,0 +1,35 @@
+/* Vellum theme "Dark Side" — https://polymerthemes.com/dark-side/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="dark-side"] {
+  --v-color-scheme: dark;
+  --v-bg: #212121;
+  --v-surface: #2c2f2f;
+  --v-surface-raised: #373939;
+  --v-text: #ffffff;
+  --v-heading: #ffffff;
+  --v-text-2: #c0c1c1;
+  --v-divider: #525454;
+  --v-primary: #3b8183;
+  --v-on-primary: #ffffff;
+  --v-secondary: #4db6ac;
+  --v-on-secondary: #ffffff;
+  --v-success: #8bc34a;
+  --v-on-success: #ffffff;
+  --v-info: #9575cd;
+  --v-on-info: #2d233e;
+  --v-warning: #fadd60;
+  --v-on-warning: #4b421d;
+  --v-error: #ff7043;
+  --v-on-error: #4d2214;
+  --v-toolbar: #424b4b;
+  --v-on-toolbar: #bdced7;
+  --v-inverse: #e9e9e9;
+  --v-on-inverse: #171717;
+  --v-focus: #76a7a8;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}

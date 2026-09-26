@@ -1,5 +1,7 @@
 // Demo page wiring: builds the repetitive example lists, then enhances everything with Vellum.
 import { init, openDialog, toast, setProgress, validateField, icon, setTheme } from '../src/index.js'
+import { CONTRACT, THEMES, themeCSS } from '../src/themes/index.js'
+import { fillThemeSelect, injectThemes, loadCustom } from './themes-ui.js'
 
 const $ = (s, r = document) => r.querySelector(s)
 const $$ = (s, r = document) => [...r.querySelectorAll(s)]
@@ -58,14 +60,36 @@ document.body.classList.add('v-app')
 init(document)
 
 // ---------------------------------------------------------------- themes (remembered per browser)
+// ?embed: the page is the live preview of the theme builder, which drives the theme itself (window.vellumPreview).
+const EMBED = new URLSearchParams(location.search).has('embed')
 const THEME_KEY = 'vellum-demo-theme'
+const custom = EMBED ? null : loadCustom()
+injectThemes(document, custom)
+const themeSelects = $$('select[data-theme-select]')
+for (const s of themeSelects) fillThemeSelect(s, { custom })
 const applyTheme = (name) => {
+  if (name === 'custom' && !custom) name = 'golden-goose'
+  if (name && name !== 'custom' && !THEMES.some((t) => t.id === name)) name = 'golden-goose'
   setTheme(name || null, document.body)
-  for (const b of $$('[data-theme-choice]')) b.setAttribute('aria-pressed', String((b.dataset.themeChoice || '') === (name || '')))
-  try { localStorage.setItem(THEME_KEY, name ?? '') } catch { /* storage unavailable */ }
+  for (const s of themeSelects) s.value = name ?? ''
+  if (!EMBED) try { localStorage.setItem(THEME_KEY, name ?? '') } catch { /* storage unavailable */ }
   renderSwatches()
 }
-for (const b of $$('[data-theme-choice]')) b.addEventListener('click', () => applyTheme(b.dataset.themeChoice))
+for (const s of themeSelects) s.addEventListener('change', () => applyTheme(s.value))
+if (EMBED) {
+  document.body.dataset.embed = ''
+  let style = null
+  window.vellumPreview = {
+    apply(vars) {
+      style ??= Object.assign(document.createElement('style'), { id: 'vellum-preview-theme' })
+      if (!style.isConnected) document.head.append(style)
+      style.textContent = themeCSS({ vars }, '[data-theme="custom"]')
+      setTheme('custom', document.body)
+      renderSwatches()
+    },
+  }
+  window.parent?.postMessage({ type: 'vellum-preview-ready' }, location.origin)
+}
 
 // ---------------------------------------------------------------- interactions
 for (const b of $$('[data-open]')) b.addEventListener('click', () => openDialog(document.getElementById(b.dataset.open)))
@@ -93,12 +117,9 @@ $('#toast2').addEventListener('click', () => toast('Message archivé', { action:
 $('#toast3').addEventListener('click', () => toast('Capsule toast', { capsule: true }))
 
 // ---------------------------------------------------------------- theme contract, live values
-const CONTRACT = ['--v-bg', '--v-surface', '--v-surface-raised', '--v-text', '--v-heading', '--v-text-2', '--v-divider', '--v-primary', '--v-on-primary',
-  '--v-secondary', '--v-on-secondary', '--v-success', '--v-info', '--v-warning', '--v-error', '--v-toolbar', '--v-on-toolbar', '--v-inverse', '--v-on-inverse',
-  '--v-focus', '--v-shadow-rgb', '--v-shadow-key-alpha', '--v-shadow-ambient-alpha', '--v-shadow-umbra-alpha', '--v-scrim-alpha', '--v-ripple-alpha']
 function renderSwatches() {
   const cs = getComputedStyle(document.body)
-  $('#swatches').replaceChildren(h(CONTRACT.map((v) => {
+  $('#swatches').replaceChildren(h(CONTRACT.filter((k) => k !== 'color-scheme').map((k) => `--v-${k}`).map((v) => {
     const val = cs.getPropertyValue(v).trim()
     const color = v.includes('alpha') ? '' : v === '--v-shadow-rgb' ? `rgb(${val})` : val
     return `<div class="demo-swatch"><i style="background:${color || 'transparent'}"></i><span>${v}</span><code>${val}</code></div>`

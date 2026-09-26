@@ -1,0 +1,35 @@
+/* Vellum theme "Tokyo Night" — https://github.com/enkia/tokyo-night-vscode-theme. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="tokyo-night"] {
+  --v-color-scheme: dark;
+  --v-bg: #1a1b26;
+  --v-surface: #24283b;
+  --v-surface-raised: #2f3549;
+  --v-text: #c0caf5;
+  --v-heading: #c0caf5;
+  --v-text-2: #a9b1d6;
+  --v-divider: #424555;
+  --v-primary: #7aa2f7;
+  --v-on-primary: #1a1b26;
+  --v-secondary: #bb9af7;
+  --v-on-secondary: #1a1b26;
+  --v-success: #9ece6a;
+  --v-on-success: #1a1b26;
+  --v-info: #7dcfff;
+  --v-on-info: #1a1b26;
+  --v-warning: #e0af68;
+  --v-on-warning: #1a1b26;
+  --v-error: #f7768e;
+  --v-on-error: #1a1b26;
+  --v-toolbar: #16161e;
+  --v-on-toolbar: #c0caf5;
+  --v-inverse: #afb9e0;
+  --v-on-inverse: #12131b;
+  --v-focus: #a2bef9;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}

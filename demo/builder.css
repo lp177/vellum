@@ -1,0 +1,83 @@
+/* Theme builder layout. The builder itself follows the system light/dark theme; the preview (iframe) shows the theme
+ * being made on the full demo page. */
+html, body { margin: 0; height: 100%; }
+body { display: flex; flex-direction: column; background: var(--v-bg); }
+.bld-toolbar { position: sticky; top: 0; flex: none; }
+.bld-toolbar .v-button { color: inherit; white-space: nowrap; }
+.bld-toolbar .v-toolbar__title { min-width: 0; }
+body .bld-views { display: none; flex: none; background: var(--v-surface); box-shadow: var(--v-elevation-1); --v-tabs-bar: var(--v-primary); position: relative; z-index: 5; }
+
+.bld { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(360px, 440px) 1fr; }
+.bld-panel { overflow-y: auto; padding: 20px 20px 40px; background: var(--v-surface); box-shadow: var(--v-elevation-2); position: relative; z-index: 2; }
+.bld-preview { min-width: 0; display: flex; }
+.bld-preview iframe { flex: 1; width: 100%; border: 0; background: var(--v-bg); }
+
+.bld-title { font: var(--v-font-headline) !important; margin: 0 0 8px !important; }
+.bld-intro { margin: 0 0 12px; font: var(--v-font-body1); color: var(--v-text-2); max-width: 60ch; }
+.bld-inline-icon { width: 18px; height: 18px; vertical-align: -4px; }
+/* theme color strip in the "start from" menu (same as the demo's) */
+.demo-sw { display: inline-flex; flex: none; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 1px rgb(128 128 128 / 0.4); }
+.demo-sw i { width: 9px; height: 18px; }
+.bld-start { display: flex; flex-direction: column; gap: 0; margin-bottom: 8px; }
+
+.bld-group { padding: 8px 0 4px; border-top: 1px solid var(--v-divider); }
+.bld-group__title { font: var(--v-font-body2) !important; color: var(--v-primary) !important; text-transform: uppercase; letter-spacing: 0.06em; margin: 8px 0 4px !important; }
+
+/* one color: swatch | label + variable | hex | contrast | auto / reset */
+.bld-row { display: grid; grid-template-columns: 36px minmax(0, 1fr) 7.2em 4.6em 40px; align-items: center; gap: 0 10px; min-height: 48px; }
+.bld-color {
+  width: 36px; height: 28px; padding: 0; border: 0; border-radius: var(--v-radius-surface); background: none; cursor: pointer;
+  box-shadow: 0 0 0 1px var(--v-divider);
+}
+.bld-color::-webkit-color-swatch-wrapper { padding: 0; }
+.bld-color::-webkit-color-swatch { border: 0; border-radius: var(--v-radius-surface); }
+.bld-color::-moz-color-swatch { border: 0; border-radius: var(--v-radius-surface); }
+.bld-label { display: flex; flex-direction: column; min-width: 0; }
+.bld-label label { font: var(--v-font-body1); color: var(--v-text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bld-label code, .bld-effect code { font: 11px var(--v-font-mono); color: var(--v-text-2); }
+.bld-hex {
+  box-sizing: border-box; width: 100%; padding: 4px 0; border: 0; border-bottom: 1px solid var(--v-divider); border-radius: 0;
+  background: transparent; color: var(--v-text); font: 13px var(--v-font-mono); outline: none;
+}
+.bld-hex:focus { border-bottom: 2px solid var(--v-primary); padding-bottom: 3px; }
+.bld-ratio { justify-self: start; font-variant-numeric: tabular-nums; }
+.bld-auto, .bld-reset, .bld-reset-slot { grid-column: 5; grid-row: 1; justify-self: center; }
+/* (qualified: Vellum's .v-chip / .v-icon-button display rules load after this file) */
+.bld-row .bld-auto { display: none; }
+.bld-row.is-auto .bld-auto { display: inline-flex; }
+.bld-row .bld-reset[hidden] { display: none; }
+.bld-reset { --v-icon-button-size: 36px; }
+
+.bld-effect { display: grid; grid-template-columns: 1fr; padding: 4px 0; }
+.bld-effect label { font: var(--v-font-body1); }
+.bld-effect .v-slider { gap: 12px; }
+.bld-alpha { width: 3em; font: 13px var(--v-font-mono); color: var(--v-text-2); text-align: right; }
+
+.bld-out { padding-top: 12px; border-top: 1px solid var(--v-divider); }
+.bld-out code { font-family: var(--v-font-mono); }
+.bld-css {
+  margin: 8px 0 12px; padding: 12px 14px; max-height: 360px; overflow: auto; border-radius: var(--v-radius-surface);
+  background: var(--v-bg); color: var(--v-text); box-shadow: inset 0 0 0 1px var(--v-divider); font: 12px / 1.5 var(--v-font-mono);
+}
+.bld-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.bld-actions .v-button { margin: 0; }
+
+/* narrow screens: tabs switch between colors, preview and CSS */
+@media (max-width: 899px) {
+  body .bld-views { display: flex; }
+  .bld-views .v-tab { flex: 1; }
+  .bld { grid-template-columns: 1fr; }
+  .bld-panel { box-shadow: none; padding: 16px 16px 32px; }
+  .bld[data-view="edit"] .bld-preview, .bld[data-view="edit"] .bld-out,
+  .bld[data-view="css"] .bld-preview, .bld[data-view="css"] .bld-panel > :not(.bld-out),
+  .bld[data-view="preview"] .bld-panel { display: none; }
+  body .bld-hide-narrow { display: none; }
+  .bld-toolbar .v-toolbar__title { font-size: 18px; }
+}
+@media (max-width: 420px) {
+  .bld-row { grid-template-columns: 32px minmax(0, 1fr) 6.4em 40px; }
+  .bld-ratio { grid-column: 2; grid-row: 2; margin: -6px 0 6px; }
+}
+@media (max-width: 420px) {
+  .bld-auto, .bld-reset, .bld-reset-slot { grid-column: 4; }
+}

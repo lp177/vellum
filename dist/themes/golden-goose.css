@@ -1,18 +1,35 @@
-/* Vellum theme: golden-goose — the "Iconic and Classy" Polymer theme (polymerthemes.com/golden-goose) re-created as a
- * Vellum theme. Optional: import it and set data-theme="golden-goose". */
+/* Vellum theme "Golden Goose" — https://polymerthemes.com/golden-goose/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
 [data-theme="golden-goose"] {
   --v-color-scheme: dark;
-  --v-bg: #333333; --v-surface: #2a2a2a; --v-surface-raised: #2b2b2b;
-  --v-text: #e0c453; --v-heading: #ffffff; --v-text-2: #b3a15a; --v-divider: #6b6b6b;
-  --v-primary: #e0c453; --v-on-primary: #433b19;
-  --v-secondary: #80cbc4; --v-on-secondary: #1e3b38;
-  --v-success: #9ccc65; --v-on-success: #253613;
-  --v-info: #ffb74d; --v-on-info: #4a3100;
-  --v-warning: #ff7043; --v-on-warning: #3d1407;
-  --v-error: #e53935; --v-on-error: #ffffff;
-  --v-toolbar: #e0c453; --v-on-toolbar: #2a2a2a;
-  --v-inverse: #323232; --v-on-inverse: #f1f1f1;
-  --v-focus: #fff3b0;
-  --v-shadow-rgb: 0 0 0; --v-shadow-key-alpha: 0.14; --v-shadow-ambient-alpha: 0.12; --v-shadow-umbra-alpha: 0.4;
-  --v-scrim-alpha: 0.6; --v-ripple-alpha: 0.25;
+  --v-bg: #2b2b2b;
+  --v-surface: #333332;
+  --v-surface-raised: #3d3d3c;
+  --v-text: #e0c453;
+  --v-heading: #ffffff;
+  --v-text-2: #ac9949;
+  --v-divider: #4d4d4c;
+  --v-primary: #e0c453;
+  --v-on-primary: #433b19;
+  --v-secondary: #80cbc4;
+  --v-on-secondary: #263d3b;
+  --v-success: #9dc56e;
+  --v-on-success: #2f3b21;
+  --v-info: #ffb74d;
+  --v-on-info: #4d3717;
+  --v-warning: #ff6340;
+  --v-on-warning: #4d1e13;
+  --v-error: #e53935;
+  --v-on-error: #ffffff;
+  --v-toolbar: #e0c453;
+  --v-on-toolbar: #2a2a2a;
+  --v-inverse: #ceb54f;
+  --v-on-inverse: #1e1e1e;
+  --v-focus: #e9d687;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
 }

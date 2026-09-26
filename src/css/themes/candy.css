@@ -1,0 +1,35 @@
+/* Vellum theme "Candy" — https://polymerthemes.com/candy/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="candy"] {
+  --v-color-scheme: light;
+  --v-bg: #fbe995;
+  --v-surface: #f8ecc2;
+  --v-surface-raised: #f8ecc2;
+  --v-text: #636363;
+  --v-heading: #636363;
+  --v-text-2: #908c80;
+  --v-divider: #ddd3b1;
+  --v-primary: #ff003c;
+  --v-on-primary: #ffffff;
+  --v-secondary: #fabe28;
+  --v-on-secondary: #ffffff;
+  --v-success: #88c100;
+  --v-on-success: #ffffff;
+  --v-info: #0aa7e8;
+  --v-on-info: #ffffff;
+  --v-warning: #ff8a00;
+  --v-on-warning: #ffffff;
+  --v-error: #d500f9;
+  --v-on-error: #ffffff;
+  --v-toolbar: #ff003c;
+  --v-on-toolbar: #ffffff;
+  --v-inverse: #727068;
+  --v-on-inverse: #fdf4ca;
+  --v-focus: #ff003c;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

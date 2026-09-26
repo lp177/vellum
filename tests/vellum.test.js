@@ -1,5 +1,7 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
+import { THEMES, CONTRACT, deriveTheme, themeCSS, slug, onColor, contrast, isDark } from '../src/themes/index.js'
+import { themeFile } from '../scripts/gen-themes.mjs'
 import { waveRadius, waveOpacity, outerOpacity } from '../src/js/ripple.js'
 import { attachTabs, attachMenu, attachField, validateField, toast, hideToast, setProgress, attachSlider } from '../src/js/components.js'
 import { icon } from '../src/js/icons.js'
@@ -174,9 +176,38 @@ describe('icons & themes', () => {
   })
   it('every theme defines the full base contract', () => {
     const contract = [...readFileSync('src/css/themes/light.css', 'utf8').matchAll(/(--v-[a-z0-9-]+):/g)].map((m) => m[1])
-    for (const file of ['dark.css', 'golden-goose.css']) {
+    expect(contract.length).toBe(CONTRACT.length)
+    for (const file of readdirSync('src/css/themes')) {
       const css = readFileSync(`src/css/themes/${file}`, 'utf8')
       for (const v of contract) expect(css, `${file} misses ${v}`).toContain(v + ':')
     }
+  })
+  it('theme CSS files are generated from the catalog and up to date', () => {
+    for (const t of THEMES) expect(readFileSync(`src/css/themes/${t.id}.css`, 'utf8'), `${t.id}: run scripts/gen-themes.mjs`).toBe(themeFile(t))
+    expect(readdirSync('src/css/themes').length).toBe(THEMES.length)
+    expect(new Set(THEMES.map((t) => t.id)).size).toBe(THEMES.length)
+  })
+})
+
+describe('theme derivation', () => {
+  it('completes a partial spec and keeps explicit values', () => {
+    const t = deriveTheme({ bg: '#fafafa', text: '#222', primary: '#3f51b5', secondary: '#ff4081', success: '#43a047',
+      info: '#0288d1', warning: '#ef6c00', error: '#d32f2f', 'on-error': '#000' })
+    expect(Object.keys(t)).toEqual(CONTRACT)
+    expect(t['color-scheme']).toBe('light')
+    expect(t['on-error']).toBe('#000000')
+    expect(t.toolbar).toBe('#3f51b5')
+    expect(() => deriveTheme({ bg: '#000' })).toThrow(/text/)
+  })
+  it('picks readable on-colors and flags dark backgrounds', () => {
+    expect(onColor('#3f51b5')).toBe('#ffffff')
+    expect(contrast(onColor('#ffeb3b'), '#ffeb3b')).toBeGreaterThan(4.5)
+    expect(isDark('#2b2b2b')).toBe(true)
+    expect(isDark('#fbe995')).toBe(false)
+    expect(contrast('#000', '#fff')).toBeCloseTo(21, 5)
+  })
+  it('turns a name into a theme id', () => {
+    expect(slug('Mon Thème Été')).toBe('mon-theme-ete')
+    expect(themeCSS({ id: 'x', vars: THEMES[0].vars })).toMatch(/^\[data-theme="x"\] \{\n  --v-color-scheme: light;/)
   })
 })

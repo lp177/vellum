@@ -1,0 +1,35 @@
+/* Vellum theme "Melon" — https://polymerthemes.com/melon/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="melon"] {
+  --v-color-scheme: dark;
+  --v-bg: #2a363b;
+  --v-surface: #3a474c;
+  --v-surface-raised: #445055;
+  --v-text: #ffffff;
+  --v-heading: #ffffff;
+  --v-text-2: #c4c8c9;
+  --v-divider: #5d686c;
+  --v-primary: #e8485f;
+  --v-on-primary: #ffffff;
+  --v-secondary: #ff847c;
+  --v-on-secondary: #4d2825;
+  --v-success: #99b898;
+  --v-on-success: #2e372e;
+  --v-info: #fecea8;
+  --v-on-info: #4c3e32;
+  --v-warning: #fff59d;
+  --v-on-warning: #4d4a2f;
+  --v-error: #f8bbd0;
+  --v-on-error: #4a383e;
+  --v-toolbar: #e84a5f;
+  --v-on-toolbar: #ffffff;
+  --v-inverse: #eaebeb;
+  --v-on-inverse: #1d2629;
+  --v-focus: #ef7f8f;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}

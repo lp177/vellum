@@ -1,0 +1,35 @@
+/* Vellum theme "Nord Light" — https://www.nordtheme.com/docs/colors-and-palettes. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="nord-light"] {
+  --v-color-scheme: light;
+  --v-bg: #e5e9f0;
+  --v-surface: #eceff4;
+  --v-surface-raised: #eceff4;
+  --v-text: #2e3440;
+  --v-heading: #2e3440;
+  --v-text-2: #4c566a;
+  --v-divider: #cbcdd1;
+  --v-primary: #5e81ac;
+  --v-on-primary: #ffffff;
+  --v-secondary: #b48ead;
+  --v-on-secondary: #281f26;
+  --v-success: #a3be8c;
+  --v-on-success: #2e3440;
+  --v-info: #81a1c1;
+  --v-on-info: #2e3440;
+  --v-warning: #d08770;
+  --v-on-warning: #2e1e19;
+  --v-error: #bf616a;
+  --v-on-error: #ffffff;
+  --v-toolbar: #3b4252;
+  --v-on-toolbar: #eceff4;
+  --v-inverse: #404652;
+  --v-on-inverse: #f2f4f8;
+  --v-focus: #5e81ac;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

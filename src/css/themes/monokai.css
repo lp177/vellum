@@ -1,0 +1,35 @@
+/* Vellum theme "Monokai" — https://monokai.pro/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="monokai"] {
+  --v-color-scheme: dark;
+  --v-bg: #272822;
+  --v-surface: #3e3d32;
+  --v-surface-raised: #49483e;
+  --v-text: #f8f8f2;
+  --v-heading: #ffffff;
+  --v-text-2: #bfbfb5;
+  --v-divider: #5f5f56;
+  --v-primary: #66d9ef;
+  --v-on-primary: #272822;
+  --v-secondary: #ae81ff;
+  --v-on-secondary: #272822;
+  --v-success: #a6e22e;
+  --v-on-success: #272822;
+  --v-info: #e6db74;
+  --v-on-info: #272822;
+  --v-warning: #fd971f;
+  --v-on-warning: #272822;
+  --v-error: #f92672;
+  --v-on-error: #ffffff;
+  --v-toolbar: #1e1f1c;
+  --v-on-toolbar: #f8f8f2;
+  --v-inverse: #e3e3dd;
+  --v-on-inverse: #1b1c18;
+  --v-focus: #94e4f4;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}

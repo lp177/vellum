@@ -14,7 +14,21 @@ body { margin: 0; min-height: 100vh; background: var(--v-bg); }
 .demo-hero__actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; }
 .demo-hero__actions p { margin: 10px 0 0; color: var(--v-heading); font: var(--v-font-subhead); }
 .demo-or { color: var(--v-primary); margin: 40px 0 16px; font: var(--v-font-subhead); }
-.demo-themes { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.demo-themes { display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap; gap: 16px 24px; }
+.demo-theme-field { width: min(340px, 100%); text-align: left; }
+.demo-themes > .v-button { margin-bottom: 22px; }
+/* theme color strip (page, paper, text, primary, secondary) in the theme menus */
+.demo-sw { display: inline-flex; flex: none; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 1px rgb(128 128 128 / 0.4); }
+.demo-sw i { width: 9px; height: 18px; }
+/* compact theme menu in the toolbar: toolbar colors on the field, paper colors in the open menu (set by Vellum) */
+.demo-toolbar .demo-toolbar-theme { width: 230px; flex: none; margin-left: 8px; color: var(--v-on-toolbar); }
+.demo-toolbar .demo-toolbar-theme.v-field--select .v-field__input { color: inherit; }
+.demo-toolbar .demo-toolbar-theme .v-field__line::before { border-bottom-color: currentColor; opacity: 0.45; }
+.demo-toolbar .demo-toolbar-theme .v-field__line::after { border-bottom-color: currentColor; }
+.demo-toolbar .demo-toolbar-theme.v-field--select::after { border-top-color: currentColor; top: 16px; }
+.demo-toolbar .demo-toolbar-theme selectedcontent .demo-sw { box-shadow: 0 0 0 1px currentColor; }
+/* live preview inside the theme builder: the builder drives the theme */
+[data-embed] [data-theme-picker], [data-embed] [data-builder-link], [data-embed] .demo-or { display: none !important; }
 .demo-section { text-align: center; font: 400 28px / 1.3 var(--v-font) !important; color: var(--v-heading); margin: 0 0 40px !important; }
 .demo-cols { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
 .demo-col { display: flex; flex-direction: column; align-items: stretch; min-width: 178px; }
@@ -51,5 +65,7 @@ body { margin: 0; min-height: 100vh; background: var(--v-bg); }
   .demo-hero__subtitle { font-size: 24px; }
   .demo-col { min-width: 0; flex: 1 1 100%; }
   .demo-links { display: none; }
+  .demo-toolbar .v-toolbar__title { display: none; }
+  .demo-toolbar .demo-toolbar-theme { flex: 1; width: auto; min-width: 0; }
 }
 .v-card.demo-form > p { margin: 6px 0; }

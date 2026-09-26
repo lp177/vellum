@@ -1,0 +1,35 @@
+/* Vellum theme "Sky" — https://polymerthemes.com/sky/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="sky"] {
+  --v-color-scheme: light;
+  --v-bg: #f5fcff;
+  --v-surface: #ffffff;
+  --v-surface-raised: #ffffff;
+  --v-text: #424540;
+  --v-heading: #7e8d9d;
+  --v-text-2: #7b7d79;
+  --v-divider: #dddddd;
+  --v-primary: #3ea1e6;
+  --v-on-primary: #ffffff;
+  --v-secondary: #78bdee;
+  --v-on-secondary: #243947;
+  --v-success: #76c753;
+  --v-on-success: #ffffff;
+  --v-info: #1469c8;
+  --v-on-info: #ffffff;
+  --v-warning: #ffa500;
+  --v-on-warning: #ffffff;
+  --v-error: #db5656;
+  --v-on-error: #ffffff;
+  --v-toolbar: #7ec0ee;
+  --v-on-toolbar: #ffffff;
+  --v-inverse: #545753;
+  --v-on-inverse: #fafeff;
+  --v-focus: #3ea1e6;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

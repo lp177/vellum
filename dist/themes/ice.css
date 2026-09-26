@@ -1,0 +1,35 @@
+/* Vellum theme "Ice" — https://polymerthemes.com/ice/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="ice"] {
+  --v-color-scheme: light;
+  --v-bg: #f3f3f3;
+  --v-surface: #ffffff;
+  --v-surface-raised: #ffffff;
+  --v-text: #2d2d2d;
+  --v-heading: #777777;
+  --v-text-2: #6c6c6c;
+  --v-divider: #d9d9d9;
+  --v-primary: #446e9b;
+  --v-on-primary: #ffffff;
+  --v-secondary: #80cbc4;
+  --v-on-secondary: #263d3b;
+  --v-success: #9dc56e;
+  --v-on-success: #2f3b21;
+  --v-info: #ffb74d;
+  --v-on-info: #4d3717;
+  --v-warning: #fadd60;
+  --v-on-warning: #4b421d;
+  --v-error: #ff6e40;
+  --v-on-error: #4d2113;
+  --v-toolbar: #e7e7e7;
+  --v-on-toolbar: #777777;
+  --v-inverse: #414141;
+  --v-on-inverse: #f9f9f9;
+  --v-focus: #446e9b;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

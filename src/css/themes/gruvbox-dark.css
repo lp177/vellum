@@ -1,0 +1,35 @@
+/* Vellum theme "Gruvbox Dark" — https://github.com/morhetz/gruvbox. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="gruvbox-dark"] {
+  --v-color-scheme: dark;
+  --v-bg: #282828;
+  --v-surface: #3c3836;
+  --v-surface-raised: #504945;
+  --v-text: #ebdbb2;
+  --v-heading: #fbf1c7;
+  --v-text-2: #bdae93;
+  --v-divider: #595554;
+  --v-primary: #fe8019;
+  --v-on-primary: #282828;
+  --v-secondary: #8ec07c;
+  --v-on-secondary: #282828;
+  --v-success: #b8bb26;
+  --v-on-success: #282828;
+  --v-info: #83a598;
+  --v-on-info: #282828;
+  --v-warning: #fabd2f;
+  --v-on-warning: #282828;
+  --v-error: #fb4934;
+  --v-on-error: #282828;
+  --v-toolbar: #1d2021;
+  --v-on-toolbar: #ebdbb2;
+  --v-inverse: #d8c9a4;
+  --v-on-inverse: #1c1c1c;
+  --v-focus: #fea65e;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}

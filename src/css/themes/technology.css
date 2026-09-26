@@ -1,0 +1,35 @@
+/* Vellum theme "Technology" — https://polymerthemes.com/technology/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="technology"] {
+  --v-color-scheme: light;
+  --v-bg: #f2f7fa;
+  --v-surface: #ffffff;
+  --v-surface-raised: #ffffff;
+  --v-text: #444444;
+  --v-heading: #444444;
+  --v-text-2: #7c7c7c;
+  --v-divider: #dddddd;
+  --v-primary: #373b50;
+  --v-on-primary: #ffffff;
+  --v-secondary: #90a4ae;
+  --v-on-secondary: #2b3134;
+  --v-success: #9dc56e;
+  --v-on-success: #2f3b21;
+  --v-info: #ffb74d;
+  --v-on-info: #4d3717;
+  --v-warning: #fadd60;
+  --v-on-warning: #4b421d;
+  --v-error: #ff6e40;
+  --v-on-error: #4d2113;
+  --v-toolbar: #373b50;
+  --v-on-toolbar: #ffffff;
+  --v-inverse: #555656;
+  --v-on-inverse: #f9fbfd;
+  --v-focus: #373b50;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

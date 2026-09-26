@@ -3,6 +3,8 @@ import { cpSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from 'nod
 cpSync('src/vellum.d.ts', 'dist/vellum.d.ts')
 mkdirSync('dist/themes', { recursive: true })
 for (const f of readdirSync('src/css/themes')) cpSync(`src/css/themes/${f}`, `dist/themes/${f}`)
+// the catalog (plain ES modules): theme list with colors, deriveTheme(), themeCSS(), contrast helpers
+for (const f of readdirSync('src/themes')) cpSync(`src/themes/${f}`, `dist/themes/${f}`)
 mkdirSync('dist/fonts', { recursive: true })
 const FS = 'node_modules/@fontsource/roboto'
 let css = '/* Vellum — self-hosted Roboto (SIL OFL 1.1, @fontsource/roboto). */\n'

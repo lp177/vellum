@@ -1,0 +1,35 @@
+/* Vellum theme "Solarized Dark" — https://ethanschoonover.com/solarized/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="solarized-dark"] {
+  --v-color-scheme: dark;
+  --v-bg: #002b36;
+  --v-surface: #073642;
+  --v-surface-raised: #13404b;
+  --v-text: #93a1a1;
+  --v-heading: #eee8d5;
+  --v-text-2: #698185;
+  --v-divider: #224953;
+  --v-primary: #268bd2;
+  --v-on-primary: #fdf6e3;
+  --v-secondary: #d33682;
+  --v-on-secondary: #fdf6e3;
+  --v-success: #859900;
+  --v-on-success: #ffffff;
+  --v-info: #2aa198;
+  --v-on-info: #092321;
+  --v-warning: #b58900;
+  --v-on-warning: #ffffff;
+  --v-error: #dc322f;
+  --v-on-error: #ffffff;
+  --v-toolbar: #001f27;
+  --v-on-toolbar: #93a1a1;
+  --v-inverse: #849596;
+  --v-on-inverse: #001e26;
+  --v-focus: #67aee0;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}

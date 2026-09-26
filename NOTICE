@@ -13,3 +13,12 @@ Licensed under the BSD license: http://polymer.github.io/LICENSE.txt
 Source: https://github.com/PolymerElements
 
 Roboto font (optional, dist/fonts): Copyright Google, SIL Open Font License 1.1, via @fontsource/roboto.
+
+Themes (src/themes, dist/themes):
+  - The PolymerThemes collection (candy, citric-flames, classical, dark-side, denim, everest, gelati, golden-goose,
+    ice, la-resistance, melon, seven-seas, sky, technology, the-times): colors imported from the theme files of
+    https://polymerthemes.com, "PolymerThemes v1.0.3, Copyright 2015 Polymer Themes, Licensed under BSD"
+    (scripts/import-polymerthemes.mjs).
+  - Classic palettes, colors from their published definitions: Solarized (Ethan Schoonover), Nord (Arctic Ice Studio),
+    Dracula (Zeno Rocha and contributors), Gruvbox (Pavel Pertsev), Monokai (Wimer Hazenberg), One Dark (GitHub, Atom),
+    Tokyo Night (enkia), Catppuccin (Catppuccin org), GitHub Primer (GitHub). Names are used to identify the palettes.

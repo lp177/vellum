@@ -1,0 +1,35 @@
+/* Vellum theme "Everest" — https://polymerthemes.com/everest/. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="everest"] {
+  --v-color-scheme: light;
+  --v-bg: #e5f0e4;
+  --v-surface: #f0f7e6;
+  --v-surface-raised: #f0f7e6;
+  --v-text: #594f4f;
+  --v-heading: #594f4f;
+  --v-text-2: #86817c;
+  --v-divider: #d3d9cb;
+  --v-primary: #45ada8;
+  --v-on-primary: #ffffff;
+  --v-secondary: #547980;
+  --v-on-secondary: #ffffff;
+  --v-success: #8bc34a;
+  --v-on-success: #ffffff;
+  --v-info: #9de0ad;
+  --v-on-info: #2f4334;
+  --v-warning: #fadd60;
+  --v-on-warning: #4b421d;
+  --v-error: #ff8a65;
+  --v-on-error: #4d291e;
+  --v-toolbar: #45ada8;
+  --v-on-toolbar: #ffffff;
+  --v-inverse: #675f5e;
+  --v-on-inverse: #f2f8f2;
+  --v-focus: #45ada8;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;
+}

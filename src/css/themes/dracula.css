@@ -1,0 +1,35 @@
+/* Vellum theme "Dracula" — https://draculatheme.com/contribute. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="dracula"] {
+  --v-color-scheme: dark;
+  --v-bg: #282a36;
+  --v-surface: #343746;
+  --v-surface-raised: #44475a;
+  --v-text: #f8f8f2;
+  --v-heading: #ffffff;
+  --v-text-2: #bfc2d6;
+  --v-divider: #575a66;
+  --v-primary: #bd93f9;
+  --v-on-primary: #282a36;
+  --v-secondary: #ff79c6;
+  --v-on-secondary: #282a36;
+  --v-success: #50fa7b;
+  --v-on-success: #282a36;
+  --v-info: #8be9fd;
+  --v-on-info: #282a36;
+  --v-warning: #ffb86c;
+  --v-on-warning: #282a36;
+  --v-error: #ff5555;
+  --v-on-error: #282a36;
+  --v-toolbar: #21222c;
+  --v-on-toolbar: #f8f8f2;
+  --v-inverse: #e3e3df;
+  --v-on-inverse: #1c1d26;
+  --v-focus: #d1b3fb;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}

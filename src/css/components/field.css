@@ -141,6 +141,7 @@ textarea.v-field__input { height: auto; min-height: 24px; resize: none; overflow
     display: flex; align-items: center; min-block-size: 24px; border: 0; background: transparent; color: var(--v-text);
   }
   .v-field--select:not(.v-field--native) .v-field__input::picker-icon { display: none; } /* the field draws its arrow */
+  .v-field--select.v-field--no-float { --v-select-menu-lift: -12px; }  /* paper: 4px above the field when no label floats */
   .v-field--select:not(.v-field--native) .v-field__input::picker(select) {
     box-sizing: border-box;
     /* anchored to the <select> (implicit anchor: works with position-area, not with bare anchor() insets). The area
@@ -195,6 +196,22 @@ textarea.v-field__input { height: auto; min-height: 24px; resize: none; overflow
     cursor: pointer;
   }
   .v-field--select:not(.v-field--native) .v-field__input option::checkmark { display: none; }
+  /* rich content: <select><button><selectedcontent></selectedcontent></button><option><svg…>Label</option>…</select>
+     shows the chosen option's content (icons, swatches) in the field too */
+  .v-field--select:not(.v-field--native) .v-field__input > button {
+    all: unset; display: flex; align-items: center; flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; cursor: pointer;
+  }
+  .v-field--select:not(.v-field--native) .v-field__input selectedcontent { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .v-field--select:not(.v-field--native) .v-field__input option { gap: 12px; }
+  /* groups: a caption-style header, then the options */
+  .v-field--select:not(.v-field--native) .v-field__input optgroup {
+    display: block; padding: 8px 0 0; font: var(--v-font-caption); color: var(--v-text-2); text-transform: uppercase;
+    letter-spacing: 0.06em; text-indent: 16px;
+  }
+  .v-field--select:not(.v-field--native) .v-field__input optgroup option {
+    font: var(--v-font-subhead); color: var(--v-text); text-transform: none; letter-spacing: normal; text-indent: 0;
+  }
+  .v-field--select:not(.v-field--native) .v-field__input optgroup + optgroup { margin-top: 8px; border-top: 1px solid var(--v-divider); }
   .v-field--select:not(.v-field--native) .v-field__input option::before {
     content: ""; position: absolute; inset: 0; background: currentColor; opacity: 0; pointer-events: none;
     transition: opacity var(--v-dur-fast) linear;

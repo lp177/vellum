@@ -1,0 +1,35 @@
+/* Vellum theme "One Dark" — https://github.com/atom/atom/tree/master/packages/one-dark-syntax. Generated from src/themes (scripts/gen-themes.mjs):
+ * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
+[data-theme="one-dark"] {
+  --v-color-scheme: dark;
+  --v-bg: #282c34;
+  --v-surface: #2f343e;
+  --v-surface-raised: #3a3f4b;
+  --v-text: #abb2bf;
+  --v-heading: #e6e6e6;
+  --v-text-2: #868c98;
+  --v-divider: #464b53;
+  --v-primary: #61afef;
+  --v-on-primary: #1e2227;
+  --v-secondary: #c678dd;
+  --v-on-secondary: #1e2227;
+  --v-success: #98c379;
+  --v-on-success: #1e2227;
+  --v-info: #56b6c2;
+  --v-on-info: #1e2227;
+  --v-warning: #e5c07b;
+  --v-on-warning: #1e2227;
+  --v-error: #e06c75;
+  --v-on-error: #1e2227;
+  --v-toolbar: #21252b;
+  --v-on-toolbar: #d7dae0;
+  --v-inverse: #9ea5b1;
+  --v-on-inverse: #1c1f24;
+  --v-focus: #90c7f4;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.3;
+  --v-shadow-ambient-alpha: 0.24;
+  --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6;
+  --v-ripple-alpha: 0.25;
+}
