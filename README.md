@@ -174,6 +174,7 @@ bin/dev test          # vitest (jsdom)
 bin/dev build         # dist/vellum.{css,js}, dist/themes, dist/fonts.css, dist/vellum-demo.html
 bin/dev npm run demo:single   # only the single-file demo (+ a page fragment in .cache/artifact/)
 bin/e2e motion.mjs    # Playwright: slow-motion frame bursts of each interaction, in e2e/shots/
+bin/e2e reference-motion.mjs   # the same study on the Polymer reference page (where the timings come from)
 ```
 
 ## Credits
