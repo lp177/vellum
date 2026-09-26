@@ -202,6 +202,10 @@
     <p class="demo-caption">Inky tabs with a sliding bar, in a toolbar</p>
     <div class="v-toolbar v-toolbar--raised demo-tabbar"><button class="v-icon-button" aria-label="Menu"><svg class="v-icon" data-v-icon="menu"></svg></button>
       <div class="v-tabs v-tabs--primary"><button class="v-tab" aria-selected="true">Item One</button><button class="v-tab">Item Two</button><button class="v-tab">Item Three</button><button class="v-tab">Item Four</button></div></div>
+    <p class="demo-caption">Navigation links (.v-tabs--nav): selected on click, before the page changes; the last one leaves the tabs</p>
+    <div class="v-toolbar v-toolbar--raised demo-tabbar"><span class="v-toolbar__title demo-navtitle">App</span>
+      <nav class="v-tabs v-tabs--primary v-tabs--nav" id="demo-nav" aria-label="Demo navigation"><a class="v-tab" href="#tabs" aria-current="page">Sessions</a><a class="v-tab" href="#tabs">Settings</a><a class="v-tab" href="#tabs">Help</a></nav>
+      <button class="v-button" id="demo-nav-out">Open a session</button></div>
   </div>
 </section>
 

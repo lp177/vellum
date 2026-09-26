@@ -59,6 +59,27 @@ describe('tabs', () => {
   })
 })
 
+describe('navigation tabs (.v-tabs--nav)', () => {
+  it('marks the clicked link at once, keeps links as links, and follows vSelect (-1 = none)', () => {
+    document.body.innerHTML = `<nav class="v-tabs v-tabs--nav"><a class="v-tab" href="#a" aria-current="page">A</a><a class="v-tab" href="#b">B</a></nav>`
+    const list = document.querySelector('nav'); attachTabs(list)
+    const [a, b] = [...list.querySelectorAll('.v-tab')]
+    expect(list.getAttribute('role')).toBeNull()
+    expect(a.hasAttribute('tabindex') || b.hasAttribute('role')).toBe(false)
+    expect(a.classList.contains('is-selected')).toBe(true)
+    const seen = []
+    list.addEventListener('v-tab-change', (e) => seen.push(e.detail.index))
+    b.addEventListener('click', (e) => e.preventDefault()) // the app's router would take over here
+    b.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 }))
+    expect(b.classList.contains('is-selected') && !a.classList.contains('is-selected')).toBe(true)
+    a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, button: 0, ctrlKey: true }))
+    expect(b.classList.contains('is-selected')).toBe(true) // ctrl+click opens elsewhere: no change here
+    list.vSelect(-1)
+    expect(list.querySelectorAll('.is-selected').length).toBe(0)
+    expect(seen).toEqual([1, -1])
+  })
+})
+
 describe('menu / listbox', () => {
   it('single select: click selects one; keyboard moves focus; typeahead', () => {
     document.body.innerHTML = `<div class="v-menu" role="listbox"><div class="v-item">Inbox</div><div class="v-item">Starred</div><div class="v-item" aria-disabled="true">Sent</div><div class="v-item">Drafts</div></div>`
@@ -141,6 +162,11 @@ describe('icons & themes', () => {
     expect(css).toMatch(/:where\(:root\), \[data-theme="light"\]/)
     const dark = readFileSync('src/css/themes/dark.css', 'utf8')
     expect(dark).toMatch(/:root:not\(\[data-theme\]\)/)
+  })
+  it('selects get a paper menu only where customizable <select> exists, with an opt-out', () => {
+    const css = readFileSync('src/css/components/field.css', 'utf8')
+    expect(css).toMatch(/@supports \(appearance: base-select\)/)
+    expect(css).toMatch(/\.v-field--select:not\(\.v-field--native\) \.v-field__input::picker\(select\)/)
   })
   it('every theme defines the full base contract', () => {
     const contract = [...readFileSync('src/css/themes/light.css', 'utf8').matchAll(/(--v-[a-z0-9-]+):/g)].map((m) => m[1])

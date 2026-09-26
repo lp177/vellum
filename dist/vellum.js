@@ -220,63 +220,75 @@ function b(e) {
 }
 function x(e) {
 	return d(e, "tabs", () => {
-		let t = () => [...e.querySelectorAll(":scope > .v-tab")], n = e.querySelector(":scope > .v-tabs__bar");
-		n || (n = document.createElement("span"), n.className = "v-tabs__bar", n.setAttribute("aria-hidden", "true"), e.appendChild(n));
-		let r = e.classList.contains("v-tabs--no-ink") ? [] : t().map((e) => c(e, {})), i = t().find((e) => e.getAttribute("aria-selected") === "true") || t()[0], a = (t) => {
+		let t = e.classList.contains("v-tabs--nav"), n = () => [...e.querySelectorAll(":scope > .v-tab")], r = e.querySelector(":scope > .v-tabs__bar");
+		r || (r = document.createElement("span"), r.className = "v-tabs__bar", r.setAttribute("aria-hidden", "true"), e.appendChild(r));
+		let i = e.classList.contains("v-tabs--no-ink") ? [] : n().map((e) => c(e, {})), a = t ? n().find((e) => e.classList.contains("is-selected") || e.getAttribute("aria-current") === "page") || null : n().find((e) => e.getAttribute("aria-selected") === "true") || n()[0], o = (t) => {
 			let n = e.scrollWidth || 1;
 			return {
 				left: t.offsetLeft / n * 100,
 				width: t.offsetWidth / n * 100
 			};
-		}, o = (e, t) => {
-			n.style.transform = `translateX(${t}%) scaleX(${e / 100})`;
-		}, s = () => {
-			if (n.classList.remove("expand", "contract"), i) {
-				let e = a(i);
-				o(e.width, e.left);
-			}
-		}, l = (r, a = !1) => {
-			if (!r || r.disabled) return;
-			let c = i;
-			for (let e of t()) e.setAttribute("aria-selected", String(e === r)), e.tabIndex = e === r ? 0 : -1;
-			if (i = r, a && r.focus(), e.dispatchEvent(new CustomEvent("v-tab-change", {
+		}, s = (e, t) => {
+			r.style.transform = `translateX(${t}%) scaleX(${e / 100})`;
+		}, l = () => {
+			if (r.classList.remove("expand", "contract"), a) {
+				let e = o(a);
+				s(e.width, e.left);
+			} else s(0, 0);
+		}, u = (e) => {
+			for (let r of n()) t ? r.classList.toggle("is-selected", r === e) : (r.setAttribute("aria-selected", String(r === e)), r.tabIndex = r === e ? 0 : -1);
+		}, d = (t, i = !1) => {
+			if (t && (t.disabled || t.getAttribute("aria-disabled") === "true") || t === a) return;
+			let c = a;
+			if (u(t), a = t, i && t && t.focus(), e.dispatchEvent(new CustomEvent("v-tab-change", {
 				detail: {
-					index: t().indexOf(r),
-					tab: r
+					index: t ? n().indexOf(t) : -1,
+					tab: t
 				},
 				bubbles: !0
-			})), e.classList.contains("v-tabs--no-slide") || !c || c === r) {
-				s();
+			})), !t) {
+				if (c) {
+					let e = o(c);
+					r.classList.remove("expand"), r.classList.add("contract"), s(0, e.left + e.width / 2);
+				}
 				return;
 			}
-			let l = e.scrollWidth || 1, u = c.getBoundingClientRect(), d = r.getBoundingClientRect(), f = e.getBoundingClientRect();
-			n.classList.remove("contract"), n.classList.add("expand"), t().indexOf(c) < t().indexOf(r) ? o((d.right - u.left) / l * 100 - 5, (u.left - f.left + e.scrollLeft) / l * 100) : o((u.right - d.left) / l * 100 - 5, (d.left - f.left + e.scrollLeft) / l * 100 + 5);
-		}, u = (e) => {
-			if (e.target === n) {
-				if (n.classList.contains("expand")) {
-					n.classList.replace("expand", "contract");
-					let e = a(i);
-					o(e.width, e.left);
-				} else n.classList.remove("contract");
+			if (e.classList.contains("v-tabs--no-slide") || !c) {
+				l();
+				return;
 			}
-		}, d = (t) => {
-			let n = t.target.closest(".v-tab");
-			n && n.parentElement === e && l(n);
+			let d = e.scrollWidth || 1, f = c.getBoundingClientRect(), p = t.getBoundingClientRect(), m = e.getBoundingClientRect();
+			r.classList.remove("contract"), r.classList.add("expand"), n().indexOf(c) < n().indexOf(t) ? s((p.right - f.left) / d * 100 - 5, (f.left - m.left + e.scrollLeft) / d * 100) : s((f.right - p.left) / d * 100 - 5, (p.left - m.left + e.scrollLeft) / d * 100 + 5);
 		}, m = (e) => {
-			let n = t().filter((e) => !e.disabled), r = n.indexOf(document.activeElement);
+			if (e.target === r) {
+				if (r.classList.contains("expand") && a) {
+					r.classList.replace("expand", "contract");
+					let e = o(a);
+					s(e.width, e.left);
+				} else r.classList.remove("expand", "contract");
+			}
+		}, h = (n) => {
+			let r = n.target.closest(".v-tab");
+			r && r.parentElement === e && (t && (n.button > 0 || n.metaKey || n.ctrlKey || n.shiftKey || n.altKey) || d(r));
+		}, g = (e) => {
+			let t = n().filter((e) => !e.disabled), r = t.indexOf(document.activeElement);
 			if (r < 0) return;
 			let i = {
-				ArrowRight: n[(r + 1) % n.length],
-				ArrowLeft: n[(r - 1 + n.length) % n.length],
-				Home: n[0],
-				End: n.at(-1)
+				ArrowRight: t[(r + 1) % t.length],
+				ArrowLeft: t[(r - 1 + t.length) % t.length],
+				Home: t[0],
+				End: t.at(-1)
 			}[e.key];
-			i && (e.preventDefault(), l(i, !0));
+			i && (e.preventDefault(), d(i, !0));
 		};
-		for (let e of t()) e.setAttribute("role", "tab"), e.tabIndex = e === i ? 0 : -1, e.setAttribute("aria-selected", String(e === i));
-		e.setAttribute("role", "tablist"), s();
-		let h = typeof ResizeObserver == "function" ? new ResizeObserver(s) : null;
-		return h?.observe(e), e.vSelect = (e) => l(t()[e]), p(f(e, "click", d), f(e, "keydown", m), f(n, "transitionend", u), () => h?.disconnect(), ...r);
+		if (t) u(a);
+		else {
+			for (let e of n()) e.setAttribute("role", "tab"), e.tabIndex = e === a ? 0 : -1, e.setAttribute("aria-selected", String(e === a));
+			e.setAttribute("role", "tablist");
+		}
+		l();
+		let _ = typeof ResizeObserver == "function" ? new ResizeObserver(l) : null;
+		return _?.observe(e), e.vSelect = (e) => d(e >= 0 ? n()[e] ?? null : null), p(f(e, "click", h), t ? null : f(e, "keydown", g), f(r, "transitionend", m), () => _?.disconnect(), ...i);
 	});
 }
 function S(e) {

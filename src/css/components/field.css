@@ -15,7 +15,8 @@
  *       <span class="v-field__error">Error</span><span class="v-field__counter"></span></span>
  *   </div>
  * Variants: .v-field--no-float (label disappears instead of floating), .v-field--float (always floated, e.g. real
- * placeholder), .v-field--select (native <select>), textarea as the input (js: autogrow), .is-invalid (js validate()).
+ * placeholder), .v-field--select (native <select>: its options open as a paper menu where the browser allows it,
+ * .v-field--native keeps the platform popup), textarea as the input (js: autogrow), .is-invalid (js validate()).
  * Motion (paper-input-container): unfocused 1px line; focused 2px line grows from the center (scaleX 0→1, 250ms);
  * the label floats (translateY(-75%) scale(.75)) when the field has content, and takes the accent color when focused. */
 
@@ -115,7 +116,7 @@ textarea.v-field__input { height: auto; min-height: 24px; resize: none; overflow
 .v-field:has(.v-field__input:disabled) .v-field__line::before, .v-field.is-disabled .v-field__line::before { border-bottom-style: dashed; }
 .v-field__input:read-only:not(select) ~ .v-field__line::before { border-bottom-style: dotted; }
 
-/* select (paper-dropdown-menu look; the popup stays native) */
+/* select (paper-dropdown-menu look). The popup: see "select menu" below. */
 .v-field--select .v-field__input { padding-right: 24px; cursor: pointer; }
 .v-field--select .v-field__input option { background: var(--v-surface-raised); color: var(--v-text); }
 .v-field--select::after {
@@ -125,3 +126,86 @@ textarea.v-field__input { height: auto; min-height: 24px; resize: none; overflow
 
 /* the animated 2px accent underline is the focus indicator of a field (as in paper-input): no extra ring */
 .v-app .v-field__input:focus-visible { outline: none; }
+
+/* ---------------------------------------------------------------- select menu (paper-dropdown-menu + paper-listbox)
+ * Customizable <select> (appearance: base-select; Chromium 135+, Safari 27): the element stays a real <select>
+ * (keyboard, typeahead, forms, screen readers, framework bindings) and only its popup is drawn, as a paper menu:
+ * 2dp paper, 8px padding, 48px items in the subhead font, selected item bold, focused item 12% ink. It opens OVER the
+ * field, 8px below its top, and grows as paper-menu-button does: fade 200ms, width 150ms, height 275ms (standard
+ * curve); it closes by fading (150ms) while shrinking upward (200ms ease-in). Content is clipped, never scaled.
+ * Browsers without support (Firefox today) keep their own popup: nothing breaks. */
+@supports (appearance: base-select) {
+  .v-field--select:not(.v-field--native) .v-field__input,
+  .v-field--select:not(.v-field--native) .v-field__input::picker(select) { appearance: base-select; }
+  .v-field--select:not(.v-field--native) .v-field__input {
+    display: flex; align-items: center; min-block-size: 24px; border: 0; background: transparent; color: var(--v-text);
+  }
+  .v-field--select:not(.v-field--native) .v-field__input::picker-icon { display: none; } /* the field draws its arrow */
+  .v-field--select:not(.v-field--native) .v-field__input::picker(select) {
+    box-sizing: border-box;
+    /* anchored to the <select> (implicit anchor: works with position-area, not with bare anchor() insets). The area
+     * spans the input and everything below it; the negative inset extends it 20px up over the floated label, so the
+     * menu's top lands 8px below the field top. Not enough room below: flip-block mirrors area and inset, and the menu
+     * covers the field from its bottom instead. */
+    position-area: span-block-end span-inline-end;
+    inset-block-start: var(--v-select-menu-lift, -20px);
+    margin: 0;
+    position-try-fallbacks: flip-block;
+    position-try-order: normal;      /* the UA's most-block-size would open it upward whenever there is more room there */
+    min-inline-size: min(anchor-size(width), 320px);
+    max-block-size: min(448px, calc(100dvh - 32px));
+    overflow-y: auto;
+    padding: 8px 0;
+    border: 0;
+    border-radius: var(--v-radius-surface);
+    background: var(--v-surface-raised);
+    color: var(--v-text);
+    box-shadow: var(--v-elevation-1);
+    font: var(--v-font-subhead);
+    /* closed = end of the shrink (also the state it leaves from) */
+    opacity: 0;
+    clip-path: inset(0 5% 50% 0);
+    translate: 0 -20px;
+    transition: opacity 150ms linear, clip-path 200ms ease-in, translate 200ms ease-in,
+                display 200ms allow-discrete, overlay 200ms allow-discrete;
+  }
+  .v-field--select:not(.v-field--native) .v-field__input:open::picker(select) {
+    opacity: 1;
+    clip-path: inset(-16px);         /* fully open: let the shadow out */
+    translate: none;
+    transition: opacity 200ms linear, clip-path 275ms var(--v-ease-standard), translate 0s,
+                display 275ms allow-discrete, overlay 275ms allow-discrete;
+  }
+  @starting-style {
+    .v-field--select:not(.v-field--native) .v-field__input:open::picker(select) {
+      opacity: 0; clip-path: inset(0 50% 50% 0); translate: none;
+    }
+  }
+  .v-field--select:not(.v-field--native) .v-field__input option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    min-block-size: 48px;
+    padding: 0 16px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .v-field--select:not(.v-field--native) .v-field__input option::checkmark { display: none; }
+  .v-field--select:not(.v-field--native) .v-field__input option::before {
+    content: ""; position: absolute; inset: 0; background: currentColor; opacity: 0; pointer-events: none;
+    transition: opacity var(--v-dur-fast) linear;
+  }
+  @media (hover: hover) { .v-field--select:not(.v-field--native) .v-field__input option:hover::before { opacity: 0.04; } }
+  .v-field--select:not(.v-field--native) .v-field__input option:focus-visible { outline: none; }
+  .v-field--select:not(.v-field--native) .v-field__input option:focus::before { opacity: 0.12; }
+  .v-field--select:not(.v-field--native) .v-field__input option:checked { font-weight: 700; }
+  .v-field--select:not(.v-field--native) .v-field__input option:disabled { color: var(--v-disabled-fg); cursor: default; }
+  .v-field--select:not(.v-field--native) .v-field__input option:disabled::before { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v-field--select .v-field__input::picker(select) { transition-duration: 1ms !important; }
+}

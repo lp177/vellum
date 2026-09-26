@@ -110,28 +110,50 @@ export function validateField(field) {
 }
 
 // ---------------------------------------------------------------- tabs (paper-tabs selection bar: expand, then contract)
+// Two kinds:
+//  - tabs (default): role=tablist, aria-selected, roving tabindex, arrows / Home / End;
+//  - navigation (.v-tabs--nav, links): the links stay ordinary links in the tab order; the selection is visual
+//    (.is-selected) and happens on click, before the app has finished navigating, so the click is acknowledged at
+//    once. The app confirms (or corrects) it afterwards with list.vSelect(index), -1 for "no section".
 export function attachTabs(list) {
   return once(list, 'tabs', () => {
+    const nav = list.classList.contains('v-tabs--nav')
     const tabs = () => [...list.querySelectorAll(':scope > .v-tab')]
     let bar = list.querySelector(':scope > .v-tabs__bar')
     if (!bar) { bar = document.createElement('span'); bar.className = 'v-tabs__bar'; bar.setAttribute('aria-hidden', 'true'); list.appendChild(bar) }
     const ink = !list.classList.contains('v-tabs--no-ink')
     const detachInk = ink ? tabs().map((t) => attachRipple(t, {})) : []
-    let current = tabs().find((t) => t.getAttribute('aria-selected') === 'true') || tabs()[0]
+    let current = nav
+      ? tabs().find((t) => t.classList.contains('is-selected') || t.getAttribute('aria-current') === 'page') || null
+      : tabs().find((t) => t.getAttribute('aria-selected') === 'true') || tabs()[0]
     const pos = (t) => {
       const w = list.scrollWidth || 1
       return { left: (t.offsetLeft / w) * 100, width: (t.offsetWidth / w) * 100 }
     }
     const place = (width, left) => { bar.style.transform = `translateX(${left}%) scaleX(${width / 100})` }
-    const rest = () => { bar.classList.remove('expand', 'contract'); if (current) { const p = pos(current); place(p.width, p.left) } }
+    const rest = () => {
+      bar.classList.remove('expand', 'contract')
+      if (current) { const p = pos(current); place(p.width, p.left) } else place(0, 0)
+    }
+    const mark = (tab) => {
+      for (const t of tabs()) {
+        if (nav) t.classList.toggle('is-selected', t === tab)
+        else { t.setAttribute('aria-selected', String(t === tab)); t.tabIndex = t === tab ? 0 : -1 }
+      }
+    }
     const select = (tab, focus = false) => {
-      if (!tab || tab.disabled) return
+      if (tab && (tab.disabled || tab.getAttribute('aria-disabled') === 'true')) return
+      if (tab === current) return
       const old = current
-      for (const t of tabs()) { t.setAttribute('aria-selected', String(t === tab)); t.tabIndex = t === tab ? 0 : -1 }
+      mark(tab)
       current = tab
-      if (focus) tab.focus()
-      list.dispatchEvent(new CustomEvent('v-tab-change', { detail: { index: tabs().indexOf(tab), tab }, bubbles: true }))
-      const slide = !list.classList.contains('v-tabs--no-slide') && old && old !== tab
+      if (focus && tab) tab.focus()
+      list.dispatchEvent(new CustomEvent('v-tab-change', { detail: { index: tab ? tabs().indexOf(tab) : -1, tab }, bubbles: true }))
+      if (!tab) { // nothing selected (navigation to a page outside the tabs): the bar shrinks into its center
+        if (old) { const p = pos(old); bar.classList.remove('expand'); bar.classList.add('contract'); place(0, p.left + p.width / 2) }
+        return
+      }
+      const slide = !list.classList.contains('v-tabs--no-slide') && old
       if (!slide) { rest(); return }
       const w = list.scrollWidth || 1, m = 5
       const o = old.getBoundingClientRect(), n = tab.getBoundingClientRect(), lr = list.getBoundingClientRect()
@@ -141,23 +163,30 @@ export function attachTabs(list) {
     }
     const onEnd = (e) => {
       if (e.target !== bar) return
-      if (bar.classList.contains('expand')) { bar.classList.replace('expand', 'contract'); const p = pos(current); place(p.width, p.left) }
-      else bar.classList.remove('contract')
+      if (bar.classList.contains('expand') && current) { bar.classList.replace('expand', 'contract'); const p = pos(current); place(p.width, p.left) }
+      else bar.classList.remove('expand', 'contract')
     }
-    const onClick = (e) => { const t = e.target.closest('.v-tab'); if (t && t.parentElement === list) select(t) }
+    const onClick = (e) => {
+      const t = e.target.closest('.v-tab')
+      if (!t || t.parentElement !== list) return
+      if (nav && (e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return // opens elsewhere
+      select(t)
+    }
     const onKey = (e) => {
       const ts = tabs().filter((t) => !t.disabled), i = ts.indexOf(document.activeElement)
       if (i < 0) return
       const next = { ArrowRight: ts[(i + 1) % ts.length], ArrowLeft: ts[(i - 1 + ts.length) % ts.length], Home: ts[0], End: ts.at(-1) }[e.key]
       if (next) { e.preventDefault(); select(next, true) }
     }
-    for (const t of tabs()) { t.setAttribute('role', 'tab'); t.tabIndex = t === current ? 0 : -1; t.setAttribute('aria-selected', String(t === current)) }
-    list.setAttribute('role', 'tablist')
+    if (!nav) {
+      for (const t of tabs()) { t.setAttribute('role', 'tab'); t.tabIndex = t === current ? 0 : -1; t.setAttribute('aria-selected', String(t === current)) }
+      list.setAttribute('role', 'tablist')
+    } else mark(current)
     rest()
     const ro = typeof ResizeObserver === 'function' ? new ResizeObserver(rest) : null
     ro?.observe(list)
-    list.vSelect = (i) => select(tabs()[i])
-    return all(on(list, 'click', onClick), on(list, 'keydown', onKey), on(bar, 'transitionend', onEnd), () => ro?.disconnect(), ...detachInk)
+    list.vSelect = (i) => select(i >= 0 ? tabs()[i] ?? null : null)
+    return all(on(list, 'click', onClick), nav ? null : on(list, 'keydown', onKey), on(bar, 'transitionend', onEnd), () => ro?.disconnect(), ...detachInk)
   })
 }
 

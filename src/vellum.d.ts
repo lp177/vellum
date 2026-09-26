@@ -20,14 +20,15 @@ export function refreshSlider(wrap: HTMLElement): void
 export function attachField(field: HTMLElement): Detach
 /** Checks the native constraints, toggles `.is-invalid` and `aria-invalid`, fills `.v-field__error`. */
 export function validateField(field: HTMLElement): boolean
-/** Tabs: dispatches `v-tab-change` (`detail: { index, tab }`); the list gets `vSelect(index)`. */
+/** Tabs (or navigation links with .v-tabs--nav): dispatches `v-tab-change` (`detail: { index, tab }`, index -1 and tab
+ *  null when nothing is selected); the list gets `vSelect(index)`, -1 = none. */
 export function attachTabs(list: HTMLElement): Detach
 /** Listbox: dispatches `v-select` (`detail: { item, selected }`). */
 export function attachMenu(menu: HTMLElement): Detach
 export function attachSpinner(el: HTMLElement): Detach
 
 export interface VTabsElement extends HTMLElement { vSelect(index: number): void }
-export interface VTabChangeDetail { index: number; tab: HTMLElement }
+export interface VTabChangeDetail { index: number; tab: HTMLElement | null }
 export interface VSelectDetail { item: HTMLElement; selected: HTMLElement[] }
 
 // ---------------------------------------------------------------- dialog, toast, progress

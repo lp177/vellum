@@ -110,8 +110,16 @@ Each CSS file in `src/css/components/` starts with its markup. Short version:
   <span class="v-field__meta" id="name-meta"><span class="v-field__help">Helper</span>
     <span class="v-field__error">Required</span><span class="v-field__counter"></span></span>
 </div>
-<!-- also: <textarea class="v-field__input"> (autogrow), .v-field--select with <select>, .v-field--no-float,
+<!-- also: <textarea class="v-field__input"> (autogrow), .v-field--no-float,
      data-v-auto-validate (validate while typing), validateField(el) -->
+
+<!-- dropdown: a real <select>. Where the browser supports customizable <select> (appearance: base-select;
+     Chromium 135+, Safari 27) its options open as a paper menu over the field, with the paper-menu-button motion;
+     elsewhere (Firefox) the platform popup stays. .v-field--native opts out. -->
+<div class="v-field v-field--select">
+  <select class="v-field__input" id="lang"><option>Français</option><option>English</option></select>
+  <label class="v-field__label" for="lang">Language</label><span class="v-field__line"></span>
+</div>
 
 <label class="v-checkbox"><input type="checkbox" class="v-checkbox__input">
   <span class="v-checkbox__box"><span class="v-checkbox__ink"></span></span><span class="v-checkbox__label">Oxygen</span></label>
@@ -125,6 +133,9 @@ Each CSS file in `src/css/components/` starts with its markup. Short version:
   <span class="v-slider__pin"></span></div>
 
 <div class="v-tabs" role="tablist"><button class="v-tab" aria-selected="true">One</button><button class="v-tab">Two</button></div>
+<!-- navigation: links stay links; the clicked one is selected at once, before the page has loaded;
+     the app confirms or corrects with nav.vSelect(index), -1 = none -->
+<nav class="v-tabs v-tabs--nav"><a class="v-tab" href="/" aria-current="page">Home</a><a class="v-tab" href="/settings">Settings</a></nav>
 <div class="v-menu v-menu--raised" role="listbox"><div class="v-item">Inbox</div><div class="v-item">Starred</div></div>
 
 <header class="v-toolbar v-toolbar--raised"><span class="v-toolbar__title">Title</span></header>
@@ -160,8 +171,8 @@ Typography classes: `.v-display`, `.v-headline`, `.v-title`, `.v-subhead`, `.v-b
 | `icon(name)` / `fillIcon(svg)` / `ICONS` | inline Material icon paths (`<svg data-v-icon="name">`) |
 | `setTheme(name, el)` | set or clear `data-theme` |
 
-Events: `v-tab-change` (`detail.index`) on `.v-tabs`, `v-select` on `.v-menu`. `list.vSelect(i)` selects a tab
-from code.
+Events: `v-tab-change` (`detail.index`, -1 when nothing is selected) on `.v-tabs`, `v-select` on `.v-menu`.
+`list.vSelect(i)` selects a tab from code (`-1`: none, the bar shrinks away).
 
 ## Develop
 

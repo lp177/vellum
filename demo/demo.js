@@ -77,6 +77,16 @@ $('#prog-start').addEventListener('click', () => {
   let v = 0
   progTimer = setInterval(() => { v += 0.01; setProgress($('#prog'), v, Math.min(1, v + 0.25)); if (v >= 1) clearInterval(progTimer) }, 30)
 })
+// navigation tabs: a fake router that takes 600 ms to "load" the page; the tab is selected on click anyway
+{
+  const nav = $('#demo-nav')
+  nav.addEventListener('click', (e) => {
+    const a = e.target.closest('a'); if (!a) return
+    e.preventDefault()
+    setTimeout(() => { for (const l of nav.querySelectorAll('a')) l === a ? l.setAttribute('aria-current', 'page') : l.removeAttribute('aria-current') }, 600)
+  })
+  $('#demo-nav-out').addEventListener('click', () => nav.vSelect(-1))
+}
 $('#spin-toggle').addEventListener('click', () => $$('.v-spinner').forEach((s) => s.classList.toggle('is-active')))
 $('#toast1').addEventListener('click', () => toast('Hello world!'))
 $('#toast2').addEventListener('click', () => toast('Message archivé', { action: { label: 'Annuler', onClick: () => toast('Restauré') }, duration: 5000 }))
