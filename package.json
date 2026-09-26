@@ -1,6 +1,6 @@
 {
   "name": "@claude177/vellum",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Vellum \u2014 a small, framework-agnostic Material/Paper-style UI library (CSS + vanilla JS) with themeable colors, elevation and motion.",
   "type": "module",
   "license": "BSD-3-Clause",

@@ -7,6 +7,7 @@ const demo = resolve(import.meta.dirname, 'demo')
 export default defineConfig({
   root: demo,
   base: './',
+  publicDir: false,
   build: {
     outDir: resolve(import.meta.dirname, 'public'),
     emptyOutDir: true,

@@ -2,7 +2,7 @@
 import { build } from 'vite'
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs'
 await build({
-  configFile: false, logLevel: 'warn',
+  configFile: false, logLevel: 'warn', publicDir: false,
   build: {
     outDir: '.cache/demo', emptyOutDir: true, cssCodeSplit: false, minify: true, target: 'es2022',
     lib: { entry: 'demo/artifact.js', formats: ['iife'], name: 'VellumDemo', fileName: () => 'demo.js' },

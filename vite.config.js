@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 
 // Library build: dist/vellum.js (ESM) + dist/vellum.css. The demo is served by `npm run dev` at /demo/.
 export default defineConfig({
+  publicDir: false, // public/ is the Pages site output (vite.site.config.js), not static files for the library
   build: {
     target: 'es2022',
     lib: { entry: resolve(import.meta.dirname, 'src/index.js'), name: 'Vellum', formats: ['es'], fileName: () => 'vellum.js' },
