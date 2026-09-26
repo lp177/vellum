@@ -1,11 +1,19 @@
 /* Vellum — text fields (paper-input / paper-textarea / paper-dropdown-menu look).
+ * Short form (no helper text): the <label> wraps everything, no id needed.
  *   <label class="v-field">
  *     <input class="v-field__input" placeholder=" ">        ← placeholder=" " lets CSS know when it is empty
  *     <span class="v-field__label">Label</span>
  *     <span class="v-field__line"></span>
- *     <span class="v-field__meta"><span class="v-field__help">Helper</span><span class="v-field__error">Error</span>
- *                                  <span class="v-field__counter"></span></span>
  *   </label>
+ * With helper / error / counter: use a <div> and <label for>, so the helper text does not become part of the
+ * input's accessible name (a wrapping <label> names the input with ALL of its text); link it with aria-describedby.
+ *   <div class="v-field">
+ *     <input class="v-field__input" id="name" placeholder=" " aria-describedby="name-meta">
+ *     <label class="v-field__label" for="name">Label</label>
+ *     <span class="v-field__line"></span>
+ *     <span class="v-field__meta" id="name-meta"><span class="v-field__help">Helper</span>
+ *       <span class="v-field__error">Error</span><span class="v-field__counter"></span></span>
+ *   </div>
  * Variants: .v-field--no-float (label disappears instead of floating), .v-field--float (always floated, e.g. real
  * placeholder), .v-field--select (native <select>), textarea as the input (js: autogrow), .is-invalid (js validate()).
  * Motion (paper-input-container): unfocused 1px line; focused 2px line grows from the center (scaleX 0→1, 250ms);

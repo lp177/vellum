@@ -1,12 +1,20 @@
 {
   "name": "@claude177/vellum",
-  "version": "0.1.0",
-  "description": "Vellum — a small, framework-agnostic Material/Paper-style UI library (CSS + vanilla JS) with themeable colors, elevation and motion.",
+  "version": "0.2.0",
+  "description": "Vellum \u2014 a small, framework-agnostic Material/Paper-style UI library (CSS + vanilla JS) with themeable colors, elevation and motion.",
   "type": "module",
   "license": "BSD-3-Clause",
-  "files": ["dist", "src", "README.md", "NOTICE"],
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "NOTICE"
+  ],
   "exports": {
-    ".": "./dist/vellum.js",
+    ".": {
+      "types": "./dist/vellum.d.ts",
+      "default": "./dist/vellum.js"
+    },
     "./vellum.css": "./dist/vellum.css",
     "./fonts.css": "./dist/fonts.css",
     "./themes/*": "./dist/themes/*",
@@ -23,5 +31,6 @@
     "jsdom": "30.1.1",
     "vite": "8.3.1",
     "vitest": "5.0.2"
-  }
+  },
+  "types": "./dist/vellum.d.ts"
 }

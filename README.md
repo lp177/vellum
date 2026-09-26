@@ -4,7 +4,8 @@ A small, framework-agnostic UI library (CSS + vanilla JS) that reproduces the lo
 Material Design "paper" elements (Polymer, 2014–2016) without Polymer: 2px paper corners, real elevation, ink ripples,
 and the original component timings.
 
-- **No runtime dependency.** Plain CSS and ES modules, about 7 kB gzip for each file.
+- **No runtime dependency.** Plain CSS and ES modules, about 7 kB gzip for each file. TypeScript declarations in
+  `dist/vellum.d.ts`.
 - **Themeable.** Every color, shadow included, derives from about 30 CSS variables per theme. The package ships
   light and dark themes; `golden-goose` is an example of a custom theme.
 - **Native elements first.** Checkboxes, radios, switches, sliders and selects are real `<input>`/`<select>` elements.
@@ -21,7 +22,7 @@ same page as a single self-contained file.
 The package is not published to a registry. Vendor it or install it from git:
 
 ```sh
-npm install git+ssh://git@gitlab.com/claude177/vellum.git#v0.1.0
+npm install git+ssh://git@gitlab.com/claude177/vellum.git#v0.2.0
 ```
 
 ```js
@@ -99,12 +100,16 @@ Each CSS file in `src/css/components/` starts with its markup. Short version:
 
 <!-- text field: placeholder=" " is required (CSS uses :placeholder-shown to float the label) -->
 <label class="v-field">
-  <input class="v-field__input" placeholder=" " maxlength="40">
-  <span class="v-field__label">Name</span>
-  <span class="v-field__line"></span>
-  <span class="v-field__meta"><span class="v-field__help">Helper</span><span class="v-field__error">Required</span>
-    <span class="v-field__counter"></span></span>
+  <input class="v-field__input" placeholder=" "><span class="v-field__label">Name</span><span class="v-field__line"></span>
 </label>
+<!-- with helper / error / counter: <div> + <label for>, so the helper text stays out of the accessible name -->
+<div class="v-field">
+  <input class="v-field__input" id="name" placeholder=" " maxlength="40" aria-describedby="name-meta">
+  <label class="v-field__label" for="name">Name</label>
+  <span class="v-field__line"></span>
+  <span class="v-field__meta" id="name-meta"><span class="v-field__help">Helper</span>
+    <span class="v-field__error">Required</span><span class="v-field__counter"></span></span>
+</div>
 <!-- also: <textarea class="v-field__input"> (autogrow), .v-field--select with <select>, .v-field--no-float,
      data-v-auto-validate (validate while typing), validateField(el) -->
 

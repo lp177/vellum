@@ -8,7 +8,7 @@ import { attachButton, attachIconButton, attachControl, attachSlider, attachFiel
 import { fillIcon } from './js/icons.js'
 
 export * from './js/components.js'
-export { attachRipple, Ripple, waveRadius, waveOpacity, outerOpacity } from './js/ripple.js'
+export { attachRipple, rippleOf, Ripple, waveRadius, waveOpacity, outerOpacity } from './js/ripple.js'
 export { ICONS, icon, fillIcon } from './js/icons.js'
 
 const RULES = [

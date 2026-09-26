@@ -103,18 +103,18 @@
     </div>
     <h3>Validation</h3>
     <div class="v-card demo-form">
-      <label class="v-field" data-v-auto-validate><input class="v-field__input" placeholder=" " pattern="[A-Za-zÀ-ÿ]*"><span class="v-field__label">only type letters (auto-validate)</span><span class="v-field__line"></span>
-        <span class="v-field__meta"><span class="v-field__help">Lettres uniquement</span><span class="v-field__error" data-static="1">Only letters please!</span></span></label>
-      <label class="v-field" id="manual-field"><input class="v-field__input" placeholder=" " pattern="[A-Za-zÀ-ÿ]*" required><span class="v-field__label">only type letters (no auto validate)</span><span class="v-field__line"></span>
-        <span class="v-field__meta"><span class="v-field__error"></span></span></label>
+      <div class="v-field" data-v-auto-validate><input class="v-field__input" id="f-auto" placeholder=" " pattern="[A-Za-zÀ-ÿ]*" aria-describedby="f-auto-m"><label class="v-field__label" for="f-auto">only type letters (auto-validate)</label><span class="v-field__line"></span>
+        <span class="v-field__meta" id="f-auto-m"><span class="v-field__help">Lettres uniquement</span><span class="v-field__error" data-static="1">Only letters please!</span></span></div>
+      <div class="v-field" id="manual-field"><input class="v-field__input" id="f-manual" placeholder=" " pattern="[A-Za-zÀ-ÿ]*" required aria-describedby="f-manual-m"><label class="v-field__label" for="f-manual">only type letters (no auto validate)</label><span class="v-field__line"></span>
+        <span class="v-field__meta" id="f-manual-m"><span class="v-field__error"></span></span></div>
       <div><button class="v-button v-button--raised v-button--primary" id="validate">Validate!</button></div>
     </div>
     <h3>Character counter</h3>
     <div class="v-card demo-form">
-      <label class="v-field"><input class="v-field__input" placeholder=" "><span class="v-field__label">label</span><span class="v-field__line"></span><span class="v-field__meta"><span class="v-field__counter"></span></span></label>
-      <label class="v-field" data-v-auto-validate><input class="v-field__input" placeholder=" " maxlength="10" pattern="[A-Za-zÀ-ÿ]*"><span class="v-field__label">at most 10 letters</span><span class="v-field__line"></span><span class="v-field__meta"><span class="v-field__error" data-static="1">Letters only</span><span class="v-field__counter"></span></span></label>
-      <label class="v-field"><textarea class="v-field__input" rows="1" placeholder=" "></textarea><span class="v-field__label">textarea</span><span class="v-field__line"></span><span class="v-field__meta"><span class="v-field__counter"></span></span></label>
-      <label class="v-field"><textarea class="v-field__input" rows="1" placeholder=" " maxlength="10"></textarea><span class="v-field__label">textarea with maxlength</span><span class="v-field__line"></span><span class="v-field__meta"><span class="v-field__counter"></span></span></label>
+      <div class="v-field"><input class="v-field__input" id="f-c1" placeholder=" " aria-describedby="f-c1-m"><label class="v-field__label" for="f-c1">label</label><span class="v-field__line"></span><span class="v-field__meta" id="f-c1-m"><span class="v-field__counter"></span></span></div>
+      <div class="v-field" data-v-auto-validate><input class="v-field__input" id="f-c2" placeholder=" " maxlength="10" pattern="[A-Za-zÀ-ÿ]*" aria-describedby="f-c2-m"><label class="v-field__label" for="f-c2">at most 10 letters</label><span class="v-field__line"></span><span class="v-field__meta" id="f-c2-m"><span class="v-field__error" data-static="1">Letters only</span><span class="v-field__counter"></span></span></div>
+      <div class="v-field"><textarea class="v-field__input" id="f-c3" rows="1" placeholder=" " aria-describedby="f-c3-m"></textarea><label class="v-field__label" for="f-c3">textarea</label><span class="v-field__line"></span><span class="v-field__meta" id="f-c3-m"><span class="v-field__counter"></span></span></div>
+      <div class="v-field"><textarea class="v-field__input" id="f-c4" rows="1" placeholder=" " maxlength="10" aria-describedby="f-c4-m"></textarea><label class="v-field__label" for="f-c4">textarea with maxlength</label><span class="v-field__line"></span><span class="v-field__meta" id="f-c4-m"><span class="v-field__counter"></span></span></div>
     </div>
   </div>
 </section>

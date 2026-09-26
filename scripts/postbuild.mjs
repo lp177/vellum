@@ -1,5 +1,6 @@
 // After `vite build`: optional themes, and a self-hosted Roboto (dist/fonts.css + dist/fonts/*.woff2).
 import { cpSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from 'node:fs'
+cpSync('src/vellum.d.ts', 'dist/vellum.d.ts')
 mkdirSync('dist/themes', { recursive: true })
 for (const f of readdirSync('src/css/themes')) cpSync(`src/css/themes/${f}`, `dist/themes/${f}`)
 mkdirSync('dist/fonts', { recursive: true })
@@ -13,4 +14,4 @@ for (const f of ['latin-300', 'latin-400', 'latin-500', 'latin-700', 'latin-ext-
   }).replace(/,\s*url\([^)]*\.woff\)\s*format\('woff'\)/g, '') + '\n'
 }
 writeFileSync('dist/fonts.css', css)
-console.log('postbuild: themes + fonts ready')
+console.log('postbuild: types + themes + fonts ready')

@@ -437,4 +437,4 @@ function L(e, t = document.documentElement) {
 	e ? t.setAttribute("data-theme", e) : t.removeAttribute("data-theme");
 }
 //#endregion
-export { j as ICONS, o as Ripple, m as attachButton, g as attachControl, y as attachField, h as attachIconButton, S as attachMenu, c as attachRipple, _ as attachSlider, A as attachSpinner, x as attachTabs, w as closeDialog, N as fillIcon, O as hideToast, M as icon, F as init, I as observe, C as openDialog, i as outerOpacity, v as refreshSlider, k as setProgress, L as setTheme, D as toast, b as validateField, r as waveOpacity, n as waveRadius };
+export { j as ICONS, o as Ripple, m as attachButton, g as attachControl, y as attachField, h as attachIconButton, S as attachMenu, c as attachRipple, _ as attachSlider, A as attachSpinner, x as attachTabs, w as closeDialog, N as fillIcon, O as hideToast, M as icon, F as init, I as observe, C as openDialog, i as outerOpacity, v as refreshSlider, l as rippleOf, k as setProgress, L as setTheme, D as toast, b as validateField, r as waveOpacity, n as waveRadius };

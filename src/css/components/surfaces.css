@@ -64,4 +64,5 @@
 .v-table th, .v-table td { height: 48px; padding: 0 var(--v-space-4); border-bottom: 1px solid var(--v-divider); vertical-align: middle; }
 .v-table td { padding-block: var(--v-space-2); }
 @media (hover: hover) { .v-table tbody tr:hover { background: var(--v-hover); } }
-.v-table-wrap { overflow-x: auto; }
+/* position: absolutely positioned descendants (e.g. visually hidden header text) stay inside the scroll box */
+.v-table-wrap { position: relative; overflow-x: auto; }
