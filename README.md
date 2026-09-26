@@ -16,7 +16,8 @@ and the original component timings.
 
 The demo in `demo/` replicates the Polymer "Golden Goose" showcase element by element, with a menu of 33 themes, and
 `demo/builder.html` is a theme builder: pick colors, see them live on the demo page, copy the CSS block. Both are
-published as a static site with GitLab Pages (`.gitlab-ci.yml`, job `pages`: `npm run build:site` → `public/`).
+published as a static site with GitLab Pages, **https://vellum-a48496.gitlab.io** (members of the project only while it is
+private; `.gitlab-ci.yml`, job `pages`: `npm run build:site` → `public/`, on every push to `main`).
 `dist/vellum-demo.html` is the demo as a single self-contained file (without the builder).
 
 ## Install
