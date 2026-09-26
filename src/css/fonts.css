@@ -1,0 +1,7 @@
+/* Vellum — optional local Roboto (SIL OFL 1.1, via @fontsource/roboto). Import once; no remote font request. */
+@import '@fontsource/roboto/latin-300.css';
+@import '@fontsource/roboto/latin-400.css';
+@import '@fontsource/roboto/latin-500.css';
+@import '@fontsource/roboto/latin-700.css';
+@import '@fontsource/roboto/latin-ext-400.css';
+@import '@fontsource/roboto/latin-ext-500.css';

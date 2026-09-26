@@ -1,0 +1,201 @@
+/* Vellum — selection controls on NATIVE inputs (keyboard, forms, labels and screen readers work as-is).
+ *   <label class="v-checkbox"><input type="checkbox" class="v-checkbox__input">
+ *     <span class="v-checkbox__box"><span class="v-checkbox__ink"></span></span><span class="v-checkbox__label">Oxygen</span></label>
+ *   <label class="v-radio"><input type="radio" name="g" class="v-radio__input">
+ *     <span class="v-radio__ring"><span class="v-radio__ink"></span></span><span class="v-radio__label">Oxygen</span></label>
+ *   <label class="v-switch"><input type="checkbox" role="switch" class="v-switch__input">
+ *     <span class="v-switch__track"><span class="v-switch__thumb"><span class="v-switch__ink"></span></span></span>
+ *     <span class="v-switch__label">Wi-Fi</span></label>
+ *   <div class="v-slider"><input type="range" class="v-slider__input"><span class="v-slider__pin"></span></div>
+ * The *__ink spans receive a centered circular ripple (js) on press, and a soft ink circle on keyboard focus
+ * (paper-inky-focus-behavior). */
+
+/* ---------------------------------------------------------------- shared */
+.v-checkbox, .v-radio, .v-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  cursor: pointer;
+  color: var(--v-text);
+  font: var(--v-font-body1);
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.v-checkbox__input, .v-radio__input, .v-switch__input {
+  position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none;
+}
+.v-checkbox__ink, .v-radio__ink, .v-switch__ink {
+  position: absolute; width: 48px; height: 48px; border-radius: 50%; pointer-events: none;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  color: var(--v-text); opacity: 0.6;
+}
+.v-checkbox__ink::before, .v-radio__ink::before, .v-switch__ink::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; background: currentColor; opacity: 0;
+  transition: opacity var(--v-dur-medium) var(--v-ease-standard);
+}
+.v-checkbox__input:focus-visible ~ .v-checkbox__box .v-checkbox__ink::before,
+.v-radio__input:focus-visible ~ .v-radio__ring .v-radio__ink::before,
+.v-switch__input:focus-visible ~ .v-switch__track .v-switch__ink::before { opacity: 0.25; }
+.v-checkbox__input:checked ~ .v-checkbox__box .v-checkbox__ink,
+.v-radio__input:checked ~ .v-radio__ring .v-radio__ink,
+.v-switch__input:checked ~ .v-switch__track .v-switch__ink { color: var(--v-primary); }
+
+/* ---------------------------------------------------------------- checkbox (paper-checkbox, 18px) */
+.v-checkbox__box {
+  position: relative;
+  flex: none;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--v-control-off);
+  border-radius: var(--v-radius-control);
+  transition: background-color var(--v-dur-control), border-color var(--v-dur-control);
+}
+.v-checkbox__input:checked ~ .v-checkbox__box { background-color: var(--v-primary); border-color: var(--v-primary); }
+.v-checkbox__input:checked ~ .v-checkbox__box::after {
+  content: "";
+  position: absolute;
+  box-sizing: content-box;
+  width: 36%;
+  height: 70%;
+  border-style: solid;
+  border-color: var(--v-on-primary);
+  border-width: 0 calc(2 / 15 * 18px) calc(2 / 15 * 18px) 0;
+  transform-origin: 97% 86%;
+  animation: v-checkmark-expand var(--v-dur-control) ease-out forwards;
+}
+@keyframes v-checkmark-expand {
+  0% { transform: scale(0, 0) rotate(45deg); }
+  100% { transform: scale(1, 1) rotate(45deg); }
+}
+.v-checkbox__input:indeterminate ~ .v-checkbox__box { background-color: var(--v-primary); border-color: var(--v-primary); }
+.v-checkbox__input:indeterminate ~ .v-checkbox__box::after {
+  content: ""; position: absolute; left: 2px; right: 2px; top: 50%; height: 2px; margin-top: -1px; background: var(--v-on-primary);
+}
+.v-checkbox:has(.v-checkbox__input:disabled) { cursor: default; }
+.v-checkbox__input:disabled ~ .v-checkbox__box { opacity: 0.5; border-color: var(--v-control-off); }
+.v-checkbox__input:disabled:checked ~ .v-checkbox__box { background-color: var(--v-control-off); }
+.v-checkbox__input:disabled ~ .v-checkbox__label { opacity: 0.65; }
+.v-checkbox__input:user-invalid:not(:checked) ~ .v-checkbox__box { border-color: var(--v-error); }
+
+/* ---------------------------------------------------------------- radio (paper-radio-button, 16px) */
+.v-radio { gap: 10px; }
+.v-radio__ring {
+  position: relative; flex: none; box-sizing: border-box; width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid var(--v-control-off); transition: border-color var(--v-dur-medium);
+}
+.v-radio__ring::after {
+  content: ""; position: absolute; inset: -2px; border-radius: 50%; background: var(--v-primary);
+  transform: scale(0); transition: transform var(--v-dur-medium) ease; will-change: transform;
+}
+.v-radio__input:checked ~ .v-radio__ring { border-color: var(--v-primary); }
+.v-radio__input:checked ~ .v-radio__ring::after { transform: scale(0.5); }
+.v-radio:has(.v-radio__input:disabled) { cursor: default; }
+.v-radio__input:disabled ~ .v-radio__ring { opacity: 0.5; border-color: var(--v-control-off); }
+.v-radio__input:disabled:checked ~ .v-radio__ring::after { background: var(--v-control-off); }
+.v-radio__input:disabled ~ .v-radio__label { opacity: 0.65; }
+.v-radio-group { display: flex; flex-direction: column; border: 0; margin: 0; padding: 0; }
+.v-radio-group--inline { flex-direction: row; flex-wrap: wrap; gap: 0 var(--v-space-5); }
+
+/* ---------------------------------------------------------------- switch (paper-toggle-button) */
+.v-switch__track {
+  position: relative; flex: none; width: 36px; height: 14px; margin: 4px 1px;
+}
+.v-switch__track::before { /* the bar */
+  content: ""; position: absolute; inset: 0; border-radius: 8px; background-color: var(--v-text); opacity: 0.38;
+  transition: background-color linear var(--v-dur-fast), opacity linear var(--v-dur-fast);
+}
+.v-switch__thumb {
+  position: absolute; top: -3px; left: 0; width: 20px; height: 20px; border-radius: 50%;
+  background-color: var(--v-switch-thumb, color-mix(in srgb, var(--v-surface-raised) 90%, var(--v-text)));
+  box-shadow: var(--v-elevation-thumb);
+  transition: transform linear var(--v-dur-fast), background-color linear var(--v-dur-fast);
+  will-change: transform;
+}
+.v-switch__ink { top: 50%; left: 50%; }
+.v-switch__input:checked ~ .v-switch__track::before { background-color: var(--v-primary); opacity: 0.5; }
+.v-switch__input:checked ~ .v-switch__track .v-switch__thumb { transform: translate(16px, 0); background-color: var(--v-primary); }
+.v-switch:has(.v-switch__input:disabled) { cursor: default; }
+.v-switch__input:disabled ~ .v-switch__track::before { background-color: var(--v-text); opacity: 0.12; }
+.v-switch__input:disabled ~ .v-switch__track .v-switch__thumb { background-color: color-mix(in srgb, var(--v-divider) 70%, var(--v-surface)); box-shadow: none; }
+.v-switch__input:disabled ~ .v-switch__label { opacity: 0.65; }
+[dir="rtl"] .v-switch__input:checked ~ .v-switch__track .v-switch__thumb { transform: translate(-16px, 0); }
+
+/* ---------------------------------------------------------------- slider (paper-slider on a native range) */
+.v-slider {
+  --v-pct: 0%;          /* set by js from the value */
+  --v-pct2: 0%;         /* optional secondary progress */
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--v-space-3);
+  min-width: 120px;
+  color: var(--v-primary);
+}
+.v-slider__input {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  color: inherit;           /* form controls do not inherit color: currentColor must be the slider's primary */
+}
+.v-slider__input::-webkit-slider-runnable-track {
+  height: 2px;
+  background: linear-gradient(to right, currentColor 0 var(--v-pct), color-mix(in srgb, var(--v-secondary) 60%, transparent) var(--v-pct) var(--v-pct2), var(--v-track-off) var(--v-pct2));
+}
+.v-slider__input::-moz-range-track { height: 2px; background: var(--v-track-off); }
+.v-slider__input::-moz-range-progress { height: 2px; background: currentColor; }
+.v-slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px; height: 12px; margin-top: -5px; border: 0; border-radius: 50%;
+  background: currentColor;
+  transition: transform var(--v-dur-knob) ease, background-color var(--v-dur-knob) ease, box-shadow var(--v-dur-knob) ease;
+}
+.v-slider__input::-moz-range-thumb {
+  width: 12px; height: 12px; border: 0; border-radius: 50%; background: currentColor;
+  transition: transform var(--v-dur-knob) ease, background-color var(--v-dur-knob) ease, box-shadow var(--v-dur-knob) ease;
+}
+.v-slider__input:active::-webkit-slider-thumb { transform: scale(2); }
+.v-slider__input:active::-moz-range-thumb { transform: scale(2); }
+.v-slider__input:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 10px color-mix(in srgb, currentColor 20%, transparent); }
+.v-slider__input:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 10px color-mix(in srgb, currentColor 20%, transparent); }
+/* "ring": value at minimum → hollow knob (paper-slider .ring) */
+.v-slider.is-min .v-slider__input::-webkit-slider-thumb { background: var(--v-surface); box-shadow: inset 0 0 0 2px var(--v-track-off); }
+.v-slider.is-min .v-slider__input::-moz-range-thumb { background: var(--v-surface); box-shadow: inset 0 0 0 2px var(--v-track-off); }
+.v-slider:has(.v-slider__input:disabled) { color: var(--v-control-off); }
+.v-slider__input:disabled { cursor: default; }
+.v-slider__input:disabled::-webkit-slider-thumb { transform: scale(0.75); }
+
+/* pin: value bubble in a rotated teardrop above the knob, shown while dragging or keyboard-focused */
+.v-slider__pin {
+  position: absolute;
+  bottom: 22px;
+  left: calc(var(--v-pct) * (1 - 12 / 100) + 6px); /* approximated by js (--v-pin-x) when the input has padding */
+  left: var(--v-pin-x, var(--v-pct));
+  width: 28px; height: 28px; margin-left: -14px;
+  display: grid; place-items: center;
+  pointer-events: none;
+  color: var(--v-on-primary);
+  font: 500 11px / 1 var(--v-font);
+  transform: scale(0) translateY(14px);
+  transform-origin: bottom center;
+  transition: transform var(--v-dur-knob) ease;
+}
+.v-slider__pin::before {
+  content: ""; position: absolute; inset: 0; background: var(--v-primary); border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+}
+.v-slider__pin > span { position: relative; }
+.v-slider--pin:has(.v-slider__input:active) .v-slider__pin,
+.v-slider--pin:has(.v-slider__input:focus-visible) .v-slider__pin { transform: none; }
+.v-slider--pin .v-slider__input:active::-webkit-slider-thumb { transform: scale(0.001); }
+.v-slider--pin .v-slider__input:active::-moz-range-thumb { transform: scale(0.001); }
+.v-slider__value { width: 3.5em; flex: none; }
+.v-slider__value .v-field__input { text-align: center; }

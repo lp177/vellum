@@ -1,0 +1,28 @@
+/* Vellum theme: light (default). A theme only defines these base colors; everything else is derived (tokens.css).
+ * Contract: every theme sets ALL the variables below. Copy this file to create a theme. */
+/* :where(:root) has zero specificity, so any [data-theme] (including custom themes loaded earlier) wins over it. */
+:where(:root), [data-theme="light"] {
+  --v-color-scheme: light;
+  --v-bg: #eeeeee;               /* page background */
+  --v-surface: #ffffff;          /* paper: cards, fields' page */
+  --v-surface-raised: #ffffff;   /* menus, dialogs */
+  --v-text: #212121;
+  --v-heading: #212121;
+  --v-text-2: #737373;           /* secondary text, icons */
+  --v-divider: #dbdbdb;
+  --v-primary: #3f51b5;          --v-on-primary: #ffffff;
+  --v-secondary: #ff4081;        --v-on-secondary: #ffffff;
+  --v-success: #43a047;          --v-on-success: #ffffff;
+  --v-info: #0288d1;             --v-on-info: #ffffff;
+  --v-warning: #ef6c00;          --v-on-warning: #ffffff;
+  --v-error: #d32f2f;            --v-on-error: #ffffff;
+  --v-toolbar: var(--v-primary); --v-on-toolbar: var(--v-on-primary);
+  --v-inverse: #323232;          --v-on-inverse: #f1f1f1;   /* toast */
+  --v-focus: #3f51b5;
+  --v-shadow-rgb: 0 0 0;
+  --v-shadow-key-alpha: 0.14;
+  --v-shadow-ambient-alpha: 0.12;
+  --v-shadow-umbra-alpha: 0.4;
+  --v-scrim-alpha: 0.5;
+  --v-ripple-alpha: 0.25;        /* paper-ripple initialOpacity */
+}

@@ -1,0 +1,136 @@
+/* Vellum — feedback: progress (paper-progress), spinner (paper-spinner), toast (paper-toast), dialog (paper-dialog).
+ *   <div class="v-progress" role="progressbar" style="--v-value:.4; --v-secondary-value:.7"> (js keeps aria-valuenow)
+ *   <div class="v-progress v-progress--indeterminate" role="progressbar" aria-label="Loading">
+ *   <span class="v-spinner is-active" role="progressbar" aria-label="Loading"></span>   (js inserts the svg)
+ *   toast("Saved")                                                                (js)
+ *   <dialog class="v-dialog"><h2 class="v-dialog__title">…</h2><div class="v-dialog__content">…</div>
+ *     <div class="v-dialog__buttons"><button class="v-button">Cancel</button></div></dialog>  (js: openDialog/closeDialog) */
+
+/* ---------------------------------------------------------------- progress */
+.v-progress {
+  --v-value: 0;
+  --v-secondary-value: 0;
+  position: relative;
+  display: block;
+  height: var(--v-progress-height, 4px);
+  overflow: hidden;
+  background: var(--v-progress-track, var(--v-track-off));
+}
+.v-progress::before, .v-progress::after {
+  content: ""; position: absolute; inset: 0; transform-origin: left center; will-change: transform;
+}
+.v-progress::before { background: color-mix(in srgb, var(--v-secondary) 70%, transparent); transform: scaleX(var(--v-secondary-value)); }
+.v-progress::after { background: var(--v-progress-color, var(--v-primary)); transform: scaleX(var(--v-value)); }
+.v-progress.is-transiting::before, .v-progress.is-transiting::after { transition: transform 80ms ease; }
+.v-progress--indeterminate::before { display: none; }
+.v-progress--indeterminate::after {
+  transform-origin: center center;
+  animation: v-progress-indeterminate 2s linear infinite;
+}
+@keyframes v-progress-indeterminate { /* paper-progress (Polymer 1) indeterminate-bar */
+  0% { transform: translateX(-50%) scaleX(0); }
+  50% { transform: translateX(0%) scaleX(0.3); }
+  100% { transform: translateX(50%) scaleX(0); }
+}
+.v-progress:is(.is-disabled)::after { background: var(--v-control-off); }
+
+/* ---------------------------------------------------------------- spinner (two-arc Material spinner) */
+.v-spinner {
+  display: inline-block;
+  width: var(--v-spinner-size, 28px);
+  height: var(--v-spinner-size, 28px);
+  color: var(--v-spinner-color, var(--v-primary));
+  opacity: 0;
+  transition: opacity 0.4s var(--v-ease-standard);
+  vertical-align: middle;
+}
+.v-spinner.is-active { opacity: 1; }
+.v-spinner svg { width: 100%; height: 100%; animation: v-spinner-rotate 1568ms linear infinite; animation-play-state: paused; }
+.v-spinner.is-active svg { animation-play-state: running; }
+.v-spinner circle {
+  fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: square;
+  stroke-dasharray: 1 200; stroke-dashoffset: 0;
+  animation: v-spinner-dash 1333ms var(--v-ease-standard) infinite;
+}
+.v-spinner--multicolor circle { animation: v-spinner-dash 1333ms var(--v-ease-standard) infinite, v-spinner-colors 5332ms step-end infinite; }
+@keyframes v-spinner-rotate { 100% { transform: rotate(360deg); } }
+@keyframes v-spinner-dash {
+  0% { stroke-dasharray: 1 200; stroke-dashoffset: 0; }
+  50% { stroke-dasharray: 55 200; stroke-dashoffset: -12; }
+  100% { stroke-dasharray: 55 200; stroke-dashoffset: -68; }
+}
+@keyframes v-spinner-colors {
+  0% { stroke: var(--v-primary); } 25% { stroke: var(--v-error); } 50% { stroke: var(--v-warning); } 75% { stroke: var(--v-success); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v-spinner svg { animation-duration: 4s; }
+  .v-spinner circle { animation: none; stroke-dasharray: 45 200; }
+}
+
+/* ---------------------------------------------------------------- toast */
+.v-toast {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: var(--v-z-toast);
+  display: flex;
+  align-items: center;
+  gap: var(--v-space-5);
+  box-sizing: border-box;
+  min-width: 288px;
+  max-width: calc(100vw - 24px);
+  min-height: 48px;
+  margin: 12px;
+  padding: 14px 24px;
+  border-radius: var(--v-radius-surface);
+  background: var(--v-inverse);
+  color: var(--v-on-inverse);
+  font: var(--v-font-body1);
+  box-shadow: var(--v-elevation-1);
+  opacity: 0;
+  transform: translateY(100px);
+  transition: transform var(--v-dur-toast), opacity var(--v-dur-toast);
+  pointer-events: none;
+}
+.v-toast.is-open { opacity: 1; transform: none; pointer-events: auto; }
+.v-toast__text { flex: 1; }
+.v-toast__action { margin: -8px -12px -8px 0; color: var(--v-secondary); }
+.v-toast--capsule { border-radius: 24px; }
+.v-toast--fit-bottom { left: 0; right: 0; width: 100%; max-width: none; margin: 0; border-radius: 0; }
+@media (max-width: 599px) { .v-toast { left: 0; right: 0; min-width: 0; } }
+
+/* ---------------------------------------------------------------- dialog (native <dialog>) */
+.v-dialog {
+  box-sizing: border-box;
+  width: min(var(--v-dialog-width, 560px), calc(100vw - 32px));
+  max-height: calc(100dvh - 48px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--v-radius-surface);
+  background: var(--v-surface-raised);
+  color: var(--v-text);
+  box-shadow: var(--v-elevation-5);
+  overflow: auto;
+}
+.v-dialog::backdrop { background: rgb(0 0 0 / 0.5); background: var(--v-scrim); }
+.v-dialog[open] { animation: v-dialog-in var(--v-dur-dialog-in) var(--v-ease-decelerate); }
+.v-dialog[open]::backdrop { animation: v-fade-in var(--v-dur-dialog-in) linear; }
+.v-dialog.is-closing { animation: v-dialog-out var(--v-dur-dialog-out) var(--v-ease-accelerate) forwards; }
+.v-dialog.is-closing::backdrop { animation: v-fade-out var(--v-dur-dialog-out) linear forwards; }
+@keyframes v-dialog-in { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: none; } }
+@keyframes v-dialog-out { from { opacity: 1; } to { opacity: 0; transform: scale(0.96); } }
+@keyframes v-fade-in { from { opacity: 0; } }
+@keyframes v-fade-out { to { opacity: 0; } }
+.v-dialog > * { margin: 20px 0 0; padding: 0 24px; }
+.v-dialog > :first-child { margin-top: 24px; }
+.v-dialog > :last-child { margin-bottom: 24px; }
+.v-dialog__title { font: var(--v-font-title); color: var(--v-heading); }
+.v-dialog__content { font: var(--v-font-body1); color: var(--v-text-2); }
+.v-dialog > .v-dialog__buttons {
+  display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 4px;
+  margin: 8px 0 0; padding: 8px 8px 8px 24px;
+}
+.v-dialog > .v-dialog__buttons:last-child { margin-bottom: 0; }
+.v-dialog__buttons .v-dialog__start { margin-right: auto; margin-left: -8px; }
+.v-dialog__scrollable { max-height: 50dvh; overflow: auto; border-block: 1px solid var(--v-divider); padding-block: 8px; }

@@ -1,0 +1,120 @@
+/* Vellum — navigation: toolbar (paper-toolbar), tabs (paper-tabs), menu / list items (paper-listbox + paper-item).
+ *   <header class="v-toolbar"><button class="v-icon-button">…</button><span class="v-toolbar__title">Title</span></header>
+ *   <div class="v-tabs" role="tablist"><button class="v-tab" role="tab" aria-selected="true">One</button>…</div>
+ *        (js adds the selection bar; variants: --no-bar, --no-slide, --no-ink, --primary for use inside a toolbar)
+ *   <div class="v-menu" role="listbox"><div class="v-item" role="option" tabindex="0">Inbox</div>…</div> */
+
+/* ---------------------------------------------------------------- toolbar */
+.v-toolbar {
+  position: relative;
+  z-index: var(--v-z-toolbar);
+  display: flex;
+  align-items: center;
+  gap: var(--v-space-2);
+  box-sizing: border-box;
+  height: 64px;
+  padding: 0 var(--v-space-4);
+  background: var(--v-toolbar);
+  color: var(--v-on-toolbar);
+  font: 400 20px / 28px var(--v-font);
+}
+.v-toolbar--raised { box-shadow: var(--v-elevation-2); }
+.v-toolbar__title { flex: 1; min-width: 0; margin: 0 var(--v-space-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font: inherit; }
+.v-toolbar a { color: inherit; text-decoration: none; font: var(--v-font-body1); }
+.v-toolbar--tall { height: 192px; flex-direction: column; align-items: stretch; justify-content: space-between; padding: var(--v-space-2) var(--v-space-4) var(--v-space-4); }
+.v-toolbar__row { display: flex; align-items: center; gap: var(--v-space-2); min-height: 48px; }
+.v-toolbar--tall > .v-toolbar__title { flex: none; margin-left: 56px; font-size: 24px; }
+.v-toolbar--dense { height: 48px; }
+
+/* ---------------------------------------------------------------- tabs */
+.v-tabs {
+  position: relative;
+  display: flex;
+  height: 48px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  background: var(--v-tabs-bg, transparent);
+  color: var(--v-tabs-fg, inherit);
+  font: 500 14px / 20px var(--v-font);
+  text-transform: uppercase;
+}
+.v-tabs::-webkit-scrollbar { display: none; }
+.v-tabs--primary { --v-tabs-bg: var(--v-toolbar); --v-tabs-fg: var(--v-on-toolbar); }
+.v-tab {
+  position: relative;
+  z-index: 0;
+  flex: 1 1 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  padding: 0 12px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  outline: none;
+  opacity: 0.8;
+  transition: opacity 0.1s var(--v-ease-accelerate);
+  -webkit-tap-highlight-color: transparent;
+}
+.v-tab[aria-selected="true"] { opacity: 1; }
+.v-tab:focus-visible { opacity: 1; font-weight: 700; outline-offset: -4px; }
+.v-tab:disabled { opacity: 0.4; cursor: default; }
+.v-tabs__bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--v-tabs-bar, currentColor);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition-property: transform;
+  pointer-events: none;
+}
+.v-tabs__bar.expand { transition-duration: var(--v-dur-tab-expand); transition-timing-function: var(--v-ease-accelerate); }
+.v-tabs__bar.contract { transition-duration: var(--v-dur-tab-contract); transition-timing-function: var(--v-ease-decelerate); }
+.v-tabs--no-bar .v-tabs__bar { display: none; }
+.v-tabs--scrollable .v-tab { flex: 0 0 auto; }
+
+/* ---------------------------------------------------------------- menu / listbox / items */
+.v-menu {
+  display: block;
+  padding: var(--v-space-2) 0;
+  margin: 0;
+  list-style: none;
+  background: var(--v-surface-raised);
+  color: var(--v-text);
+  border-radius: var(--v-radius-surface);
+  outline: none;
+}
+.v-menu--raised { box-shadow: var(--v-elevation-1); }
+.v-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--v-space-4);
+  box-sizing: border-box;
+  min-height: 48px;
+  padding: 0 var(--v-space-4);
+  font: var(--v-font-subhead);
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  text-decoration: none;
+}
+.v-item::before { content: ""; position: absolute; inset: 0; background: currentColor; opacity: 0; pointer-events: none; transition: opacity var(--v-dur-fast) linear; }
+@media (hover: hover) { .v-item:hover::before { opacity: 0.04; } }
+.v-item:focus-visible { outline: none; }
+.v-item:focus-visible::before { opacity: 0.12; }  /* paper-item :focus:before (--dark-divider-opacity) */
+.v-item[aria-selected="true"], .v-item[aria-checked="true"], .v-item.is-selected { font-weight: 700; }
+.v-item[aria-disabled="true"] { color: var(--v-disabled-fg); cursor: default; pointer-events: none; }
+.v-item__icon { color: var(--v-text-2); }
+.v-item__body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.v-item__secondary { font: var(--v-font-body1); color: var(--v-text-2); }

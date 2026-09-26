@@ -1,0 +1,41 @@
+/* Vellum — base: opt-in app shell (.v-app on <body> or a container), typography, elevation utilities, focus, icons. */
+.v-app {
+  background: var(--v-bg);
+  color: var(--v-text);
+  font: var(--v-font-body1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.v-app h1, .v-app h2, .v-app h3, .v-app h4 { color: var(--v-heading); margin: 0 0 var(--v-space-3); }
+.v-app h1 { font: var(--v-font-display); }
+.v-app h2 { font: var(--v-font-headline); }
+.v-app h3 { font: var(--v-font-title); }
+.v-app h4 { font: var(--v-font-subhead); font-weight: 500; }
+.v-display { font: var(--v-font-display); letter-spacing: -0.01em; }
+.v-headline { font: var(--v-font-headline); letter-spacing: -0.012em; }
+.v-title { font: var(--v-font-title); }
+.v-subhead { font: var(--v-font-subhead); }
+.v-body2 { font: var(--v-font-body2); }
+.v-body1 { font: var(--v-font-body1); }
+.v-caption { font: var(--v-font-caption); letter-spacing: 0.011em; }
+.v-secondary-text { color: var(--v-text-2); }
+
+/* elevation utilities (0..6 = 0, 2, 4, 6, 8, 16, 24 dp) */
+.v-elevation-0 { box-shadow: none; }
+.v-elevation-1 { box-shadow: var(--v-elevation-1); }
+.v-elevation-2 { box-shadow: var(--v-elevation-2); }
+.v-elevation-3 { box-shadow: var(--v-elevation-3); }
+.v-elevation-4 { box-shadow: var(--v-elevation-4); }
+.v-elevation-5 { box-shadow: var(--v-elevation-5); }
+.v-elevation-6 { box-shadow: var(--v-elevation-6); }
+.v-elevation-animated { transition: box-shadow var(--v-dur-medium) var(--v-ease-standard); }
+
+/* keyboard focus is always visible (paper only bolded text; we keep a ring for accessibility) */
+.v-app :focus-visible { outline: 2px solid var(--v-focus-ring); outline-offset: 2px; }
+
+.v-icon { width: 24px; height: 24px; flex: none; fill: currentColor; display: inline-block; vertical-align: middle; }
+.v-sr-only {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.v-divider { border: 0; border-top: 1px solid var(--v-divider); margin: var(--v-space-2) 0; }

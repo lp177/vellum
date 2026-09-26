@@ -1,0 +1,119 @@
+/* Vellum — text fields (paper-input / paper-textarea / paper-dropdown-menu look).
+ *   <label class="v-field">
+ *     <input class="v-field__input" placeholder=" ">        ← placeholder=" " lets CSS know when it is empty
+ *     <span class="v-field__label">Label</span>
+ *     <span class="v-field__line"></span>
+ *     <span class="v-field__meta"><span class="v-field__help">Helper</span><span class="v-field__error">Error</span>
+ *                                  <span class="v-field__counter"></span></span>
+ *   </label>
+ * Variants: .v-field--no-float (label disappears instead of floating), .v-field--float (always floated, e.g. real
+ * placeholder), .v-field--select (native <select>), textarea as the input (js: autogrow), .is-invalid (js validate()).
+ * Motion (paper-input-container): unfocused 1px line; focused 2px line grows from the center (scaleX 0→1, 250ms);
+ * the label floats (translateY(-75%) scale(.75)) when the field has content, and takes the accent color when focused. */
+
+.v-field {
+  position: relative;
+  display: block;
+  padding: 28px 0 0;           /* 8px + one caption line reserved for the floated label */
+  color: var(--v-text);
+  font: var(--v-font-subhead);
+  min-width: 0;
+}
+.v-field--no-float { padding-top: 8px; }
+
+.v-field__input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--v-text);
+  font: inherit;
+  caret-color: var(--v-primary);
+  -webkit-appearance: none;
+  appearance: none;
+}
+textarea.v-field__input { height: auto; min-height: 24px; resize: none; overflow: hidden; }
+.v-field__input::placeholder { color: transparent; }
+.v-field--float .v-field__input::placeholder { color: var(--v-disabled-fg); }
+.v-field__input:autofill { -webkit-text-fill-color: var(--v-text); box-shadow: 0 0 0 1000px var(--v-surface) inset; }
+
+.v-field__label {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  width: 100%;
+  color: var(--v-text-2);
+  transform-origin: left top;
+  transition: transform var(--v-dur-field) var(--v-ease-standard), width var(--v-dur-field) var(--v-ease-standard),
+              color var(--v-dur-field) var(--v-ease-standard);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+.v-field--no-float .v-field__label { top: 8px; }
+
+/* floating: has content, autofilled, or forced */
+.v-field__input:not(:placeholder-shown) ~ .v-field__label,
+.v-field__input:autofill ~ .v-field__label,
+.v-field--float .v-field__label,
+.v-field--select .v-field__label {
+  transform: translateY(-75%) scale(0.75);
+  width: 133%;
+}
+.v-field__input:focus:not(:placeholder-shown) ~ .v-field__label,
+.v-field--float .v-field__input:focus ~ .v-field__label,
+.v-field--select .v-field__input:focus ~ .v-field__label { color: var(--v-primary); }
+.v-field--no-float .v-field__input:not(:placeholder-shown) ~ .v-field__label { transform: none; width: 100%; visibility: hidden; }
+
+/* underline */
+.v-field__line { position: relative; display: block; height: 2px; margin-top: 4px; }
+.v-field__line::before, .v-field__line::after { content: ""; position: absolute; inset: 0; }
+.v-field__line::before { border-bottom: 1px solid var(--v-line); }
+.v-field__line::after {
+  border-bottom: 2px solid var(--v-primary);
+  transform-origin: center center;
+  transform: scale3d(0, 1, 1);
+}
+.v-field__input:focus ~ .v-field__line::after {
+  transform: none;
+  transition: transform var(--v-dur-field) var(--v-ease-standard);
+}
+
+/* helper / error / counter row */
+.v-field__meta { display: flex; gap: var(--v-space-2); min-height: 20px; font: var(--v-font-caption); color: var(--v-text-2); }
+.v-field__help { flex: 1; }
+.v-field__error { flex: 1; display: none; color: var(--v-error); }
+.v-field__counter { margin-left: auto; white-space: nowrap; }
+
+/* invalid (js validate(): .is-invalid; CSS :user-invalid for native constraints once the user interacted) */
+.v-field.is-invalid .v-field__line::after,
+.v-field__input:user-invalid ~ .v-field__line::after {
+  border-color: var(--v-error); transform: none; transition: transform var(--v-dur-field) var(--v-ease-standard);
+}
+.v-field.is-invalid .v-field__label, .v-field__input:user-invalid ~ .v-field__label { color: var(--v-error); }
+.v-field.is-invalid .v-field__error, .v-field__input:user-invalid ~ .v-field__meta .v-field__error { display: block; }
+.v-field.is-invalid .v-field__help, .v-field__input:user-invalid ~ .v-field__meta .v-field__help { display: none; }
+.v-field.is-invalid .v-field__counter { color: var(--v-error); }
+
+/* disabled / read-only */
+.v-field:has(.v-field__input:disabled), .v-field.is-disabled { opacity: 0.33; pointer-events: none; }
+.v-field:has(.v-field__input:disabled) .v-field__line::before, .v-field.is-disabled .v-field__line::before { border-bottom-style: dashed; }
+.v-field__input:read-only:not(select) ~ .v-field__line::before { border-bottom-style: dotted; }
+
+/* select (paper-dropdown-menu look; the popup stays native) */
+.v-field--select .v-field__input { padding-right: 24px; cursor: pointer; }
+.v-field--select .v-field__input option { background: var(--v-surface-raised); color: var(--v-text); }
+.v-field--select::after {
+  content: ""; position: absolute; right: 6px; top: 36px; width: 0; height: 0; pointer-events: none;
+  border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid var(--v-text-2);
+}
+
+/* the animated 2px accent underline is the focus indicator of a field (as in paper-input): no extra ring */
+.v-app .v-field__input:focus-visible { outline: none; }

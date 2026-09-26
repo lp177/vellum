@@ -1,0 +1,14 @@
+/* Vellum — ink ripple (see js/ripple.js). Color = currentColor of the host, or --v-ripple-color.
+ * Only transform/opacity are animated; the compositing layer exists only while animating (as paper-ripple does). */
+.v-ripple {
+  position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none;
+  color: var(--v-ripple-color, currentColor);
+}
+.v-ripple.is-animating { transform: translate3d(0, 0, 0); }
+.v-ripple__bg, .v-ripple__waves, .v-ripple__wave-container, .v-ripple__wave {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
+}
+.v-ripple__bg, .v-ripple__wave { opacity: 0; background-color: currentColor; }
+.v-ripple__waves, .v-ripple__wave { overflow: hidden; }
+.v-ripple__wave-container, .v-ripple__wave { border-radius: 50%; }
+.v-ripple--circle, .v-ripple--circle .v-ripple__bg, .v-ripple--circle .v-ripple__waves { border-radius: 50%; }

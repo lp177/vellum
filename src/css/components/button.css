@@ -1,0 +1,133 @@
+/* Vellum — buttons (paper-button, paper-fab, paper-icon-button).
+ *   <button class="v-button">Flat</button>
+ *   <button class="v-button v-button--raised v-button--primary">Raised</button>
+ *   <button class="v-button" aria-pressed="false">Toggle</button>        (js: toggles aria-pressed)
+ *   <button class="v-fab" aria-label="Next"><svg class="v-icon">…</svg></button>   (.v-fab--mini)
+ *   <button class="v-icon-button" aria-label="Menu"><svg class="v-icon">…</svg></button>
+ * Colors: .v-button--primary | --secondary | --success | --info | --warning | --error | --link
+ * Elevation (raised, fab): 1 at rest, 3 on keyboard focus, 4 while pressed, 0 disabled — as paper-button-behavior. */
+
+.v-button {
+  --_fg: var(--v-text);
+  --_bg: var(--v-surface-raised);
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-sizing: border-box;
+  min-width: 5.14em;
+  margin: 0 0.29em;
+  padding: 0.7em 0.57em;
+  border: 0;
+  border-radius: var(--v-radius-button);
+  background: transparent;
+  color: var(--_fg);
+  font: var(--v-font-button);
+  letter-spacing: var(--v-letter-button);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  transition: box-shadow var(--v-dur-medium) var(--v-ease-standard), background-color var(--v-dur-medium) var(--v-ease-standard);
+}
+.v-button::before { /* hover / toggled state layer (paper has none on hover; kept subtle for mouse users) */
+  content: ""; position: absolute; inset: 0; border-radius: inherit; background: currentColor; opacity: 0;
+  transition: opacity var(--v-dur-medium) var(--v-ease-standard); pointer-events: none; z-index: -1;
+}
+@media (hover: hover) { .v-button:hover::before { opacity: 0.06; } }
+.v-button:focus-visible { font-weight: 700; }
+.v-button .v-icon { width: 1.5em; height: 1.5em; margin-left: -0.15em; }
+
+.v-button--primary   { --_fg: var(--v-primary);   --_bg: var(--v-primary);   --_on: var(--v-on-primary); }
+.v-button--secondary { --_fg: var(--v-secondary); --_bg: var(--v-secondary); --_on: var(--v-on-secondary); }
+.v-button--success   { --_fg: var(--v-success);   --_bg: var(--v-success);   --_on: var(--v-on-success); }
+.v-button--info      { --_fg: var(--v-info);      --_bg: var(--v-info);      --_on: var(--v-on-info); }
+.v-button--warning   { --_fg: var(--v-warning);   --_bg: var(--v-warning);   --_on: var(--v-on-warning); }
+.v-button--error     { --_fg: var(--v-error);     --_bg: var(--v-error);     --_on: var(--v-on-error); }
+.v-button--link { text-decoration: underline; text-underline-offset: 3px; }
+
+/* raised: paper, lifted */
+.v-button--raised {
+  background: var(--_bg);
+  color: var(--_on, var(--_fg));
+  box-shadow: var(--v-elevation-1);
+}
+.v-button--raised:focus-visible { box-shadow: var(--v-elevation-3); }
+.v-button--raised:active, .v-button--raised.is-pressed { box-shadow: var(--v-elevation-4); }
+
+/* toggleable (aria-pressed): flat gets a tinted layer, raised stays pressed (elevation 4) */
+.v-button[aria-pressed="true"]::before { opacity: 0.14; }
+.v-button--raised[aria-pressed="true"] { box-shadow: var(--v-elevation-4); }
+
+.v-button:disabled, .v-button[aria-disabled="true"] {
+  color: var(--v-disabled-fg); cursor: default; pointer-events: none; box-shadow: none; font-weight: 500;
+}
+.v-button--raised:disabled, .v-button--raised[aria-disabled="true"] { background: var(--v-disabled-bg); }
+.v-button.v-button--dense { padding: 0.4em 0.57em; font-size: 13px; }
+
+/* ---------------------------------------------------------------- FAB */
+.v-fab {
+  --_bg: var(--v-fab-bg, var(--v-primary));
+  --_on: var(--v-fab-fg, var(--v-on-primary));
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 56px;
+  height: 56px;
+  padding: 16px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--_bg);
+  color: var(--_on);
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--v-elevation-1);
+  transition: box-shadow var(--v-dur-medium) var(--v-ease-standard), background-color var(--v-dur-medium) var(--v-ease-standard);
+}
+.v-fab:focus-visible { box-shadow: var(--v-elevation-3); }
+.v-fab:active, .v-fab.is-pressed { box-shadow: var(--v-elevation-4); }
+.v-fab--mini { width: 40px; height: 40px; padding: 8px; }
+.v-fab.v-button--secondary, .v-fab--secondary { --_bg: var(--v-secondary); --_on: var(--v-on-secondary); }
+.v-fab--success { --_bg: var(--v-success); --_on: var(--v-on-success); }
+.v-fab--info    { --_bg: var(--v-info);    --_on: var(--v-on-info); }
+.v-fab--warning { --_bg: var(--v-warning); --_on: var(--v-on-warning); }
+.v-fab--error   { --_bg: var(--v-error);   --_on: var(--v-on-error); }
+.v-fab:disabled { background: var(--v-disabled-bg); color: var(--v-disabled-fg); box-shadow: none; cursor: default; pointer-events: none; }
+
+/* ---------------------------------------------------------------- icon button (centered, circular ink) */
+.v-icon-button {
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--v-icon-button-size, 40px);
+  height: var(--v-icon-button-size, 40px);
+  padding: 8px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  --v-ripple-alpha-scale: 0.6; /* paper-icon-button ink opacity */
+}
+.v-icon-button .v-icon { width: 100%; height: 100%; }
+.v-icon-button:focus-visible::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: currentColor; opacity: 0.12; }
+.v-icon-button:disabled { color: var(--v-disabled-fg); cursor: default; pointer-events: none; }
+.v-icon-button--primary { color: var(--v-primary); }
+.v-icon-button--secondary { color: var(--v-secondary); }
+.v-icon-button--success { color: var(--v-success); }
+.v-icon-button--info { color: var(--v-info); }
+.v-icon-button--warning { color: var(--v-warning); }
+.v-icon-button--error { color: var(--v-error); }

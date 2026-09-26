@@ -1,0 +1,15 @@
+Vellum reproduces the look, feel and motion of Google's Material Design (2014-2016) as implemented by the Polymer
+"paper" elements, without using them. The following were studied in the Polymer sources and re-implemented:
+
+  - the ink ripple physics of paper-ripple (radius growth 1 - 80^(-t/d), initial opacity 0.25, decay 0.8/s,
+    outer background 0.3/s, MAX_RADIUS 300);
+  - the elevation shadows of paper-styles/shadow.js (2, 4, 6, 8, 16, 24 dp) and the 0.28s shadow transition;
+  - component metrics and timings of paper-button, paper-fab, paper-input, paper-checkbox (checkmark-expand),
+    paper-radio-button, paper-toggle-button, paper-slider, paper-tabs (expand/contract selection bar),
+    paper-dialog, paper-toast, paper-progress, paper-spinner, paper-item, paper-toolbar.
+
+Polymer elements: Copyright (c) 2014-2017 The Polymer Project Authors. All rights reserved.
+Licensed under the BSD license: http://polymer.github.io/LICENSE.txt
+Source: https://github.com/PolymerElements
+
+Roboto font (optional, dist/fonts): Copyright Google, SIL Open Font License 1.1, via @fontsource/roboto.

@@ -1,0 +1,92 @@
+/* Vellum — design tokens.
+ *
+ * Two layers:
+ *   1. THEME BASE COLORS (themes/*.css): ~25 variables per theme, the only thing a theme defines.
+ *   2. DERIVED TOKENS (below): elevation shadows, state layers, focus, disabled... all computed from the base colors.
+ *
+ * Derived tokens are declared on `:root, [data-theme]` on purpose: a custom property is resolved where it is declared,
+ * so re-declaring them on every themed scope makes `<section data-theme="dark">` inside a light page get dark shadows
+ * and states too, not the root ones.
+ */
+
+:root {
+  /* ---------------------------------------------------------------- typography (Material 2014 scale) */
+  --v-font: 'Roboto', 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+  --v-font-mono: 'Roboto Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --v-font-display: 400 34px / 40px var(--v-font);
+  --v-font-headline: 400 24px / 32px var(--v-font);
+  --v-font-title: 500 20px / 28px var(--v-font);
+  --v-font-subhead: 400 16px / 24px var(--v-font);
+  --v-font-body2: 500 14px / 24px var(--v-font);
+  --v-font-body1: 400 14px / 20px var(--v-font);
+  --v-font-caption: 400 12px / 20px var(--v-font);
+  --v-font-button: 500 14px / 24px var(--v-font);
+  --v-letter-button: 0.018em;
+
+  /* ---------------------------------------------------------------- shape: paper, not pills */
+  --v-radius-surface: 2px;   /* cards, dialogs, menus, toasts */
+  --v-radius-button: 3px;    /* paper-button */
+  --v-radius-control: 2px;   /* checkbox */
+  --v-radius-chip: 16px;
+
+  /* ---------------------------------------------------------------- spacing (4dp grid) */
+  --v-space-1: 4px; --v-space-2: 8px; --v-space-3: 12px; --v-space-4: 16px; --v-space-5: 24px; --v-space-6: 32px;
+
+  /* ---------------------------------------------------------------- motion (Material curves + paper timings) */
+  --v-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --v-ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --v-ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --v-dur-fast: 80ms;        /* toggle thumb, slider knob position */
+  --v-dur-control: 140ms;    /* checkbox fill + checkmark */
+  --v-dur-knob: 180ms;       /* slider knob expand, pin */
+  --v-dur-field: 250ms;      /* input underline + floating label */
+  --v-dur-medium: 280ms;     /* shadow, radio dot */
+  --v-dur-toast: 300ms;
+  --v-dur-dialog-in: 250ms;
+  --v-dur-dialog-out: 150ms;
+  --v-dur-tab-expand: 150ms;
+  --v-dur-tab-contract: 180ms;
+
+  /* ---------------------------------------------------------------- layering */
+  --v-z-toolbar: 10; --v-z-menu: 20; --v-z-toast: 40;
+}
+
+:root, [data-theme] {
+  /* ---------------------------------------------------------------- elevation: paper-styles/shadow.js, from theme vars */
+  --v-shadow-key: rgb(var(--v-shadow-rgb) / var(--v-shadow-key-alpha));
+  --v-shadow-ambient: rgb(var(--v-shadow-rgb) / var(--v-shadow-ambient-alpha));
+  --v-shadow-umbra: rgb(var(--v-shadow-rgb) / var(--v-shadow-umbra-alpha));
+  --v-shadow-umbra-soft: rgb(var(--v-shadow-rgb) / calc(var(--v-shadow-umbra-alpha) * 0.5));
+  --v-elevation-0: none;
+  /*  2dp */ --v-elevation-1: 0 2px 2px 0 var(--v-shadow-key), 0 1px 5px 0 var(--v-shadow-ambient), 0 3px 1px -2px var(--v-shadow-umbra-soft);
+  /*  4dp */ --v-elevation-2: 0 4px 5px 0 var(--v-shadow-key), 0 1px 10px 0 var(--v-shadow-ambient), 0 2px 4px -1px var(--v-shadow-umbra);
+  /*  6dp */ --v-elevation-3: 0 6px 10px 0 var(--v-shadow-key), 0 1px 18px 0 var(--v-shadow-ambient), 0 3px 5px -1px var(--v-shadow-umbra);
+  /*  8dp */ --v-elevation-4: 0 8px 10px 1px var(--v-shadow-key), 0 3px 14px 2px var(--v-shadow-ambient), 0 5px 5px -3px var(--v-shadow-umbra);
+  /* 16dp */ --v-elevation-5: 0 16px 24px 2px var(--v-shadow-key), 0 6px 30px 5px var(--v-shadow-ambient), 0 8px 10px -5px var(--v-shadow-umbra);
+  /* 24dp */ --v-elevation-6: 0 24px 38px 3px var(--v-shadow-key), 0 9px 46px 8px var(--v-shadow-ambient), 0 11px 15px -7px var(--v-shadow-umbra);
+  /* toggle thumb / toast */ --v-elevation-thumb: 0 1px 5px 0 rgb(var(--v-shadow-rgb) / calc(var(--v-shadow-key-alpha) * 4));
+
+  /* ---------------------------------------------------------------- states, derived from the base colors */
+  --v-hover: color-mix(in srgb, var(--v-text) 6%, transparent);
+  --v-pressed: color-mix(in srgb, var(--v-text) 12%, transparent);
+  --v-selected: color-mix(in srgb, var(--v-primary) 12%, transparent);
+  --v-focus-ring: color-mix(in srgb, var(--v-focus) 85%, transparent);
+  /* neutral, derived from the divider (not from the text color, which may be tinted, e.g. gold) */
+  --v-disabled-fg: color-mix(in srgb, var(--v-divider) 75%, var(--v-text));
+  --v-disabled-bg: color-mix(in srgb, var(--v-divider) 60%, transparent);
+  --v-scrim: rgb(var(--v-shadow-rgb) / var(--v-scrim-alpha));
+  --v-line: var(--v-divider);                                   /* unfocused underline */
+  --v-control-off: color-mix(in srgb, var(--v-text) 54%, transparent);   /* unchecked box/ring */
+  --v-track-off: color-mix(in srgb, var(--v-divider) 80%, var(--v-text));   /* slider/progress track (neutral) */
+  --v-primary-soft: color-mix(in srgb, var(--v-primary) 16%, transparent);
+  --v-primary-strong: color-mix(in srgb, var(--v-primary) 82%, var(--v-text));
+
+  color-scheme: var(--v-color-scheme);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --v-dur-fast: 1ms; --v-dur-control: 1ms; --v-dur-knob: 1ms; --v-dur-field: 1ms; --v-dur-medium: 1ms;
+    --v-dur-toast: 1ms; --v-dur-dialog-in: 1ms; --v-dur-dialog-out: 1ms; --v-dur-tab-expand: 1ms; --v-dur-tab-contract: 1ms;
+  }
+}

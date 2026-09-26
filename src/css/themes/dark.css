@@ -1,0 +1,36 @@
+/* Vellum theme: dark. Applied automatically when the system prefers dark and no data-theme is set on the root,
+ * or explicitly with data-theme="dark" on any element. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --v-color-scheme: dark;
+    --v-bg: #303030; --v-surface: #424242; --v-surface-raised: #4a4a4a;
+    --v-text: #ffffff; --v-heading: #ffffff; --v-text-2: #b3b3b3; --v-divider: #5f5f5f;
+    --v-primary: #7986cb; --v-on-primary: #0d1033;
+    --v-secondary: #ff80ab; --v-on-secondary: #3b0a1c;
+    --v-success: #81c784; --v-on-success: #0e2a10;
+    --v-info: #4fc3f7; --v-on-info: #002b3d;
+    --v-warning: #ffb74d; --v-on-warning: #3d2400;
+    --v-error: #ef5350; --v-on-error: #ffffff;
+    --v-toolbar: #212121; --v-on-toolbar: #ffffff;
+    --v-inverse: #e0e0e0; --v-on-inverse: #212121;
+    --v-focus: #9fa8da;
+    --v-shadow-rgb: 0 0 0; --v-shadow-key-alpha: 0.3; --v-shadow-ambient-alpha: 0.24; --v-shadow-umbra-alpha: 0.6;
+    --v-scrim-alpha: 0.6; --v-ripple-alpha: 0.25;
+  }
+}
+[data-theme="dark"] {
+  --v-color-scheme: dark;
+  --v-bg: #303030; --v-surface: #424242; --v-surface-raised: #4a4a4a;
+  --v-text: #ffffff; --v-heading: #ffffff; --v-text-2: #b3b3b3; --v-divider: #5f5f5f;
+  --v-primary: #7986cb; --v-on-primary: #0d1033;
+  --v-secondary: #ff80ab; --v-on-secondary: #3b0a1c;
+  --v-success: #81c784; --v-on-success: #0e2a10;
+  --v-info: #4fc3f7; --v-on-info: #002b3d;
+  --v-warning: #ffb74d; --v-on-warning: #3d2400;
+  --v-error: #ef5350; --v-on-error: #ffffff;
+  --v-toolbar: #212121; --v-on-toolbar: #ffffff;
+  --v-inverse: #e0e0e0; --v-on-inverse: #212121;
+  --v-focus: #9fa8da;
+  --v-shadow-rgb: 0 0 0; --v-shadow-key-alpha: 0.3; --v-shadow-ambient-alpha: 0.24; --v-shadow-umbra-alpha: 0.6;
+  --v-scrim-alpha: 0.6; --v-ripple-alpha: 0.25;
+}

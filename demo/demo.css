@@ -1,0 +1,53 @@
+/* Demo page layout only (the library itself is in ../src). Mirrors the Golden Goose showcase: alternating bands,
+ * centered light section titles, primary-colored column captions, cards of stacked examples. */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; min-height: 100vh; background: var(--v-bg); }
+.demo-toolbar { position: sticky; top: env(safe-area-inset-top, 0px); }
+.demo-links { display: flex; gap: 16px; }
+.demo-links a { font: var(--v-font-body1); }
+.demo-band { padding: 48px 16px 64px; background: var(--v-bg); }
+.demo-band--alt { background: color-mix(in srgb, var(--v-bg) 86%, rgb(var(--v-shadow-rgb))); }
+.demo-hero { text-align: center; padding-top: 56px; }
+.demo-hero__title { font: 300 50px / 1.2 var(--v-font); color: var(--v-primary) !important; margin: 0 0 12px; }
+.demo-hero__subtitle { font: 400 34px / 1.2 var(--v-font); color: var(--v-heading); margin: 0 0 40px; }
+.demo-hero__actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; }
+.demo-hero__actions p { margin: 10px 0 0; color: var(--v-heading); font: var(--v-font-subhead); }
+.demo-or { color: var(--v-primary); margin: 40px 0 16px; font: var(--v-font-subhead); }
+.demo-themes { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.demo-section { text-align: center; font: 400 28px / 1.3 var(--v-font) !important; color: var(--v-heading); margin: 0 0 40px !important; }
+.demo-cols { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+.demo-col { display: flex; flex-direction: column; align-items: stretch; min-width: 178px; }
+.demo-col > h3, .demo-wide > h3 { text-align: center; color: var(--v-primary) !important; font: 400 20px / 1.4 var(--v-font) !important; margin: 0 0 4px !important; }
+.v-card.demo-list { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 28px 32px; min-height: 100%; box-sizing: border-box; }
+.v-card.demo-list--left { align-items: flex-start; }
+.demo-list .v-button { min-width: 120px; }
+.demo-wide { max-width: 1220px; margin: 0 auto; }
+.demo-wide > h3 { margin-top: 24px !important; }
+.v-card.demo-form { padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 4px; }
+.demo-center { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; align-items: center; }
+.demo-progress { gap: 28px; padding-top: 28px; }
+.demo-menu { min-width: 200px; }
+.demo-sliders h4 { margin: 12px 0 0 !important; color: var(--v-primary) !important; text-align: center; font-weight: 400 !important; }
+.demo-spinners { gap: 32px; }
+.demo-tabs .v-tabs { box-shadow: var(--v-elevation-1); }
+.demo-tabbar { padding-right: 0; }
+.demo-tabbar .v-tabs { flex: 1; box-shadow: none; height: 64px; }
+.demo-caption { text-align: center; color: var(--v-text); margin: 24px 0 8px; font: var(--v-font-subhead); }
+.demo-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.demo-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.demo-cards .v-notice { margin: 8px 0 0; }
+.demo-elev { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; padding: 16px 0 24px; }
+.demo-elev .v-card { width: 72px; height: 72px; display: grid; place-items: center; font: var(--v-font-title); }
+.v-card.demo-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0 16px; padding: 12px 16px; }
+.demo-swatch { display: flex; align-items: center; gap: 10px; padding: 6px 0; font: var(--v-font-caption); min-width: 0; }
+.demo-swatch i { flex: none; width: 28px; height: 20px; border-radius: 2px; box-shadow: inset 0 0 0 1px var(--v-divider); }
+.demo-swatch code { font: 12px var(--v-font-mono); color: var(--v-text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.demo-footer { text-align: center; padding: 24px 16px 40px; background: var(--v-bg); }
+@media (max-width: 599px) {
+  .demo-hero__title { font-size: 40px; }
+  .demo-hero__subtitle { font-size: 24px; }
+  .demo-col { min-width: 0; flex: 1 1 100%; }
+  .demo-links { display: none; }
+}
+.v-card.demo-form > p { margin: 6px 0; }

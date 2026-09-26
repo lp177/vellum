@@ -1,0 +1,27 @@
+#!/bin/bash
+# Toolchain in a rootless container (nothing installed on the host).
+#   bin/dev npm <args>      bin/dev test      bin/dev build      bin/dev up|down (demo on 127.0.0.1:8126)
+set -euo pipefail
+PROJECT=$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)
+if [[ $(id -u) -eq 0 ]]; then
+    uid=$(id -u podman)
+    find "$PROJECT" -xdev -path "$PROJECT/node_modules" -prune -o ! -user podman -exec chown -h podman: {} +
+    exec sudo -u podman -H env XDG_RUNTIME_DIR=/run/user/$uid DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$uid/bus "$PROJECT/bin/dev" "$@"
+fi
+cd "$PROJECT"
+IMAGE=docker.io/library/node:24.21.0-trixie-slim
+tty=(); [[ -t 0 && -t 1 ]] && tty=(-it)
+run() { podman run --rm "${tty[@]}" --security-opt no-new-privileges --cap-drop ALL -v "$PROJECT":/work:Z -w /work \
+        -v vellum-dev-cache:/cache -e npm_config_cache=/cache/npm "$IMAGE" "$@"; }
+case ${1:-help} in
+npm)   shift; run npm "$@" ;;
+node)  shift; run node "$@" ;;
+test)  run npm test ;;
+build) run npm run build ;;
+up)    podman rm -f vellum-dev >/dev/null 2>&1 || true
+       podman run -d --name vellum-dev --security-opt no-new-privileges --cap-drop ALL -p 127.0.0.1:8126:5173 \
+         -v "$PROJECT":/work:Z -w /work -v vellum-dev-cache:/cache -e npm_config_cache=/cache/npm "$IMAGE" npm run dev
+       echo "demo: http://127.0.0.1:8126/demo/" ;;
+down)  podman rm -f vellum-dev ;;
+*)     sed -n '2,3p' "$0" | sed 's/^# \?//' ;;
+esac
