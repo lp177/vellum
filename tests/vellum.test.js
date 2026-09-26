@@ -66,16 +66,20 @@ describe('navigation tabs (.v-tabs--nav)', () => {
     const [a, b] = [...list.querySelectorAll('.v-tab')]
     expect(list.getAttribute('role')).toBeNull()
     expect(a.hasAttribute('tabindex') || b.hasAttribute('role')).toBe(false)
-    expect(a.classList.contains('is-selected')).toBe(true)
+    expect(a.hasAttribute('data-selected')).toBe(true)
     const seen = []
     list.addEventListener('v-tab-change', (e) => seen.push(e.detail.index))
     b.addEventListener('click', (e) => e.preventDefault()) // the app's router would take over here
     b.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 }))
-    expect(b.classList.contains('is-selected') && !a.classList.contains('is-selected')).toBe(true)
+    expect(b.hasAttribute('data-selected') && !a.hasAttribute('data-selected')).toBe(true)
     a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, button: 0, ctrlKey: true }))
-    expect(b.classList.contains('is-selected')).toBe(true) // ctrl+click opens elsewhere: no change here
+    expect(b.hasAttribute('data-selected')).toBe(true) // ctrl+click opens elsewhere: no change here
+    b.className = 'v-tab' // a framework re-rendering the link's class
+    b.removeAttribute('data-selected')
+    list.vSelect(1)
+    expect(b.hasAttribute('data-selected')).toBe(true)
     list.vSelect(-1)
-    expect(list.querySelectorAll('.is-selected').length).toBe(0)
+    expect(list.querySelectorAll('[data-selected]').length).toBe(0)
     expect(seen).toEqual([1, -1])
   })
 })

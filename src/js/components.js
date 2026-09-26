@@ -113,8 +113,9 @@ export function validateField(field) {
 // Two kinds:
 //  - tabs (default): role=tablist, aria-selected, roving tabindex, arrows / Home / End;
 //  - navigation (.v-tabs--nav, links): the links stay ordinary links in the tab order; the selection is visual
-//    (.is-selected) and happens on click, before the app has finished navigating, so the click is acknowledged at
-//    once. The app confirms (or corrects) it afterwards with list.vSelect(index), -1 for "no section".
+//    ([data-selected]: an attribute, because frameworks rewrite the class attribute of the links they render) and
+//    happens on click, before the app has finished navigating, so the click is acknowledged at once. The app confirms
+//    (or corrects) it afterwards with list.vSelect(index), -1 for "no section".
 export function attachTabs(list) {
   return once(list, 'tabs', () => {
     const nav = list.classList.contains('v-tabs--nav')
@@ -124,7 +125,7 @@ export function attachTabs(list) {
     const ink = !list.classList.contains('v-tabs--no-ink')
     const detachInk = ink ? tabs().map((t) => attachRipple(t, {})) : []
     let current = nav
-      ? tabs().find((t) => t.classList.contains('is-selected') || t.getAttribute('aria-current') === 'page') || null
+      ? tabs().find((t) => t.hasAttribute('data-selected') || t.getAttribute('aria-current') === 'page') || null
       : tabs().find((t) => t.getAttribute('aria-selected') === 'true') || tabs()[0]
     const pos = (t) => {
       const w = list.scrollWidth || 1
@@ -137,13 +138,13 @@ export function attachTabs(list) {
     }
     const mark = (tab) => {
       for (const t of tabs()) {
-        if (nav) t.classList.toggle('is-selected', t === tab)
+        if (nav) t.toggleAttribute('data-selected', t === tab)
         else { t.setAttribute('aria-selected', String(t === tab)); t.tabIndex = t === tab ? 0 : -1 }
       }
     }
     const select = (tab, focus = false) => {
       if (tab && (tab.disabled || tab.getAttribute('aria-disabled') === 'true')) return
-      if (tab === current) return
+      if (tab === current) { mark(tab); return } // re-mark: cheap, and repairs markup a framework re-rendered
       const old = current
       mark(tab)
       current = tab

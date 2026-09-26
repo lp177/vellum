@@ -3,7 +3,7 @@
  *   <div class="v-tabs" role="tablist"><button class="v-tab" role="tab" aria-selected="true">One</button>…</div>
  *        (js adds the selection bar; variants: --no-bar, --no-slide, --no-ink, --primary for use inside a toolbar)
  *   <nav class="v-tabs v-tabs--nav"><a class="v-tab" href="/" aria-current="page">Home</a>…</nav>
- *        (navigation: links stay links; js marks .is-selected on click, before the page changes; list.vSelect(i))
+ *        (navigation: links stay links; js sets [data-selected] on click, before the page changes; list.vSelect(i))
  *   <div class="v-menu" role="listbox"><div class="v-item" role="option" tabindex="0">Inbox</div>…</div> */
 
 /* ---------------------------------------------------------------- toolbar */
@@ -64,7 +64,7 @@
   transition: opacity 0.1s var(--v-ease-accelerate);
   -webkit-tap-highlight-color: transparent;
 }
-.v-tab[aria-selected="true"], .v-tab.is-selected { opacity: 1; }
+.v-tab[aria-selected="true"], .v-tab[data-selected] { opacity: 1; }
 a.v-tab { text-decoration: none; }
 .v-tab:focus-visible { opacity: 1; font-weight: 700; outline-offset: -4px; }
 .v-tab:disabled { opacity: 0.4; cursor: default; }

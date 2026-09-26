@@ -222,7 +222,7 @@ function x(e) {
 	return d(e, "tabs", () => {
 		let t = e.classList.contains("v-tabs--nav"), n = () => [...e.querySelectorAll(":scope > .v-tab")], r = e.querySelector(":scope > .v-tabs__bar");
 		r || (r = document.createElement("span"), r.className = "v-tabs__bar", r.setAttribute("aria-hidden", "true"), e.appendChild(r));
-		let i = e.classList.contains("v-tabs--no-ink") ? [] : n().map((e) => c(e, {})), a = t ? n().find((e) => e.classList.contains("is-selected") || e.getAttribute("aria-current") === "page") || null : n().find((e) => e.getAttribute("aria-selected") === "true") || n()[0], o = (t) => {
+		let i = e.classList.contains("v-tabs--no-ink") ? [] : n().map((e) => c(e, {})), a = t ? n().find((e) => e.hasAttribute("data-selected") || e.getAttribute("aria-current") === "page") || null : n().find((e) => e.getAttribute("aria-selected") === "true") || n()[0], o = (t) => {
 			let n = e.scrollWidth || 1;
 			return {
 				left: t.offsetLeft / n * 100,
@@ -236,9 +236,13 @@ function x(e) {
 				s(e.width, e.left);
 			} else s(0, 0);
 		}, u = (e) => {
-			for (let r of n()) t ? r.classList.toggle("is-selected", r === e) : (r.setAttribute("aria-selected", String(r === e)), r.tabIndex = r === e ? 0 : -1);
+			for (let r of n()) t ? r.toggleAttribute("data-selected", r === e) : (r.setAttribute("aria-selected", String(r === e)), r.tabIndex = r === e ? 0 : -1);
 		}, d = (t, i = !1) => {
-			if (t && (t.disabled || t.getAttribute("aria-disabled") === "true") || t === a) return;
+			if (t && (t.disabled || t.getAttribute("aria-disabled") === "true")) return;
+			if (t === a) {
+				u(t);
+				return;
+			}
 			let c = a;
 			if (u(t), a = t, i && t && t.focus(), e.dispatchEvent(new CustomEvent("v-tab-change", {
 				detail: {
