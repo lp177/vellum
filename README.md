@@ -15,9 +15,16 @@ and the original component timings.
   shortens every duration to 1 ms, and the ripple becomes a short flash.
 
 The demo in `demo/` replicates the Polymer "Golden Goose" showcase element by element, with a menu of 33 themes, and
-`demo/builder.html` is a theme builder: pick colors, see them live on the demo page, copy the CSS block. Both are
-published as a static site with GitLab Pages, **https://vellum-a48496.gitlab.io** (members of the project only while it is
-private; `.gitlab-ci.yml`, job `pages`: `npm run build:site` → `public/`, on every push to `main`).
+`demo/builder.html` is a theme builder: pick colors, see them live on the demo page, copy the CSS block. `demo/` holds
+their sources; they are published as a static site (relative URLs: it works under any path):
+
+- **GitLab Pages**, **https://vellum-a48496.gitlab.io** (members of the project only while it is private):
+  `.gitlab-ci.yml`, job `pages`, builds `public/` (`npm run build:site`) on every push to `main`.
+- **GitHub Pages**: it can only serve the root or `/docs` of a branch, so the built site is also committed in `docs/`
+  (`npm run build:docs`, also run by `npm run build`). On GitHub: Settings → Pages → "Deploy from a branch" → `main`,
+  folder `/docs`. `docs/.nojekyll` keeps GitHub from running Jekyll on it. `npm run check:docs` (CI job `docs`) fails
+  when `docs/` is no longer what the sources build: rebuild and commit it.
+
 `dist/vellum-demo.html` is the demo as a single self-contained file (without the builder).
 
 ## Install
@@ -215,9 +222,10 @@ Toolchains run in containers (nothing is installed on the host):
 bin/dev npm install
 bin/dev up            # vite dev server on 127.0.0.1:8126 (loopback only); bin/dev down to stop
 bin/dev test          # vitest (jsdom)
-bin/dev build         # dist/vellum.{css,js}, dist/themes, dist/fonts.css, dist/vellum-demo.html
+bin/dev build         # dist/vellum.{css,js}, dist/themes, dist/fonts.css, dist/vellum-demo.html, docs/
 bin/dev npm run demo:single   # only the single-file demo (+ a page fragment in .cache/artifact/)
 bin/dev npm run build:site    # the static site (demo + theme builder) in public/, as GitLab Pages builds it
+bin/dev npm run build:docs    # the same site in docs/ (committed: GitHub Pages serves /docs); check:docs verifies it
 bin/dev npm run themes        # regenerate src/css/themes/*.css from the catalog (src/themes/)
 bin/dev node scripts/import-polymerthemes.mjs   # re-import the PolymerThemes colors (network)
 bin/e2e motion.mjs    # Playwright: slow-motion frame bursts of each interaction, in e2e/shots/

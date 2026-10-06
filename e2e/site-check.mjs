@@ -1,4 +1,5 @@
-// Checks the built static site (public/) served under a sub-path like GitLab Pages: bin/e2e site-check.mjs <url>
+// Checks the built static site (public/ or docs/) served under a sub-path, as GitLab / GitHub Pages serve it:
+// bin/e2e site-check.mjs <url>   (e.g. docs/ served at http://127.0.0.1:8127/vellum/)
 import { chromium } from 'playwright'
 const base = process.argv[2]
 const b = await chromium.launch({ channel: 'chromium' })

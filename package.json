@@ -22,11 +22,13 @@
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 5173",
-    "build": "node scripts/gen-themes.mjs && vite build && node scripts/postbuild.mjs && node scripts/single-file-demo.mjs",
+    "build": "node scripts/gen-themes.mjs && vite build && node scripts/postbuild.mjs && node scripts/single-file-demo.mjs && vite build --config vite.site.config.js --outDir ../docs --emptyOutDir",
     "demo:single": "node scripts/single-file-demo.mjs",
     "test": "vitest --run",
     "themes": "node scripts/gen-themes.mjs",
-    "build:site": "node scripts/gen-themes.mjs && vite build --config vite.site.config.js"
+    "build:site": "node scripts/gen-themes.mjs && vite build --config vite.site.config.js",
+    "build:docs": "node scripts/gen-themes.mjs && vite build --config vite.site.config.js --outDir ../docs --emptyOutDir",
+    "check:docs": "node scripts/check-docs.mjs"
   },
   "devDependencies": {
     "@fontsource/roboto": "5.3.0",

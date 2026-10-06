@@ -1,6 +1,7 @@
 # GitLab Pages: the demo (component gallery) and the theme builder, built from the sources on every push to main.
 pages:
   stage: deploy
+  needs: []
   image: node:24.21.0-trixie-slim
   cache:
     key: npm
@@ -12,3 +13,14 @@ pages:
     paths: [public]
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# GitHub Pages serves the committed docs/: it must be what the sources build (else: npm run build:docs, commit docs/).
+docs:
+  stage: test
+  image: node:24.21.0-trixie-slim
+  cache:
+    key: npm
+    paths: [.npm/]
+  script:
+    - npm ci --no-audit --no-fund --cache .npm --prefer-offline
+    - npm run check:docs
