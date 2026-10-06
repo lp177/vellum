@@ -24,8 +24,7 @@ the built library committed in `dist/` (`vellum.css`, `vellum.js`, `fonts.css`) 
 - **GitHub Pages**: Settings → Pages → "Deploy from a branch" → `main`, folder `/ (root)`. The site is the whole
   repository; `.nojekyll` keeps GitHub from running Jekyll on it. The demo is at `…/demo/`.
 - **GitLab Pages**, **https://vellum-a48496.gitlab.io** (members of the project only while it is private):
-  `.gitlab-ci.yml`, job `pages`, copies `index.html`, `builder.html`, `demo/`, `dist/` and `src/` to `public/` on every
-  push to `main`.
+  `.gitlab-ci.yml`, job `pages`, copies `index.html`, `demo/`, `dist/` and `src/` to `public/` on every push to `main`.
 
 The demo shows the library as last built: after a change under `src/`, `bin/dev build` and commit `dist/`. On the dev
 server (`bin/dev up`) the sources are used instead, so edits show at once (`vite.config.js`).
