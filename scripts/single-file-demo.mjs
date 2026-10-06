@@ -18,10 +18,11 @@ html = html.replace(/<!--VELLUM-HEAD-->[\s\S]*<!--\/VELLUM-HEAD-->/, [
   `<style>\n${css}\n</style>`,
 ].join('\n  '))
 html = html.replace('</body>', `<script>\n${js}\n</script>\n</body>`)
-// the theme builder is a second page (with the demo in an iframe): it lives on the static site, not in this one file
+// the theme builder is a second page (with the demo in an iframe): it lives on the static site (the repository
+// served as is: <site>/demo/builder.html), not in this one file
 const site = process.env.VELLUM_SITE_URL ?? JSON.parse(readFileSync('package.json', 'utf8')).homepage
 html = site
-  ? html.replaceAll('href="./builder.html"', `href="${site.replace(/\/?$/, '/')}builder.html" target="_blank" rel="noopener"`)
+  ? html.replaceAll('href="./builder.html"', `href="${site.replace(/\/?$/, '/')}demo/builder.html" target="_blank" rel="noopener"`)
   : html.replace('</head>', '<style>[data-builder-link]{display:none!important}</style>\n</head>')
 writeFileSync('dist/vellum-demo.html', html)
 console.log('dist/vellum-demo.html', Math.round(html.length / 1024), 'KiB')

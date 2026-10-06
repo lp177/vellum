@@ -15,15 +15,20 @@ and the original component timings.
   shortens every duration to 1 ms, and the ripple becomes a short flash.
 
 The demo in `demo/` replicates the Polymer "Golden Goose" showcase element by element, with a menu of 33 themes, and
-`demo/builder.html` is a theme builder: pick colors, see them live on the demo page, copy the CSS block. `demo/` holds
-their sources; they are published as a static site (relative URLs: it works under any path):
+`demo/builder.html` is a theme builder: pick colors, see them live on the demo page, copy the CSS block.
 
+**The repository is the site: nothing to build.** `demo/` is plain static files whose tags load, with relative URLs,
+the built library committed in `dist/` (`vellum.css`, `vellum.js`, `fonts.css`) and the theme catalog in
+`src/themes/` (plain ES modules). So it works from any static host, under any path; the root `index.html` leads to it.
+
+- **GitHub Pages**: Settings → Pages → "Deploy from a branch" → `main`, folder `/ (root)`. The site is the whole
+  repository; `.nojekyll` keeps GitHub from running Jekyll on it. The demo is at `…/demo/`.
 - **GitLab Pages**, **https://vellum-a48496.gitlab.io** (members of the project only while it is private):
-  `.gitlab-ci.yml`, job `pages`, builds `public/` (`npm run build:site`) on every push to `main`.
-- **GitHub Pages**: it can only serve the root or `/docs` of a branch, so the built site is also committed in `docs/`
-  (`npm run build:docs`, also run by `npm run build`). On GitHub: Settings → Pages → "Deploy from a branch" → `main`,
-  folder `/docs`. `docs/.nojekyll` keeps GitHub from running Jekyll on it. `npm run check:docs` (CI job `docs`) fails
-  when `docs/` is no longer what the sources build: rebuild and commit it.
+  `.gitlab-ci.yml`, job `pages`, copies `index.html`, `builder.html`, `demo/`, `dist/` and `src/` to `public/` on every
+  push to `main`.
+
+The demo shows the library as last built: after a change under `src/`, `bin/dev build` and commit `dist/`. On the dev
+server (`bin/dev up`) the sources are used instead, so edits show at once (`vite.config.js`).
 
 `dist/vellum-demo.html` is the demo as a single self-contained file (without the builder).
 
@@ -222,10 +227,8 @@ Toolchains run in containers (nothing is installed on the host):
 bin/dev npm install
 bin/dev up            # vite dev server on 127.0.0.1:8126 (loopback only); bin/dev down to stop
 bin/dev test          # vitest (jsdom)
-bin/dev build         # dist/vellum.{css,js}, dist/themes, dist/fonts.css, dist/vellum-demo.html, docs/
+bin/dev build         # dist/vellum.{css,js}, dist/themes, dist/fonts.css, dist/vellum-demo.html
 bin/dev npm run demo:single   # only the single-file demo (+ a page fragment in .cache/artifact/)
-bin/dev npm run build:site    # the static site (demo + theme builder) in public/, as GitLab Pages builds it
-bin/dev npm run build:docs    # the same site in docs/ (committed: GitHub Pages serves /docs); check:docs verifies it
 bin/dev npm run themes        # regenerate src/css/themes/*.css from the catalog (src/themes/)
 bin/dev node scripts/import-polymerthemes.mjs   # re-import the PolymerThemes colors (network)
 bin/e2e motion.mjs    # Playwright: slow-motion frame bursts of each interaction, in e2e/shots/

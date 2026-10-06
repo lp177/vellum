@@ -1,5 +1,5 @@
 // Demo page wiring: builds the repetitive example lists, then enhances everything with Vellum.
-import { init, openDialog, toast, setProgress, validateField, icon, setTheme } from '../src/index.js'
+import { init, openDialog, toast, setProgress, validateField, icon, setTheme } from '../dist/vellum.js'
 import { CONTRACT, THEMES, themeCSS } from '../src/themes/index.js'
 import { fillThemeSelect, injectThemes, loadCustom } from './themes-ui.js'
 

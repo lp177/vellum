@@ -1,26 +1,13 @@
-# GitLab Pages: the demo (component gallery) and the theme builder, built from the sources on every push to main.
+# GitLab Pages: the repository is the site -- no build. demo/ loads the built library committed in dist/ and the theme
+# catalog in src/themes/ with relative URLs; the root index.html leads to it. (GitHub Pages serves the same files
+# from the root of the branch.)
 pages:
   stage: deploy
-  needs: []
-  image: node:24.21.0-trixie-slim
-  cache:
-    key: npm
-    paths: [.npm/]
+  image: busybox:1.37
   script:
-    - npm ci --no-audit --no-fund --cache .npm --prefer-offline
-    - npm run build:site
+    - mkdir public
+    - cp -r index.html builder.html demo dist src public/
   artifacts:
     paths: [public]
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-
-# GitHub Pages serves the committed docs/: it must be what the sources build (else: npm run build:docs, commit docs/).
-docs:
-  stage: test
-  image: node:24.21.0-trixie-slim
-  cache:
-    key: npm
-    paths: [.npm/]
-  script:
-    - npm ci --no-audit --no-fund --cache .npm --prefer-offline
-    - npm run check:docs

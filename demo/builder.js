@@ -1,6 +1,6 @@
 // Theme builder: edit a theme spec, preview it live on the demo page (iframe ?embed), copy its CSS block.
 // The spec holds what the person fixed; deriveTheme() computes the rest exactly as for the built-in themes.
-import { init, toast, attachTabs } from '../src/index.js'
+import { init, toast, attachTabs } from '../dist/vellum.js'
 import { THEMES, deriveTheme, themeCSS, slug, contrast, normalize, parse, hex } from '../src/themes/index.js'
 import { fillThemeSelect, loadCustom, saveCustom } from './themes-ui.js'
 
