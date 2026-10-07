@@ -161,7 +161,7 @@ Each CSS file in `src/css/components/` starts with its markup. Short version:
      Chromium 135+, Safari 27) its options open as a paper menu over the field, with the paper-menu-button motion;
      elsewhere (Firefox) the platform popup stays. .v-field--native opts out. -->
 <div class="v-field v-field--select">
-  <select class="v-field__input" id="lang"><option>Français</option><option>English</option></select>
+  <select class="v-field__input" id="lang"><option>English</option><option>Français</option></select>
   <label class="v-field__label" for="lang">Language</label><span class="v-field__line"></span>
 </div>
 

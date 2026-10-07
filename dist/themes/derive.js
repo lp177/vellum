@@ -63,6 +63,6 @@ export function themeCSS(theme, selector = `[data-theme="${theme.id}"]`, indent 
   return `${selector} {\n${lines.join('\n')}\n}`
 }
 
-/** A theme id from a free name: "Mon thème bleu" → "mon-theme-bleu". */
+/** A theme id from a free name: "Ångström Blue 2" → "angstrom-blue-2". */
 export const slug = (name) => String(name).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
   .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'custom'

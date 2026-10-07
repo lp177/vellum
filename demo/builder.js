@@ -12,24 +12,24 @@ const REQUIRED = ['bg', 'text', 'primary', 'secondary', 'success', 'info', 'warn
 
 // [key, label, contrast partner]
 const GROUPS = [
-  ['Fond et papier', [['bg', 'Fond de la page'], ['surface', 'Papier : cartes, champs'], ['surface-raised', 'Papier surélevé : menus, dialogues'],
-    ['divider', 'Séparateurs et états désactivés', 'surface']]],
-  ['Texte', [['text', 'Texte', 'surface'], ['heading', 'Titres', 'surface'], ['text-2', 'Texte secondaire', 'surface']]],
-  ['Couleurs d’accent', [['primary', 'Principale', 'surface'], ['on-primary', 'Texte sur la principale', 'primary'],
-    ['secondary', 'Secondaire', 'surface'], ['on-secondary', 'Texte sur la secondaire', 'secondary']]],
-  ['États', [['success', 'Succès', 'surface'], ['on-success', 'Texte sur succès', 'success'], ['info', 'Information', 'surface'],
-    ['on-info', 'Texte sur information', 'info'], ['warning', 'Avertissement', 'surface'], ['on-warning', 'Texte sur avertissement', 'warning'],
-    ['error', 'Erreur', 'surface'], ['on-error', 'Texte sur erreur', 'error']]],
-  ['Barre d’outils et onglets', [['toolbar', 'Fond'], ['on-toolbar', 'Texte', 'toolbar']]],
-  ['Notification (toast)', [['inverse', 'Fond', 'bg'], ['on-inverse', 'Texte', 'inverse']]],
-  ['Focus clavier', [['focus', 'Anneau de focus', 'bg']]],
+  ['Background and paper', [['bg', 'Page background'], ['surface', 'Paper: cards, fields'], ['surface-raised', 'Raised paper: menus, dialogs'],
+    ['divider', 'Dividers and disabled states', 'surface']]],
+  ['Text', [['text', 'Text', 'surface'], ['heading', 'Headings', 'surface'], ['text-2', 'Secondary text', 'surface']]],
+  ['Accent colors', [['primary', 'Primary', 'surface'], ['on-primary', 'Text on primary', 'primary'],
+    ['secondary', 'Secondary', 'surface'], ['on-secondary', 'Text on secondary', 'secondary']]],
+  ['States', [['success', 'Success', 'surface'], ['on-success', 'Text on success', 'success'], ['info', 'Info', 'surface'],
+    ['on-info', 'Text on info', 'info'], ['warning', 'Warning', 'surface'], ['on-warning', 'Text on warning', 'warning'],
+    ['error', 'Error', 'surface'], ['on-error', 'Text on error', 'error']]],
+  ['Toolbar and tabs', [['toolbar', 'Background'], ['on-toolbar', 'Text', 'toolbar']]],
+  ['Notification (toast)', [['inverse', 'Background', 'bg'], ['on-inverse', 'Text', 'inverse']]],
+  ['Keyboard focus', [['focus', 'Focus ring', 'bg']]],
 ]
-const EFFECTS = [['shadow-key-alpha', 'Ombre portée'], ['shadow-ambient-alpha', 'Ombre ambiante'], ['shadow-umbra-alpha', 'Ombre de contact'],
-  ['scrim-alpha', 'Voile des dialogues'], ['ripple-alpha', 'Encre (ripple)']]
+const EFFECTS = [['shadow-key-alpha', 'Key shadow'], ['shadow-ambient-alpha', 'Ambient shadow'], ['shadow-umbra-alpha', 'Contact shadow'],
+  ['scrim-alpha', 'Dialog scrim'], ['ripple-alpha', 'Ink (ripple)']]
 
 // ---------------------------------------------------------------- state
 let spec = {}
-let name = 'Mon thème'
+let name = 'My theme'
 let full = THEMES[0].vars
 
 function load() {
@@ -40,7 +40,7 @@ function load() {
   const c = loadCustom()
   if (c) { spec = { ...c.spec }; name = c.name; return 'custom' }
   const gg = THEMES.find((t) => t.id === 'golden-goose')
-  spec = { ...gg.spec }; name = 'Mon thème'
+  spec = { ...gg.spec }; name = 'My theme'
   return 'golden-goose'
 }
 
@@ -49,10 +49,10 @@ const row = ([k, label, partner]) => `
   <div class="bld-row" data-key="${k}"${partner ? ` data-partner="${partner}"` : ''}>
     <input type="color" class="bld-color" id="c-${k}" aria-label="${esc(label)}">
     <div class="bld-label"><label for="c-${k}">${esc(label)}</label><code>--v-${k}</code></div>
-    <input class="bld-hex" id="x-${k}" aria-label="${esc(label)}, valeur hexadécimale" spellcheck="false" autocomplete="off" maxlength="7">
-    <span class="bld-ratio" title="Contraste WCAG avec ${partner ? `--v-${partner}` : ''}"></span>
-    <span class="v-chip v-chip--small bld-auto" title="Valeur calculée à partir des autres">auto</span>
-    ${REQUIRED.includes(k) ? '<span class="bld-reset-slot"></span>' : `<button class="v-icon-button bld-reset" type="button" aria-label="${esc(label)} : revenir à la valeur calculée" title="Revenir à la valeur calculée"><svg class="v-icon" data-v-icon="refresh"></svg></button>`}
+    <input class="bld-hex" id="x-${k}" aria-label="${esc(label)}, hex value" spellcheck="false" autocomplete="off" maxlength="7">
+    <span class="bld-ratio" title="WCAG contrast with ${partner ? `--v-${partner}` : ''}"></span>
+    <span class="v-chip v-chip--small bld-auto" title="Value computed from the others">auto</span>
+    ${REQUIRED.includes(k) ? '<span class="bld-reset-slot"></span>' : `<button class="v-icon-button bld-reset" type="button" aria-label="${esc(label)}: back to the computed value" title="Back to the computed value"><svg class="v-icon" data-v-icon="refresh"></svg></button>`}
   </div>`
 const slider = ([k, label]) => `
   <div class="bld-effect" data-key="${k}">
@@ -62,8 +62,8 @@ const slider = ([k, label]) => `
 
 $('#bld-groups').innerHTML = GROUPS.map(([title, rows]) => `
   <section class="bld-group"><h2 class="bld-group__title">${esc(title)}</h2>${rows.map(row).join('')}</section>`).join('') + `
-  <section class="bld-group"><h2 class="bld-group__title">Ombres et effets</h2>
-    ${row(['shadow-rgb', 'Couleur des ombres'])}
+  <section class="bld-group"><h2 class="bld-group__title">Shadows and effects</h2>
+    ${row(['shadow-rgb', 'Shadow color'])}
     ${EFFECTS.map(slider).join('')}
   </section>`
 
@@ -111,7 +111,7 @@ function render() {
   }
   $('#bld-scheme').value = spec['color-scheme'] ?? ''
   const id = slug(name)
-  $('#bld-selector').textContent = `Sélecteur : [data-theme="${id}"]`
+  $('#bld-selector').textContent = `Selector: [data-theme="${id}"]`
   $('#bld-usage').textContent = `data-theme="${id}"`
   $('#bld-css').textContent = css()
   frame.contentWindow?.vellumPreview?.apply(full)
@@ -154,30 +154,30 @@ fromSelect.addEventListener('change', () => {
   const t = id === 'custom' ? loadCustom() : THEMES.find((x) => x.id === id)
   if (!t) return
   spec = { ...t.spec }
-  name = id === 'custom' ? t.name : `${t.name} perso`
+  name = id === 'custom' ? t.name : `${t.name} custom`
   $('#bld-name').value = name
   update()
-  toast(`Départ : ${t.name}`)
+  toast(`Starting from ${t.name}`)
 })
-$('#bld-name').addEventListener('input', (e) => { name = e.target.value.trim() || 'Mon thème'; update() })
+$('#bld-name').addEventListener('input', (e) => { name = e.target.value.trim() || 'My theme'; update() })
 
 async function copy() {
   const text = css()
   try {
     await navigator.clipboard.writeText(text)
-    toast('Bloc CSS copié dans le presse-papiers')
+    toast('CSS block copied to the clipboard')
   } catch {
     const range = document.createRange()
     range.selectNodeContents($('#bld-css'))
     getSelection().removeAllRanges(); getSelection().addRange(range)
-    toast('Copie automatique refusée : le bloc est sélectionné, copiez-le avec Ctrl+C', { duration: 6000 })
+    toast('Automatic copy was refused: the block is selected, copy it with Ctrl+C', { duration: 6000 })
   }
 }
 function save() {
-  if (!saveCustom(name, spec)) { toast('Impossible d’enregistrer dans ce navigateur (stockage désactivé)'); return }
+  if (!saveCustom(name, spec)) { toast('Cannot save in this browser (storage is disabled)'); return }
   try { localStorage.setItem('vellum-demo-theme', 'custom') } catch { /* ignore */ }
   fillFrom(); fromSelect.value = 'custom'
-  toast(`« ${name} » est enregistré : il apparaît dans le menu des thèmes de la démo`, { duration: 6000, action: { label: 'Voir', onClick: () => { location.href = './' } } })
+  toast(`“${name}” is saved: it now appears in the theme menu of the demo`, { duration: 6000, action: { label: 'View', onClick: () => { location.href = './' } } })
 }
 for (const id of ['#bld-copy', '#bld-copy-2']) $(id).addEventListener('click', copy)
 for (const id of ['#bld-save', '#bld-save-2']) $(id).addEventListener('click', save)

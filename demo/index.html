@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vellum UI Kit</title>
   <link rel="icon" href="data:,">
-  <meta name="description" content="Vellum — composants Material/Paper réutilisables (CSS + JS), démonstration élément par élément.">
+  <meta name="description" content="Vellum — reusable Material/Paper components (CSS + JS), demonstrated element by element.">
   <!--VELLUM-HEAD-->
   <link rel="stylesheet" href="../dist/fonts.css">
   <link rel="stylesheet" href="../dist/vellum.css">
@@ -17,12 +17,12 @@
 <header class="v-toolbar v-toolbar--raised demo-toolbar">
   <button class="v-icon-button" aria-label="Menu"><svg class="v-icon" data-v-icon="menu"></svg></button>
   <span class="v-toolbar__title">Vellum</span>
-  <nav class="demo-links" aria-label="Liens">
-    <a href="#buttons">Composants</a>
-    <a href="./builder.html" data-builder-link>Créer un thème</a>
+  <nav class="demo-links" aria-label="Links">
+    <a href="#buttons">Components</a>
+    <a href="./builder.html" data-builder-link>Create a theme</a>
   </nav>
   <div class="v-field v-field--select v-field--no-float demo-toolbar-theme" data-theme-picker>
-    <select class="v-field__input" data-theme-select aria-label="Thème"></select><span class="v-field__line"></span>
+    <select class="v-field__input" data-theme-select aria-label="Theme"></select><span class="v-field__line"></span>
   </div>
 </header>
 
@@ -31,16 +31,16 @@
   <h1 class="demo-hero__title">Vellum</h1>
   <p class="demo-hero__subtitle">Material paper, re-crafted</p>
   <div class="demo-hero__actions">
-    <div><button class="v-button v-button--raised v-button--primary"><svg class="v-icon" data-v-icon="download"></svg>CSS + JS</button><p>Aucune dépendance</p></div>
-    <div><button class="v-button v-button--raised v-button--secondary"><svg class="v-icon" data-v-icon="code"></svg>Vue &amp; co</button><p>Indépendant du framework</p></div>
+    <div><button class="v-button v-button--raised v-button--primary"><svg class="v-icon" data-v-icon="download"></svg>CSS + JS</button><p>No dependencies</p></div>
+    <div><button class="v-button v-button--raised v-button--secondary"><svg class="v-icon" data-v-icon="code"></svg>Vue &amp; co</button><p>Framework-agnostic</p></div>
   </div>
-  <p class="demo-or">THÈME</p>
+  <p class="demo-or">THEME</p>
   <div class="demo-themes" data-theme-picker>
     <div class="v-field v-field--select demo-theme-field">
       <select class="v-field__input" id="theme-hero" data-theme-select></select>
-      <label class="v-field__label" for="theme-hero">33 thèmes, clairs et sombres</label><span class="v-field__line"></span>
+      <label class="v-field__label" for="theme-hero">33 themes, light and dark</label><span class="v-field__line"></span>
     </div>
-    <a class="v-button v-button--raised v-button--primary" href="./builder.html" data-builder-link><svg class="v-icon" data-v-icon="palette"></svg>Créer un thème</a>
+    <a class="v-button v-button--raised v-button--primary" href="./builder.html" data-builder-link><svg class="v-icon" data-v-icon="palette"></svg>Create a theme</a>
   </div>
 </section>
 
@@ -65,7 +65,7 @@
   </div>
   <dialog class="v-dialog" id="dlg" aria-labelledby="dlg-t">
     <h2 class="v-dialog__title" id="dlg-t">Dialog Title</h2>
-    <p class="v-dialog__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Clic en dehors ou Échap pour fermer.</p>
+    <p class="v-dialog__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Click outside or press Escape to close.</p>
     <div class="v-dialog__buttons">
       <button class="v-button v-button--raised v-button--info v-dialog__start">More info</button>
       <button class="v-button" data-v-dialog-close="decline">Decline</button>
@@ -74,7 +74,7 @@
   </dialog>
   <dialog class="v-dialog" id="dlg-modal" data-v-modal aria-labelledby="dlg-m-t">
     <h2 class="v-dialog__title" id="dlg-m-t">Modal</h2>
-    <p class="v-dialog__content">Un dialogue modal ne se ferme ni par un clic à l’extérieur ni par Échap : il faut choisir une action.</p>
+    <p class="v-dialog__content">A modal dialog closes neither on an outside click nor on Escape: you have to choose an action.</p>
     <div class="v-dialog__buttons">
       <button class="v-button" data-v-dialog-close="cancel">Cancel</button>
       <button class="v-button v-button--raised v-button--primary" data-v-dialog-close="ok">Got it</button>
@@ -101,7 +101,7 @@
       <label class="v-field"><input class="v-field__input" type="password" placeholder=" " autocomplete="new-password"><span class="v-field__label">password</span><span class="v-field__line"></span></label>
       <label class="v-field v-field--no-float"><input class="v-field__input" placeholder=" "><span class="v-field__label">label (no-label-float)</span><span class="v-field__line"></span></label>
       <label class="v-field"><input class="v-field__input" placeholder=" " disabled><span class="v-field__label">disabled</span><span class="v-field__line"></span></label>
-      <label class="v-field v-field--select"><select class="v-field__input"><option>Français</option><option>English</option><option>Deutsch</option></select><span class="v-field__label">dropdown menu (native select)</span><span class="v-field__line"></span></label>
+      <label class="v-field v-field--select"><select class="v-field__input"><option>English</option><option>Français</option><option>Deutsch</option></select><span class="v-field__label">dropdown menu (native select)</span><span class="v-field__line"></span></label>
     </div>
     <h3>Text area</h3>
     <div class="v-card demo-form">
@@ -110,7 +110,7 @@
     <h3>Validation</h3>
     <div class="v-card demo-form">
       <div class="v-field" data-v-auto-validate><input class="v-field__input" id="f-auto" placeholder=" " pattern="[A-Za-zÀ-ÿ]*" aria-describedby="f-auto-m"><label class="v-field__label" for="f-auto">only type letters (auto-validate)</label><span class="v-field__line"></span>
-        <span class="v-field__meta" id="f-auto-m"><span class="v-field__help">Lettres uniquement</span><span class="v-field__error" data-static="1">Only letters please!</span></span></div>
+        <span class="v-field__meta" id="f-auto-m"><span class="v-field__help">Letters only</span><span class="v-field__error" data-static="1">Only letters please!</span></span></div>
       <div class="v-field" id="manual-field"><input class="v-field__input" id="f-manual" placeholder=" " pattern="[A-Za-zÀ-ÿ]*" required aria-describedby="f-manual-m"><label class="v-field__label" for="f-manual">only type letters (no auto validate)</label><span class="v-field__line"></span>
         <span class="v-field__meta" id="f-manual-m"><span class="v-field__error"></span></span></div>
       <div><button class="v-button v-button--raised v-button--primary" id="validate">Validate!</button></div>
@@ -243,19 +243,19 @@
 </section>
 
 <section class="demo-band demo-band--alt" id="extras">
-  <h2 class="demo-section">extras Vellum</h2>
+  <h2 class="demo-section">Vellum extras</h2>
   <div class="demo-wide">
     <h3>Card</h3>
     <div class="demo-cards">
-      <article class="v-card v-card--animated"><div class="v-card__header">Card title</div><div class="v-card__content">Survolez : l’élévation passe de 2 à 6 dp avec la courbe standard.</div><div class="v-card__actions"><button class="v-button v-button--primary">Share</button><button class="v-button">Explore</button></div></article>
+      <article class="v-card v-card--animated"><div class="v-card__header">Card title</div><div class="v-card__content">Hover: the elevation goes from 2 to 6 dp along the standard curve.</div><div class="v-card__actions"><button class="v-button v-button--primary">Share</button><button class="v-button">Explore</button></div></article>
       <article class="v-card"><div class="v-card__content"><div class="demo-chips"><span class="v-chip">Default</span><span class="v-chip v-chip--primary">Primary</span><span class="v-chip v-chip--success">Success</span><span class="v-chip v-chip--warning">Warning</span><span class="v-chip v-chip--error">Error</span><span class="v-chip v-chip--info v-chip--small">small</span><span class="v-chip v-chip--secondary v-chip--outlined">outlined</span></div>
-        <p class="v-notice">Notice d’information, dérivée de --v-info.</p><p class="v-notice v-notice--warning">Notice d’avertissement.</p></div></article>
+        <p class="v-notice">Info notice, derived from --v-info.</p><p class="v-notice v-notice--warning">Warning notice.</p></div></article>
     </div>
-    <h3>Elevation (0 → 6 : 0, 2, 4, 6, 8, 16, 24 dp)</h3>
+    <h3>Elevation (0 → 6: 0, 2, 4, 6, 8, 16, 24 dp)</h3>
     <div class="demo-elev"><div class="v-card v-elevation-0">0</div><div class="v-card v-elevation-1">1</div><div class="v-card v-elevation-2">2</div><div class="v-card v-elevation-3">3</div><div class="v-card v-elevation-4">4</div><div class="v-card v-elevation-5">5</div><div class="v-card v-elevation-6">6</div></div>
     <h3>Data table</h3>
-    <div class="v-card v-table-wrap"><table class="v-table"><thead><tr><th>Élément</th><th>Symbole</th><th>Numéro</th></tr></thead><tbody><tr><td>Oxygen</td><td>O</td><td>8</td></tr><tr><td>Carbon</td><td>C</td><td>6</td></tr><tr><td>Hydrogen</td><td>H</td><td>1</td></tr></tbody></table></div>
-    <h3>Typographie</h3>
+    <div class="v-card v-table-wrap"><table class="v-table"><thead><tr><th>Element</th><th>Symbol</th><th>Number</th></tr></thead><tbody><tr><td>Oxygen</td><td>O</td><td>8</td></tr><tr><td>Carbon</td><td>C</td><td>6</td></tr><tr><td>Hydrogen</td><td>H</td><td>1</td></tr></tbody></table></div>
+    <h3>Typography</h3>
     <div class="v-card demo-form"><p class="v-display">Display 34</p><p class="v-headline">Headline 24</p><p class="v-title">Title 20</p><p class="v-subhead">Subhead 16</p><p class="v-body2">Body 2 · 14 medium</p><p class="v-body1">Body 1 · 14 regular</p><p class="v-caption v-secondary-text">Caption 12</p></div>
   </div>
 </section>
@@ -263,12 +263,12 @@
 <section class="demo-band" id="theme-contract">
   <h2 class="demo-section">theme contract</h2>
   <div class="demo-wide">
-    <p class="demo-caption">Un thème ne définit que ces couleurs de base ; ombres, états, focus, désactivé et ondes en sont dérivés. Valeurs du thème actif
-      (<a href="./builder.html" data-builder-link>les modifier dans le créateur de thème</a>) :</p>
+    <p class="demo-caption">A theme only defines these base colors; shadows, states, focus, disabled colors and ripples are derived from them. Values of the active theme
+      (<a href="./builder.html" data-builder-link>edit them in the theme builder</a>):</p>
     <div class="v-card demo-swatches" id="swatches"></div>
   </div>
 </section>
 </main>
-<footer class="demo-footer v-caption v-secondary-text">Vellum — inspiré des Polymer paper elements (BSD, voir NOTICE). Aucune dépendance d’exécution.</footer>
+<footer class="demo-footer v-caption v-secondary-text">Vellum — inspired by the Polymer paper elements (BSD, see NOTICE). No runtime dependency.</footer>
 </body>
 </html>

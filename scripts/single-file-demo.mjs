@@ -32,7 +32,7 @@ console.log('dist/vellum-demo.html', Math.round(html.length / 1024), 'KiB')
 const head = html.match(/<head>([\s\S]*?)<\/head>/)[1]
 const body = html.match(/<body[^>]*>([\s\S]*)<\/body>/)[1]
 const keep = head.match(/<title>[\s\S]*?<\/title>|<link rel="(?:preconnect|stylesheet)"[^>]*>|<style>[\s\S]*?<\/style>/g)
-const fragment = [...keep, body.replace(/<script>\n/, `<script>\ndocument.documentElement.lang = 'fr';\n`)].join('\n')
+const fragment = [...keep, body.replace(/<script>\n/, `<script>\ndocument.documentElement.lang = 'en';\n`)].join('\n')
 mkdirSync('.cache/artifact', { recursive: true })
 writeFileSync('.cache/artifact/vellum-ui-kit.html', fragment)
 console.log('.cache/artifact/vellum-ui-kit.html', Math.round(fragment.length / 1024), 'KiB')

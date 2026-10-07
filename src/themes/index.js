@@ -26,6 +26,6 @@ const VELLUM_THEMES = [
       'scrim-alpha': 0.6, 'ripple-alpha': 0.25 } },
 ]
 
-export const GROUPS = { vellum: 'Vellum', polymer: 'PolymerThemes', classic: 'Classiques' }
+export const GROUPS = { vellum: 'Vellum', polymer: 'PolymerThemes', classic: 'Classics' }
 export const THEMES = [...VELLUM_THEMES, ...POLYMER_THEMES, ...CLASSIC_THEMES].map((t) => ({ ...t, vars: deriveTheme(t.spec) }))
 export const themeById = (id) => THEMES.find((t) => t.id === id)

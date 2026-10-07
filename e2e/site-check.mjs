@@ -13,7 +13,7 @@ await p.waitForURL(/\/demo\/$/)  // the root index.html redirects
 await p.waitForLoadState('networkidle')
 console.log('root ->', p.url(), '| library from', await p.evaluate(() => [...document.styleSheets].map((s) => s.href).filter(Boolean).map((h) => h.split('/').slice(-2).join('/')).join(', ')))
 console.log('demo: themes in menu', await p.locator('#theme-hero option').count(), '| font', await p.evaluate(() => document.fonts.check('16px Roboto')))
-await p.getByRole('link', { name: 'Créer un thème' }).first().click()
+await p.getByRole('link', { name: 'Create a theme' }).first().click()
 await p.waitForLoadState('networkidle'); await p.waitForTimeout(1500)
 console.log('builder:', p.url(), '| preview theme', await p.frameLocator('#bld-frame').locator('body').getAttribute('data-theme'))
 console.log('errors:', errors.join(' | ') || 'none', '| failed:', failed.join(' ') || 'none')

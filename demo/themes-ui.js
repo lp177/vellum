@@ -9,7 +9,7 @@ const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`)
 export function loadCustom() {
   try {
     const c = JSON.parse(localStorage.getItem(CUSTOM_KEY) || 'null')
-    if (c?.spec) return { name: String(c.name || 'Mon thème'), spec: c.spec, vars: deriveTheme(c.spec) }
+    if (c?.spec) return { name: String(c.name || 'My theme'), spec: c.spec, vars: deriveTheme(c.spec) }
   } catch { /* storage unavailable, or an invalid saved theme */ }
   return null
 }
@@ -34,8 +34,8 @@ const AUTO = [light.bg, dark.bg, light.primary, dark.primary, light.secondary]
 export function fillThemeSelect(select, { auto = true, custom = null } = {}) {
   const opt = (id, name, vars) => `<option value="${esc(id)}">${swatch(SWATCH_KEYS.map((k) => vars[k]))}<span>${esc(name)}</span></option>`
   let html = '<button><selectedcontent></selectedcontent></button>'
-  if (auto) html += `<option value="">${swatch(AUTO)}<span>Auto (clair ou sombre selon le système)</span></option>`
-  if (custom) html += `<optgroup label="Mon thème">${opt('custom', custom.name, custom.vars)}</optgroup>`
+  if (auto) html += `<option value="">${swatch(AUTO)}<span>Auto (light or dark, following the system)</span></option>`
+  if (custom) html += `<optgroup label="My theme">${opt('custom', custom.name, custom.vars)}</optgroup>`
   for (const [group, label] of Object.entries(GROUPS)) {
     html += `<optgroup label="${esc(label)}">${THEMES.filter((t) => t.group === group).map((t) => opt(t.id, t.name, t.vars)).join('')}</optgroup>`
   }

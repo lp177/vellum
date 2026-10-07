@@ -207,7 +207,7 @@ describe('theme derivation', () => {
     expect(contrast('#000', '#fff')).toBeCloseTo(21, 5)
   })
   it('turns a name into a theme id', () => {
-    expect(slug('Mon Thème Été')).toBe('mon-theme-ete')
+    expect(slug('Ångström Blue 2')).toBe('angstrom-blue-2')
     expect(themeCSS({ id: 'x', vars: THEMES[0].vars })).toMatch(/^\[data-theme="x"\] \{\n  --v-color-scheme: light;/)
   })
 })

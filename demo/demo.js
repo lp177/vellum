@@ -113,7 +113,7 @@ $('#prog-start').addEventListener('click', () => {
 }
 $('#spin-toggle').addEventListener('click', () => $$('.v-spinner').forEach((s) => s.classList.toggle('is-active')))
 $('#toast1').addEventListener('click', () => toast('Hello world!'))
-$('#toast2').addEventListener('click', () => toast('Message archivé', { action: { label: 'Annuler', onClick: () => toast('Restauré') }, duration: 5000 }))
+$('#toast2').addEventListener('click', () => toast('Message archived', { action: { label: 'Undo', onClick: () => toast('Restored') }, duration: 5000 }))
 $('#toast3').addEventListener('click', () => toast('Capsule toast', { capsule: true }))
 
 // ---------------------------------------------------------------- theme contract, live values

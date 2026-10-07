@@ -1,4 +1,4 @@
-/* Vellum theme "Contraste élevé" — WCAG AAA contrast on black. Generated from src/themes (scripts/gen-themes.mjs):
+/* Vellum theme "High Contrast" — WCAG AAA contrast on black. Generated from src/themes (scripts/gen-themes.mjs):
  * edit the catalog, not this file. Only base colors: shadows, states, focus and disabled colors are derived (tokens.css). */
 [data-theme="high-contrast"] {
   --v-color-scheme: dark;
