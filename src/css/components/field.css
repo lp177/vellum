@@ -123,6 +123,8 @@ textarea.v-field__input { height: auto; min-height: 24px; resize: none; overflow
   content: ""; position: absolute; right: 6px; top: 36px; width: 0; height: 0; pointer-events: none;
   border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid var(--v-text-2);
 }
+/* no floating label: the input starts 8px down instead of 28px, so the arrow follows it (8px below the input's top) */
+.v-field--select.v-field--no-float::after { top: 16px; }
 
 /* the animated 2px accent underline is the focus indicator of a field (as in paper-input): no extra ring */
 .v-app .v-field__input:focus-visible { outline: none; }
