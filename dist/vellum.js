@@ -141,28 +141,65 @@ function l(e) {
 	return s.get(e)?.ripple ?? null;
 }
 //#endregion
+//#region src/js/icons.js
+var u = {
+	palette: "M12 3a9 9 0 0 0 0 18c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z",
+	content_copy: "M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z",
+	refresh: "M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z",
+	save: "M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z",
+	visibility: "M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z",
+	menu: "M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z",
+	favorite: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z",
+	arrow_back: "M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z",
+	arrow_forward: "M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z",
+	arrow_upward: "M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z",
+	arrow_downward: "M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z",
+	chevron_right: "M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z",
+	close: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z",
+	check: "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z",
+	edit: "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z",
+	reply: "M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z",
+	download: "M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z",
+	more_vert: "M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z",
+	search: "M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z",
+	mic: "M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z",
+	play: "M8 5v14l11-7z",
+	stop: "M6 6h12v12H6z",
+	code: "M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z",
+	settings: "M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.47.47 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z",
+	info: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+};
+function d(e, t = "v-icon") {
+	let n = u[e];
+	return n ? `<svg class="${t}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${n}"/></svg>` : "";
+}
+function f(e) {
+	let t = u[e.getAttribute("data-v-icon")];
+	t && !e.firstChild && (e.setAttribute("viewBox", "0 0 24 24"), e.setAttribute("aria-hidden", "true"), e.setAttribute("focusable", "false"), e.innerHTML = `<path d="${t}"/>`);
+}
+//#endregion
 //#region src/js/components.js
-var u = /* @__PURE__ */ new WeakMap();
-function d(e, t, n) {
-	let r = u.get(e);
-	if (r || u.set(e, r = /* @__PURE__ */ new Map()), r.has(t)) return r.get(t);
+var p = /* @__PURE__ */ new WeakMap();
+function m(e, t, n) {
+	let r = p.get(e);
+	if (r || p.set(e, r = /* @__PURE__ */ new Map()), r.has(t)) return r.get(t);
 	let i = n() || (() => {}), a = () => {
 		r.delete(t), i();
 	};
 	return r.set(t, a), a;
 }
-var f = (e, t, n, r) => (e.addEventListener(t, n, r), () => e.removeEventListener(t, n, r)), p = (...e) => () => e.forEach((e) => e && e());
-function m(e) {
-	return d(e, "button", () => p(e.hasAttribute("data-v-noink") ? null : c(e, { recenters: e.classList.contains("v-fab") }), e.hasAttribute("aria-pressed") && e.hasAttribute("data-v-toggle") ? f(e, "click", () => e.setAttribute("aria-pressed", String(e.getAttribute("aria-pressed") !== "true"))) : null));
+var h = (e, t, n, r) => (e.addEventListener(t, n, r), () => e.removeEventListener(t, n, r)), g = (...e) => () => e.forEach((e) => e && e());
+function _(e) {
+	return m(e, "button", () => g(e.hasAttribute("data-v-noink") ? null : c(e, { recenters: e.classList.contains("v-fab") }), e.hasAttribute("aria-pressed") && e.hasAttribute("data-v-toggle") ? h(e, "click", () => e.setAttribute("aria-pressed", String(e.getAttribute("aria-pressed") !== "true"))) : null));
 }
-function h(e) {
-	return d(e, "icon-button", () => c(e, {
+function v(e) {
+	return m(e, "icon-button", () => c(e, {
 		center: !0,
 		circle: !0
 	}));
 }
-function g(e) {
-	return d(e, "control", () => {
+function y(e) {
+	return m(e, "control", () => {
 		let t = e.querySelector("input"), n = e.querySelector(".v-checkbox__ink, .v-radio__ink, .v-switch__ink");
 		if (!t || !n) return null;
 		let r = c(n, {
@@ -171,15 +208,15 @@ function g(e) {
 		}, document.createElement("span")), i = l(n), a = (e) => {
 			!t.disabled && (e.button === void 0 || e.button === 0) && i.down(null, null);
 		}, o = () => i.up();
-		return p(r, f(e, "pointerdown", a), f(e, "pointerup", o), f(e, "pointerleave", o), f(t, "keydown", (e) => {
+		return g(r, h(e, "pointerdown", a), h(e, "pointerup", o), h(e, "pointerleave", o), h(t, "keydown", (e) => {
 			e.key === " " && !e.repeat && !t.disabled && i.down(null, null);
-		}), f(t, "keyup", (e) => {
+		}), h(t, "keyup", (e) => {
 			e.key === " " && i.up();
 		}));
 	});
 }
-function _(e) {
-	return d(e, "slider", () => {
+function b(e) {
+	return m(e, "slider", () => {
 		let t = e.querySelector(".v-slider__input");
 		if (!t) return null;
 		let n = e.querySelector(".v-slider__pin"), r = e.querySelector(".v-slider__value input");
@@ -196,30 +233,30 @@ function _(e) {
 		};
 		i();
 		let o = typeof ResizeObserver == "function" ? new ResizeObserver(i) : null;
-		return o?.observe(t), p(f(t, "input", i), f(t, "change", i), r && f(r, "change", a), () => o?.disconnect());
+		return o?.observe(t), g(h(t, "input", i), h(t, "change", i), r && h(r, "change", a), () => o?.disconnect());
 	});
 }
-function v(e) {
+function x(e) {
 	e.querySelector(".v-slider__input")?.dispatchEvent(new Event("input"));
 }
-function y(e) {
-	return d(e, "field", () => {
+function S(e) {
+	return m(e, "field", () => {
 		let t = e.querySelector(".v-field__input");
 		if (!t) return null;
 		let n = e.querySelector(".v-field__counter"), r = e.hasAttribute("data-v-auto-validate"), i = () => {
-			n && (n.textContent = t.maxLength > 0 ? `${t.value.length}/${t.maxLength}` : String(t.value.length)), t.tagName === "TEXTAREA" && (t.style.height = "auto", t.style.height = t.scrollHeight + "px"), r && b(e);
+			n && (n.textContent = t.maxLength > 0 ? `${t.value.length}/${t.maxLength}` : String(t.value.length)), t.tagName === "TEXTAREA" && (t.style.height = "auto", t.style.height = t.scrollHeight + "px"), r && C(e);
 		};
-		return i(), p(f(t, "input", i));
+		return i(), g(h(t, "input", i));
 	});
 }
-function b(e) {
+function C(e) {
 	let t = e.querySelector(".v-field__input"), n = t.checkValidity();
 	e.classList.toggle("is-invalid", !n), t.setAttribute("aria-invalid", String(!n));
 	let r = e.querySelector(".v-field__error");
 	return r && !n && !r.dataset.static && (r.textContent = t.validationMessage), n;
 }
-function x(e) {
-	return d(e, "tabs", () => {
+function w(e) {
+	return m(e, "tabs", () => {
 		let t = e.classList.contains("v-tabs--nav"), n = () => [...e.querySelectorAll(":scope > .v-tab")], r = e.querySelector(":scope > .v-tabs__bar");
 		r || (r = document.createElement("span"), r.className = "v-tabs__bar", r.setAttribute("aria-hidden", "true"), e.appendChild(r));
 		let i = e.classList.contains("v-tabs--no-ink") ? [] : n().map((e) => c(e, {})), a = t ? n().find((e) => e.hasAttribute("data-selected") || e.getAttribute("aria-current") === "page") || null : n().find((e) => e.getAttribute("aria-selected") === "true") || n()[0], o = (t) => {
@@ -263,7 +300,7 @@ function x(e) {
 			}
 			let d = e.scrollWidth || 1, f = c.getBoundingClientRect(), p = t.getBoundingClientRect(), m = e.getBoundingClientRect();
 			r.classList.remove("contract"), r.classList.add("expand"), n().indexOf(c) < n().indexOf(t) ? s((p.right - f.left) / d * 100 - 5, (f.left - m.left + e.scrollLeft) / d * 100) : s((f.right - p.left) / d * 100 - 5, (p.left - m.left + e.scrollLeft) / d * 100 + 5);
-		}, m = (e) => {
+		}, f = (e) => {
 			if (e.target === r) {
 				if (r.classList.contains("expand") && a) {
 					r.classList.replace("expand", "contract");
@@ -271,10 +308,10 @@ function x(e) {
 					s(e.width, e.left);
 				} else r.classList.remove("expand", "contract");
 			}
-		}, h = (n) => {
+		}, p = (n) => {
 			let r = n.target.closest(".v-tab");
 			r && r.parentElement === e && (t && (n.button > 0 || n.metaKey || n.ctrlKey || n.shiftKey || n.altKey) || d(r));
-		}, g = (e) => {
+		}, m = (e) => {
 			let t = n().filter((e) => !e.disabled), r = t.indexOf(document.activeElement);
 			if (r < 0) return;
 			let i = {
@@ -292,11 +329,11 @@ function x(e) {
 		}
 		l();
 		let _ = typeof ResizeObserver == "function" ? new ResizeObserver(l) : null;
-		return _?.observe(e), e.vSelect = (e) => d(e >= 0 ? n()[e] ?? null : null), p(f(e, "click", h), t ? null : f(e, "keydown", g), f(r, "transitionend", m), () => _?.disconnect(), ...i);
+		return _?.observe(e), e.vSelect = (e) => d(e >= 0 ? n()[e] ?? null : null), g(h(e, "click", p), t ? null : h(e, "keydown", m), h(r, "transitionend", f), () => _?.disconnect(), ...i);
 	});
 }
-function S(e) {
-	return d(e, "menu", () => {
+function T(e) {
+	return m(e, "menu", () => {
 		let t = e.getAttribute("aria-multiselectable") === "true", n = () => [...e.querySelectorAll(".v-item:not([aria-disabled=\"true\"])")];
 		for (let t of e.querySelectorAll(".v-item")) t.hasAttribute("role") || t.setAttribute("role", "option"), t.hasAttribute("aria-selected") || t.setAttribute("aria-selected", "false");
 		let r = n().find((e) => e.getAttribute("aria-selected") === "true") || n()[0];
@@ -315,10 +352,10 @@ function S(e) {
 			for (let t of n()) t.tabIndex = t === e ? 0 : -1;
 			e.focus();
 		};
-		return p(f(e, "click", (t) => {
+		return g(h(e, "click", (t) => {
 			let n = t.target.closest(".v-item");
 			n && e.contains(n) && n.getAttribute("aria-disabled") !== "true" && (i(n), a(n));
-		}), f(e, "keydown", (e) => {
+		}), h(e, "keydown", (e) => {
 			let t = n(), r = t.indexOf(document.activeElement), o = {
 				ArrowDown: t[Math.min(t.length - 1, r + 1)],
 				ArrowUp: t[Math.max(0, r - 1)],
@@ -340,21 +377,21 @@ function S(e) {
 		}));
 	});
 }
-function C(e, { modal: t = !0 } = {}) {
-	e.classList.remove("is-closing"), e.open || (t ? e.showModal() : e.show()), d(e, "dialog", () => p(f(e, "cancel", (t) => {
-		t.preventDefault(), e.hasAttribute("data-v-modal") || w(e);
-	}), f(e, "click", (t) => {
+function E(e, { modal: t = !0 } = {}) {
+	e.classList.remove("is-closing"), e.open || (t ? e.showModal() : e.show()), m(e, "dialog", () => g(h(e, "cancel", (t) => {
+		t.preventDefault(), e.hasAttribute("data-v-modal") || D(e);
+	}), h(e, "click", (t) => {
 		if (t.target.closest("[data-v-dialog-close]")) {
-			w(e, t.target.closest("[data-v-dialog-close]").getAttribute("data-v-dialog-close") || "");
+			D(e, t.target.closest("[data-v-dialog-close]").getAttribute("data-v-dialog-close") || "");
 			return;
 		}
 		if (t.target === e && !e.hasAttribute("data-v-modal")) {
 			let n = e.getBoundingClientRect();
-			(t.clientX < n.left || t.clientX > n.right || t.clientY < n.top || t.clientY > n.bottom) && w(e);
+			(t.clientX < n.left || t.clientX > n.right || t.clientY < n.top || t.clientY > n.bottom) && D(e);
 		}
 	}))), e.querySelector("[autofocus], .v-dialog__buttons .v-button:last-child")?.focus();
 }
-function w(e, t = "") {
+function D(e, t = "") {
 	if (!e.open || e.classList.contains("is-closing")) return;
 	let n = typeof matchMedia == "function" && matchMedia("(prefers-reduced-motion: reduce)").matches, r = () => {
 		e.classList.remove("is-closing"), e.close(t);
@@ -371,94 +408,84 @@ function w(e, t = "") {
 	}
 	Promise.all(i.map((e) => e.finished.catch(() => {}))).then(r);
 }
-var T = null, E = 0;
-function D(e, { duration: t = 3e3, action: n = null, capsule: r = !1 } = {}) {
-	T || (T = document.createElement("div"), T.className = "v-toast", T.setAttribute("role", "status"), T.setAttribute("aria-live", "polite"), document.body.appendChild(T)), clearTimeout(E), T.classList.toggle("v-toast--capsule", r), T.replaceChildren();
-	let i = document.createElement("span");
-	if (i.className = "v-toast__text", i.textContent = e, T.appendChild(i), n) {
+var O = null, k = 0;
+function A(e, { duration: t = 3e3, action: n = null, capsule: r = !1, copy: i = !1 } = {}) {
+	O || (O = document.createElement("div"), O.className = "v-toast", O.setAttribute("role", "status"), O.setAttribute("aria-live", "polite"), document.body.appendChild(O)), clearTimeout(k), O.classList.toggle("v-toast--capsule", r), O.replaceChildren();
+	let a = document.createElement("span");
+	if (a.className = "v-toast__text", a.textContent = e, O.appendChild(a), n) {
 		let e = document.createElement("button");
 		e.className = "v-button v-toast__action", e.textContent = n.label, e.addEventListener("click", () => {
-			n.onClick?.(), O();
-		}), T.appendChild(e), m(e);
+			n.onClick?.(), M();
+		}), O.appendChild(e), _(e);
 	}
-	return requestAnimationFrame(() => T.classList.add("is-open")), t > 0 && t !== Infinity && (E = setTimeout(O, t)), { hide: O };
+	if (i) {
+		let t = typeof i == "string" ? i : e, n = document.createElement("button");
+		n.type = "button", n.className = "v-icon-button v-toast__copy";
+		let r = (e, t) => {
+			n.innerHTML = d(e), n.title = t, n.setAttribute("aria-label", t);
+		};
+		r("content_copy", "Copy");
+		let o = async () => {
+			let e = await j(t);
+			r(e ? "check" : "content_copy", e ? "Copied" : "Copy failed");
+		};
+		a.classList.add("v-toast__text--copy"), a.title = "Click to copy", a.addEventListener("click", o), n.addEventListener("click", o), O.appendChild(n), v(n);
+	}
+	return requestAnimationFrame(() => O.classList.add("is-open")), t > 0 && t !== Infinity && (k = setTimeout(M, t)), { hide: M };
 }
-function O() {
-	clearTimeout(E), T?.classList.remove("is-open");
+async function j(e) {
+	try {
+		return await navigator.clipboard.writeText(e), !0;
+	} catch {}
+	let t = document.createElement("textarea");
+	t.value = e, t.setAttribute("readonly", ""), t.style.cssText = "position:fixed;top:0;left:0;opacity:0;pointer-events:none", document.body.appendChild(t), t.select();
+	let n = !1;
+	try {
+		n = document.execCommand("copy");
+	} catch {
+		n = !1;
+	}
+	return t.remove(), n;
 }
-function k(e, t, n) {
+function M() {
+	clearTimeout(k), O?.classList.remove("is-open");
+}
+function N(e, t, n) {
 	let r = (e) => Math.max(0, Math.min(1, e));
 	e.classList.add("is-transiting"), e.style.setProperty("--v-value", String(r(t))), n != null && e.style.setProperty("--v-secondary-value", String(r(n))), e.setAttribute("role", "progressbar"), e.setAttribute("aria-valuemin", "0"), e.setAttribute("aria-valuemax", "100"), e.setAttribute("aria-valuenow", String(Math.round(r(t) * 100)));
 }
-function A(e) {
-	return d(e, "spinner", () => (e.querySelector("svg") || (e.innerHTML = "<svg viewBox=\"0 0 28 28\" aria-hidden=\"true\"><circle cx=\"14\" cy=\"14\" r=\"11\"/></svg>"), e.hasAttribute("role") || e.setAttribute("role", "progressbar"), null));
-}
-//#endregion
-//#region src/js/icons.js
-var j = {
-	palette: "M12 3a9 9 0 0 0 0 18c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z",
-	content_copy: "M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z",
-	refresh: "M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z",
-	save: "M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z",
-	visibility: "M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z",
-	menu: "M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z",
-	favorite: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z",
-	arrow_back: "M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z",
-	arrow_forward: "M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z",
-	arrow_upward: "M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z",
-	arrow_downward: "M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z",
-	chevron_right: "M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z",
-	close: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z",
-	check: "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z",
-	edit: "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z",
-	reply: "M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z",
-	download: "M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z",
-	more_vert: "M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z",
-	search: "M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z",
-	mic: "M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z",
-	play: "M8 5v14l11-7z",
-	stop: "M6 6h12v12H6z",
-	code: "M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z",
-	settings: "M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.47.47 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z",
-	info: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
-};
-function M(e, t = "v-icon") {
-	let n = j[e];
-	return n ? `<svg class="${t}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${n}"/></svg>` : "";
-}
-function N(e) {
-	let t = j[e.getAttribute("data-v-icon")];
-	t && !e.firstChild && (e.setAttribute("viewBox", "0 0 24 24"), e.setAttribute("aria-hidden", "true"), e.setAttribute("focusable", "false"), e.innerHTML = `<path d="${t}"/>`);
+function P(e) {
+	return m(e, "spinner", () => (e.querySelector("svg") || (e.innerHTML = "<svg viewBox=\"0 0 28 28\" aria-hidden=\"true\"><circle cx=\"14\" cy=\"14\" r=\"11\"/></svg>"), e.hasAttribute("role") || e.setAttribute("role", "progressbar"), null));
 }
 //#endregion
 //#region src/index.js
-var P = [
-	[".v-button:not(.v-toast__action)", m],
-	[".v-fab", m],
-	[".v-icon-button", h],
-	[".v-checkbox, .v-radio, .v-switch", g],
-	[".v-slider", _],
-	[".v-field", y],
-	[".v-tabs", x],
-	[".v-menu[role=\"listbox\"]", S],
-	[".v-spinner", A],
-	["svg[data-v-icon]", N]
+var F = [
+	[".v-button:not(.v-toast__action)", _],
+	[".v-fab", _],
+	[".v-icon-button", v],
+	[".v-checkbox, .v-radio, .v-switch", y],
+	[".v-slider", b],
+	[".v-field", S],
+	[".v-tabs", w],
+	[".v-menu[role=\"listbox\"]", T],
+	[".v-spinner", P],
+	["svg[data-v-icon]", f]
 ];
-function F(e = document) {
-	for (let [t, n] of P) e.matches?.(t) && n(e), e.querySelectorAll(t).forEach((e) => n(e));
+function I(e = document) {
+	for (let [t, n] of F) e.matches?.(t) && n(e), e.querySelectorAll(t).forEach((e) => n(e));
 }
-function I(e = document.body) {
-	F(e);
+function L(e = document.body) {
+	I(e);
 	let t = new MutationObserver((e) => {
-		for (let t of e) for (let e of t.addedNodes) e.nodeType === 1 && F(e);
+		for (let t of e) for (let e of t.addedNodes) e.nodeType === 1 && I(e);
 	});
 	return t.observe(e, {
 		childList: !0,
 		subtree: !0
 	}), () => t.disconnect();
 }
-function L(e, t = document.documentElement) {
+function R(e, t = document.documentElement) {
 	e ? t.setAttribute("data-theme", e) : t.removeAttribute("data-theme");
 }
 //#endregion
-export { j as ICONS, o as Ripple, m as attachButton, g as attachControl, y as attachField, h as attachIconButton, S as attachMenu, c as attachRipple, _ as attachSlider, A as attachSpinner, x as attachTabs, w as closeDialog, N as fillIcon, O as hideToast, M as icon, F as init, I as observe, C as openDialog, i as outerOpacity, v as refreshSlider, l as rippleOf, k as setProgress, L as setTheme, D as toast, b as validateField, r as waveOpacity, n as waveRadius };
+export { u as ICONS, o as Ripple, _ as attachButton, y as attachControl, S as attachField, v as attachIconButton, T as attachMenu, c as attachRipple, b as attachSlider, P as attachSpinner, w as attachTabs, D as closeDialog, j as copyText, f as fillIcon, M as hideToast, d as icon, I as init, L as observe, E as openDialog, i as outerOpacity, x as refreshSlider, l as rippleOf, N as setProgress, R as setTheme, A as toast, C as validateField, r as waveOpacity, n as waveRadius };

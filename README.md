@@ -209,7 +209,8 @@ Typography classes: `.v-display`, `.v-headline`, `.v-title`, `.v-subhead`, `.v-b
 | `attachButton`, `attachIconButton`, `attachControl`, `attachSlider`, `attachField`, `attachTabs`, `attachMenu`, `attachSpinner` | enhance one element; idempotent; return a detach function (use them in framework `mounted`/`unmounted`) |
 | `attachRipple(host, { center, circle, recenters })` | ink ripple on any element |
 | `openDialog(dialog, { modal })` / `closeDialog(dialog, value)` | open, and close with the exit animation. Escape and backdrop clicks close it unless `data-v-modal` is set |
-| `toast(text, { duration, action: { label, onClick }, capsule })` / `hideToast()` | one reused `role=status` live region, appended to `<body>` |
+| `toast(text, { duration, action: { label, onClick }, capsule, copy })` / `hideToast()` | one reused `role=status` live region, appended to `<body>`; `copy` (true, or the string to copy) makes the text copy on click and adds a copy icon at the right |
+| `copyText(text)` | clipboard write, textarea fallback outside secure contexts; resolves to `true` on success |
 | `setProgress(el, value, secondary)` | 0–1 values, updates ARIA |
 | `validateField(field)` / `refreshSlider(slider)` | re-check after programmatic changes |
 | `icon(name)` / `fillIcon(svg)` / `ICONS` | inline Material icon paths (`<svg data-v-icon="name">`) |

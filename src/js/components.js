@@ -1,6 +1,7 @@
 // Vellum — component behaviors. Each attachX(el) is idempotent and returns a detach function, so the library works
 // both as a static page enhancer (init(document)) and under a framework (call attachX in mounted / detach in unmount).
 import { attachRipple, rippleOf } from './ripple.js'
+import { icon } from './icons.js'
 
 const DONE = new WeakMap()
 function once(el, key, fn) {
@@ -250,8 +251,10 @@ export function closeDialog(dialog, returnValue = '') {
 
 // ---------------------------------------------------------------- toast
 let toastEl = null, toastTimer = 0
-/** toast("Saved", { duration: 3000, action: { label: "Undo", onClick } , capsule: false }) */
-export function toast(text, { duration = 3000, action = null, capsule = false } = {}) {
+/** toast("Saved", { duration: 3000, action: { label: "Undo", onClick }, capsule: false, copy: false })
+ *  copy: true (the text) or a string (e.g. the full message behind a short one): a click on the text copies it, and a
+ *  copy icon button sits at the right end of the toast. */
+export function toast(text, { duration = 3000, action = null, capsule = false, copy = false } = {}) {
   if (!toastEl) {
     toastEl = document.createElement('div')
     toastEl.className = 'v-toast'
@@ -269,9 +272,29 @@ export function toast(text, { duration = 3000, action = null, capsule = false } 
     b.addEventListener('click', () => { action.onClick?.(); hideToast() })
     toastEl.appendChild(b); attachButton(b)
   }
+  if (copy) {
+    const value = typeof copy === 'string' ? copy : text
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'v-icon-button v-toast__copy'
+    const mark = (name, label) => { b.innerHTML = icon(name); b.title = label; b.setAttribute('aria-label', label) }
+    mark('content_copy', 'Copy')
+    // The toast stays open; the icon turns to a check once the clipboard has the text.
+    const run = async () => { const ok = await copyText(value); mark(ok ? 'check' : 'content_copy', ok ? 'Copied' : 'Copy failed') }
+    span.classList.add('v-toast__text--copy'); span.title = 'Click to copy'; span.addEventListener('click', run)
+    b.addEventListener('click', run)
+    toastEl.appendChild(b); attachIconButton(b)
+  }
   requestAnimationFrame(() => toastEl.classList.add('is-open'))
   if (duration > 0 && duration !== Infinity) toastTimer = setTimeout(hideToast, duration)
   return { hide: hideToast }
+}
+/** Writes `text` to the clipboard; outside a secure context it falls back to a hidden textarea. Resolves to success. */
+export async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); return true } catch { /* not allowed or no secure context */ }
+  const ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', '')
+  ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none'
+  document.body.appendChild(ta); ta.select()
+  let ok = false; try { ok = document.execCommand('copy') } catch { ok = false }
+  ta.remove(); return ok
 }
 export function hideToast() { clearTimeout(toastTimer); toastEl?.classList.remove('is-open') }
 

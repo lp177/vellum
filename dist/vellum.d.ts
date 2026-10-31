@@ -40,8 +40,12 @@ export interface ToastOptions {
   duration?: number
   action?: { label: string; onClick?: () => void } | null
   capsule?: boolean
+  /** true: copy the text; a string: copy that instead. A click on the text copies it; a copy icon sits at the right. */
+  copy?: boolean | string
 }
 export function toast(text: string, opts?: ToastOptions): { hide: () => void }
+/** Clipboard write with a textarea fallback outside secure contexts; resolves to success. */
+export function copyText(text: string): Promise<boolean>
 export function hideToast(): void
 /** `value` and `secondary` in 0–1. */
 export function setProgress(el: HTMLElement, value: number, secondary?: number | null): void

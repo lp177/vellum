@@ -95,6 +95,8 @@
 .v-toast.is-open { opacity: 1; transform: none; pointer-events: auto; }
 .v-toast__text { flex: 1; }
 .v-toast__action { margin: -8px -12px -8px 0; color: var(--v-secondary); }
+.v-toast__text--copy { cursor: copy; }
+.v-toast__copy { flex: none; margin: -8px -16px -8px calc(-1 * var(--v-space-3, 8px)); color: inherit; }
 .v-toast--capsule { border-radius: 24px; }
 .v-toast--fit-bottom { left: 0; right: 0; width: 100%; max-width: none; margin: 0; border-radius: 0; }
 @media (max-width: 599px) { .v-toast { left: 0; right: 0; min-width: 0; } }
